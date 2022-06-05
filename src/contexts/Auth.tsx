@@ -7,16 +7,21 @@ import {
 import React, { useContext, useState, useEffect } from 'react';
 import { supabase } from '../supabase';
 
+type AuthProviderProps = { children: React.ReactNode };
+type AuthPromises = {
+  user: User | null;
+  session: AuthSession | null;
+  error: ApiError | null;
+};
+
 interface ContextValue {
-  signUp: (data: UserCredentials) => Promise<AuthSession>;
-  signIn: (data: UserCredentials) => Promise<AuthSession>;
+  signUp: (data: UserCredentials) => Promise<AuthPromises>;
+  signIn: (data: UserCredentials) => Promise<AuthPromises>;
   signOut: () => Promise<{ error: ApiError | null }>;
   user: User | null;
 }
 
 const AuthContext = React.createContext<ContextValue | null>(null);
-
-type AuthProviderProps = { children: React.ReactNode };
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
