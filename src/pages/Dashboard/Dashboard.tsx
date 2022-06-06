@@ -13,6 +13,7 @@ const Dashboard = () => {
       navigate('/login');
     }
   };
+
   return (
     <>
       <h1>Jestes na dashboardzie</h1>
