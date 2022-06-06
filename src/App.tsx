@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
-import { AuthProvider, useAuth } from './contexts/Auth';
+import { AuthProvider, useAuth } from './contexts/AuthProvider';
 import { Dashboard } from './pages/Dashboard/Dashboard';
 import { Login } from './pages/Login/Login';
 import { Signup } from './pages/Signup/Signup';
@@ -8,7 +8,6 @@ import { Navigate } from 'react-router-dom';
 const App = () => {
   const PrivateOutlet = () => {
     const { user } = useAuth();
-    console.log(user);
     return user ? <Outlet /> : <Navigate to="/login" />;
   };
 

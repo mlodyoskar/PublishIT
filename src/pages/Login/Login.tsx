@@ -1,10 +1,17 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../contexts/Auth';
+import { useEffect } from 'react';
+import { useAuth } from '../../contexts/AuthProvider';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 const Login = () => {
-  const { signIn } = useAuth();
+  const { user, signIn } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [user]);
 
   type Inputs = {
     email: string;
