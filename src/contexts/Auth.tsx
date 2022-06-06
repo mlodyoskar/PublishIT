@@ -61,9 +61,11 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
 const useAuth = () => {
   const context = useContext(AuthContext);
-  if (context === undefined) {
+  if (context === null) {
     throw new Error('useAuth must be used within a AuthProvider');
   }
+
+  return context;
 };
 
 export { AuthProvider, useAuth };
