@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthProvider';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { InputAndLabel } from '../../components/Input/Input';
 
 const Login = () => {
   const { user, signIn } = useAuth();
@@ -17,6 +18,7 @@ const Login = () => {
     email: string;
     password: string;
   };
+
   const {
     register,
     handleSubmit,
@@ -25,6 +27,8 @@ const Login = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const { error } = await signIn(data);
+    console.log(data);
+
     if (error) {
       alert('error signing in');
       console.log(error);
@@ -44,23 +48,11 @@ const Login = () => {
       </p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col mb-4">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            {...register('email')}
-            id="email"
-            className="rounded p-1 shadow-sm"
-          />
+          <InputAndLabel {...register('email')}>Email</InputAndLabel>
           {errors.email && <span>This field is required</span>}
         </div>
         <div className="flex flex-col mb-4">
-          <label htmlFor="password">Password</label>
-          <input
-            {...register('password')}
-            type="password"
-            id="password"
-            className="rounded p-1 shadow-sm"
-          />
+          <InputAndLabel {...register('password')}>Password</InputAndLabel>
           {errors.password && <span>This field is required</span>}
         </div>
         <button className="bg-indigo-700 p-2 rounded-md text-white">
