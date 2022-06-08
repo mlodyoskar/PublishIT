@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthProvider';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { InputAndLabel } from '../../components/Input/Input';
+import { Input } from '../../components/Input/Input';
 
 const Signup = () => {
   const { user, signUp } = useAuth();
@@ -22,7 +22,6 @@ const Signup = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<Inputs>();
 
@@ -47,15 +46,16 @@ const Signup = () => {
       </p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col mb-4">
+          <Input type="email" {...register('email')}>
+            Email
+          </Input>
           {errors.email && <span>This field is required</span>}
         </div>
         <div className="flex flex-col mb-4">
-          <label htmlFor="password">Password</label>
-          <input
-            {...register('password')}
-            id="password"
-            className="rounded p-1 shadow-sm"
-          />
+          <Input type="email" {...register('password')}>
+            Password
+          </Input>
+
           {errors.password && <span>This field is required</span>}
         </div>
         <button className="bg-indigo-700 p-2 rounded-md text-white">

@@ -2,19 +2,20 @@ import React, { forwardRef } from 'react';
 
 interface InputProps {
   name: string;
+  type: string;
+  placeholder?: string;
   children: React.ReactNode;
 }
 
-const InputAndLabel = forwardRef<HTMLInputElement, InputProps>(
-  ({ children, name, ...props }, ref) => {
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ children, ...props }, ref) => {
     return (
       <>
-        <label className="block text-gray-700 text-sm font-bold mb-2">
+        <label className="block text-sm font-medium text-gray-700">
           {children}
           <input
             {...props}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id={name}
+            className="shadow-sm appearance-none border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700  mt-2 focus:border-indigo-500 focus:ring-indigo-500 "
             ref={ref}
           />
         </label>
@@ -23,6 +24,6 @@ const InputAndLabel = forwardRef<HTMLInputElement, InputProps>(
   }
 );
 
-InputAndLabel.displayName = 'InputAndLabel';
+Input.displayName = 'Input';
 
-export { InputAndLabel };
+export { Input };
