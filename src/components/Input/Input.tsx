@@ -15,7 +15,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           {children}
           <input
             {...props}
-            className="shadow-sm appearance-none border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700  mt-2 focus:border-indigo-500 focus:ring-indigo-500 "
+            className="shadow-sm appearance-none border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700  mt-1 focus:border-indigo-500 focus:ring-indigo-500 "
             ref={ref}
           />
         </label>
