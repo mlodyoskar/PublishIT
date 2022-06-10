@@ -17,6 +17,7 @@ type AuthPromises = {
 interface ContextValue {
   signUp: (data: UserCredentials) => Promise<AuthPromises>;
   signIn: (data: UserCredentials) => Promise<AuthPromises>;
+  signInWithTwitter: () => Promise<AuthPromises>;
   signOut: () => Promise<{ error: ApiError | null }>;
   user: User | null;
 }
@@ -48,6 +49,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   const value = {
     signUp: (data: UserCredentials) => supabase.auth.signUp(data),
     signIn: (data: UserCredentials) => supabase.auth.signIn(data),
+    signInWithTwitter: () => supabase.auth.signIn({ provider: 'twitter' }),
     signOut: () => supabase.auth.signOut(),
     user,
   };

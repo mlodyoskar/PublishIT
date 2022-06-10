@@ -4,6 +4,7 @@ import { Dashboard } from './pages/Dashboard/Dashboard';
 import { Login } from './pages/Login/Login';
 import { Signup } from './pages/Signup/Signup';
 import { Navigate } from 'react-router-dom';
+import { LoginSignUp } from 'Layouts/LoginSignUp/LoginSignUp';
 
 const App = () => {
   const PrivateOutlet = () => {
