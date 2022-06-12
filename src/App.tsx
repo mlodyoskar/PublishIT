@@ -1,30 +1,35 @@
 import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
-import { AuthProvider, useAuth } from './contexts/AuthProvider';
-import { Dashboard } from './pages/Dashboard/Dashboard';
-import { Login } from './pages/Login/Login';
-import { Signup } from './pages/Signup/Signup';
+import { useAuth } from 'contexts/AuthProvider';
+import { Home } from 'views/Home';
+import { Login } from 'views/Login';
 import { Navigate } from 'react-router-dom';
-import { LoginSignUp } from 'Layouts/LoginSignUp/LoginSignUp';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 const App = () => {
+  const { user } = useAuth();
   const PrivateOutlet = () => {
-    const { user } = useAuth();
     return user ? <Outlet /> : <Navigate to="/login" />;
   };
 
+  const queryClient = new QueryClient();
+
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/" element={<PrivateOutlet />}>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/*" element={<Dashboard />} />
-          </Route>
-        </Routes>
-      </AuthProvider>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        {!user ? (
+          <Login />
+        ) : (
+          <Routes>
+            <Route path="/" element={<PrivateOutlet />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/*" element={<Home />} />
+            </Route>
+          </Routes>
+        )}
+      </BrowserRouter>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 };
 

@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAuth } from 'contexts/AuthProvider';
 import { Form } from 'components/Form/Form';
-import { LoginSignUp } from 'Layouts/LoginSignUp/LoginSignUp';
+import { LoginSignupTemplate } from 'templates/LoginSignupTemplate';
 
 const Login = () => {
   const { user } = useAuth();
@@ -16,9 +16,9 @@ const Login = () => {
 
   return (
     <>
-      <LoginSignUp>
+      <LoginSignupTemplate>
         <Form isSignUp={false} />
-      </LoginSignUp>
+      </LoginSignupTemplate>
     </>
   );
 };

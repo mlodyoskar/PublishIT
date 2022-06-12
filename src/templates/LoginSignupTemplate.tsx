@@ -7,7 +7,7 @@ type LoginSignUpProps = {
   children: React.ReactNode;
 };
 
-const LoginSignUp = ({ children }: LoginSignUpProps) => {
+const LoginSignupTemplate = ({ children }: LoginSignUpProps) => {
   return (
     <div className="h-screen flex">
       <div className="flex flex-col justify-center items-center w-full md:w-2/4 p-6 m-auto h-full max-w-3xl">
@@ -47,4 +47,4 @@ const LoginSignUp = ({ children }: LoginSignUpProps) => {
   );
 };
 
-export { LoginSignUp };
+export { LoginSignupTemplate };
