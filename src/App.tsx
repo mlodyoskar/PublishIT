@@ -23,7 +23,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<PrivateOutlet />}>
               <Route path="/" element={<Home />} />
-              <Route path="/*" element={<Home />} />
+              <Route path="/article/:id" element={<Home />} />
             </Route>
           </Routes>
         )}

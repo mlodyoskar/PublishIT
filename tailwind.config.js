@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // eslint-disable-next-line no-undef
 module.exports = {
   content: [
@@ -7,7 +8,8 @@ module.exports = {
     extend: {},
   },
   plugins: [
-    // eslint-disable-next-line no-undef
     require('@tailwindcss/forms'),
+    require('@tailwindcss/line-clamp'),
+
   ],
 }
