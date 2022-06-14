@@ -1,8 +1,7 @@
 import { useAuth } from 'contexts/AuthProvider';
 import { useNavigate } from 'react-router-dom';
-import { Navigation } from 'components/Navigation/Navigation';
-import { MainTemplate } from 'templates/MainTemplate';
-import { Articles } from 'components/Articles/Articles';
+import { PageTemplate } from 'templates/PageTemplate';
+import { ArticleList } from 'components/ArticleList/ArticleList';
 
 const Home = () => {
   const { user, signOut } = useAuth();
@@ -18,13 +17,12 @@ const Home = () => {
   };
 
   return (
-    <MainTemplate>
-      <h1>Jestes na dashboardzie</h1>
-      <Articles />
+    <PageTemplate>
+      <ArticleList />
       <button onClick={handleSignOut} className="bg-indigo-600 p-1 rounded-sm">
         Logout
       </button>
-    </MainTemplate>
+    </PageTemplate>
   );
 };
 

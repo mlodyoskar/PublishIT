@@ -2,10 +2,11 @@ import { useQuery } from 'react-query';
 import { supabase } from 'supabase';
 import { ArticleType } from 'types/ArticleType';
 
-const getAllArticles = async () => {
+const getArticle = async (slug: string) => {
   const { data: articles, error } = await supabase
     .from<ArticleType>('articles')
-    .select('*, user:user_id(name)');
+    .select('*, user:user_id(name)')
+    .eq('slug', slug);
 
   if (error) {
     throw new Error(error.message);
@@ -16,8 +17,9 @@ const getAllArticles = async () => {
   return articles;
 };
 
-const useArticles = () => {
-  return useQuery('articles', () => getAllArticles());
+const useArticle = (slug: string | undefined) => {
+  if (slug === undefined) return;
+  return useQuery(['articles', slug], () => getArticle(slug));
 };
 
-export { useArticles };
+export { useArticle };

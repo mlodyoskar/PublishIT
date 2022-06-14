@@ -5,6 +5,7 @@ import { Login } from 'views/Login';
 import { Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { Article } from 'views/Article';
 
 const App = () => {
   const { user } = useAuth();
@@ -23,7 +24,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<PrivateOutlet />}>
               <Route path="/" element={<Home />} />
-              <Route path="/article/:id" element={<Home />} />
+              <Route path="/articles/:slug" element={<Article />} />
             </Route>
           </Routes>
         )}
