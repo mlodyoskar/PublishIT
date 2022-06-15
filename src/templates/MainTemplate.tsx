@@ -1,4 +1,3 @@
-import { Navigation } from 'components/Navigation/Navigation';
 import { GridTemplate } from './GridTemplate';
 
 type MainTemplateProps = {
@@ -6,12 +5,7 @@ type MainTemplateProps = {
 };
 
 const MainTemplate = ({ children }: MainTemplateProps) => {
-  return (
-    <>
-      <Navigation />
-      <GridTemplate>{children}</GridTemplate>
-    </>
-  );
+  return <GridTemplate>{children}</GridTemplate>;
 };
 
 export { MainTemplate };

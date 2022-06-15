@@ -2,6 +2,7 @@ import { useAuth } from 'contexts/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 import { PageTemplate } from 'templates/PageTemplate';
 import { ArticleList } from 'components/ArticleList/ArticleList';
+import { supabase } from 'supabase';
 
 const Home = () => {
   const { user, signOut } = useAuth();
