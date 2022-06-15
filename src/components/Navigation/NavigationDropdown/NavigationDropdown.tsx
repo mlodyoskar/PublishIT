@@ -10,12 +10,13 @@ type dropdownItemsProps = {
 };
 
 const NavigationDropdown = () => {
-  const { signOut, user } = useAuth();
+  const { signOut } = useAuth();
+  const { data } = useUser();
 
   const dropdownItems: dropdownItemsProps[] = [
     {
       text: 'My profile',
-      to: `/users/${user?.id}`,
+      to: `/users/${data?.username}`,
     },
     {
       text: 'Settings',

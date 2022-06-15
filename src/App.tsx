@@ -28,7 +28,7 @@ const App = () => {
               <Route path="/" element={<PrivateOutlet />}>
                 <Route path="/" element={<Home />} />
                 <Route path="/articles/:slug" element={<Article />} />
-                <Route path="/users/:id" element={<Article />} />
+                <Route path="/users/:username" element={<Article />} />
               </Route>
             </Routes>
           </>
