@@ -1,3 +1,5 @@
+import { UserType } from './UserType';
+
 export type ArticleType = {
   id: number;
   created_at: Date;
@@ -5,5 +7,5 @@ export type ArticleType = {
   title: string;
   body: string;
   slug: string;
-  user: { name: string };
+  user: UserType;
 };

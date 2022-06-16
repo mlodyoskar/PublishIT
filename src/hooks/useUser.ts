@@ -1,17 +1,11 @@
+import { UserType } from './../types/UserType';
 import { useAuth } from 'contexts/AuthProvider';
 import { useQuery } from 'react-query';
 import { supabase } from 'supabase';
 
-type User = {
-  id: string;
-  username: string;
-  avatar_url: string;
-  email: string;
-};
-
 const getUser = async (id: string) => {
   const { data: users, error } = await supabase
-    .from<User>('users')
+    .from<UserType>('users')
     .select('*')
     .eq('id', id);
 
