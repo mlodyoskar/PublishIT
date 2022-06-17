@@ -5,7 +5,7 @@ import { ArticleType } from 'types/ArticleType';
 const getArticle = async (id: string) => {
   const { data: articles, error } = await supabase
     .from<ArticleType>('articles')
-    .select('*, user:user_id(fullName, avatarUrl)')
+    .select('*, user:user_id(fullName,username, avatarUrl)')
     .eq('id', id);
 
   if (error) {

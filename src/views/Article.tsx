@@ -1,3 +1,4 @@
+import { Button } from 'components/Button/Button';
 import { Comment } from 'components/Comment/Comment';
 import { useArticle } from 'hooks/useArticle';
 import { useComments } from 'hooks/useComments';
@@ -34,7 +35,8 @@ const Article = () => {
   const {
     title,
     body,
-    user: { fullName, avatarUrl },
+    created_at,
+    user: { fullName, username, avatarUrl },
   } = article.data;
 
   return (
@@ -46,22 +48,28 @@ const Article = () => {
             className="rounded-md"
             src="http://via.placeholder.com/640x360"
           />
-          <div className="my-2 flex items-center justify-between">
+          <div className="my-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <img
+                alt="article creator avatar"
                 className="w-10 h-10 rounded-xl object-cover"
                 src={`${getUserAvatarUrl(avatarUrl)}`}
               />
-              <p className="text-lg">{fullName}</p>
+              <Link
+                to={`/users/${username}`}
+                className="text-xl hover:text-indigo-700 ease-in-out duration-300"
+              >
+                {fullName}
+              </Link>
             </div>
             <div>
-              {/* {make button nout of this with variants} */}
-              <button className="flex text-gray-50 bg-indigo-600 px-2 py-1 shadow-glow rounded-md hover:shadow-none hover:bg-indigo-700 ease-in-out duration-300">
-                Obserwuj
-              </button>
+              <Button variant="primary">Obserwuj</Button>
             </div>
           </div>
           <p className="text-justify my-4">{body}</p>
+          <div className="flex justify-end mt-6">
+            <p className="text-gray-600 text-sm">{formatDate(created_at)}</p>
+          </div>
         </article>
 
         <div>
