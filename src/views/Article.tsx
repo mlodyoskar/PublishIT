@@ -4,6 +4,7 @@ import { useArticle } from 'hooks/useArticle';
 import { useComments } from 'hooks/useComments';
 import { Link, useParams } from 'react-router-dom';
 import { PageTemplate } from 'templates/PageTemplate';
+import { getArticleImageUrl } from 'utils/article';
 import { formatDate } from 'utils/date';
 import { getUserAvatarUrl } from 'utils/user';
 
@@ -36,6 +37,7 @@ const Article = () => {
     title,
     body,
     created_at,
+    imageUrl,
     user: { fullName, username, avatarUrl },
   } = article.data;
 
@@ -44,10 +46,12 @@ const Article = () => {
       <div>
         <article className="bg-indigo-50 rounded-md p-6">
           <h1 className="text-3xl mb-6">{title}</h1>
-          <img
-            className="rounded-md"
-            src="http://via.placeholder.com/640x360"
-          />
+          {imageUrl && (
+            <img
+              className="w-full rounded-md max-h-96"
+              src={getArticleImageUrl(imageUrl)}
+            />
+          )}
           <div className="my-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <img

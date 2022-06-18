@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 import { useAuth } from 'contexts/AuthProvider';
-import { Home } from 'views/Home';
-import { Login } from 'views/Login';
 import { Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
+import { Home } from 'views/Home';
+import { Login } from 'views/Login';
 import { Article } from 'views/Article';
+import { PageNotFound } from 'views/404';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import { Navigation } from 'components/Navigation/Navigation';
 
 const App = () => {
@@ -27,8 +28,11 @@ const App = () => {
             <Routes>
               <Route path="/" element={<PrivateOutlet />}>
                 <Route path="/" element={<Home />} />
+                <Route path="/articles/new" element={<Article />} />
                 <Route path="/articles/:id" element={<Article />} />
+                <Route path="/articles/:id/edit" element={<Article />} />
                 <Route path="/users/:username" element={<Article />} />
+                <Route path="*" element={<PageNotFound />} />
               </Route>
             </Routes>
           </>

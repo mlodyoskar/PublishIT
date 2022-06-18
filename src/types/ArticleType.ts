@@ -8,4 +8,5 @@ export type ArticleType = {
   body: string;
   slug: string;
   user: UserType;
+  imageUrl: string;
 };
