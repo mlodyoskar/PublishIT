@@ -4,24 +4,9 @@ import { PageTemplate } from 'templates/PageTemplate';
 import { ArticleList } from 'components/ArticleList/ArticleList';
 
 const Home = () => {
-  const { user, signOut } = useAuth();
-  const navigate = useNavigate();
-
-  const handleSignOut = async () => {
-    const { error } = await signOut();
-    if (error) {
-      alert('Error ocured while singing out');
-    } else {
-      navigate('/login');
-    }
-  };
-
   return (
     <PageTemplate>
       <ArticleList />
-      <button onClick={handleSignOut} className="bg-indigo-600 p-1 rounded-sm">
-        Logout
-      </button>
     </PageTemplate>
   );
 };
