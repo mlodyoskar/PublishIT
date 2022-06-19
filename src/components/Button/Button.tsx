@@ -1,8 +1,10 @@
 import cls from 'classnames';
+import { Link } from 'react-router-dom';
 
 type ButtonProps = {
   children: React.ReactNode;
-  variant: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary';
+  path?: string;
 };
 
 const variantToClass = {
@@ -11,8 +13,13 @@ const variantToClass = {
   secondary: 'text-indigo-500',
 };
 
-const Button = ({ children, variant = 'primary' }: ButtonProps) => {
-  return <button className={cls(variantToClass[variant])}>{children}</button>;
-};
+const Button = ({ children, variant = 'primary', path }: ButtonProps) =>
+  path ? (
+    <Link to={path} className={cls(variantToClass[variant])}>
+      {children}
+    </Link>
+  ) : (
+    <button className={cls(variantToClass[variant])}>{children}</button>
+  );
 
 export { Button };
