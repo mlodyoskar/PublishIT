@@ -2,6 +2,7 @@ import { BsFillLightningChargeFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { Menu, Transition } from '@headlessui/react';
 import { NavigationDropdown } from './NavigationDropdown/NavigationDropdown';
+import { Button } from 'components/Button/Button';
 
 const Navigation = () => {
   return (
@@ -33,12 +34,11 @@ const Navigation = () => {
               </Link>
             </li>
             <li className="h-full flex items-center">
-              <Link
-                className="text-indigo-500 bg-gray-50 rounded-md py-2 px-3 text-xl font-semibold h-full "
-                to="/"
-              >
-                Dodaj post
-              </Link>
+              <Button path="articles/new" variant="secondary">
+                <p className="font-semibold flex justify-center text-xl">
+                  Add new article
+                </p>
+              </Button>
             </li>
             <li>
               <Menu as="div">

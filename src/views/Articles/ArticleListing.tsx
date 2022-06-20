@@ -8,7 +8,7 @@ import { getArticleImageUrl } from 'utils/article';
 import { formatDate } from 'utils/date';
 import { getUserAvatarUrl } from 'utils/user';
 
-const Article = () => {
+const ArticleListing = () => {
   const { id } = useParams();
   const article = useArticle(id);
   const { data: comments } = useComments(id);
@@ -92,4 +92,4 @@ const Article = () => {
   );
 };
 
-export { Article };
+export { ArticleListing };
