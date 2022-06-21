@@ -1,21 +1,20 @@
+import { Button } from 'components/Button/Button';
 import { Input } from 'components/Input/Input';
 import { useAuth } from 'contexts/AuthProvider';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { BsTwitter } from 'react-icons/bs';
 import { Link, useNavigate } from 'react-router-dom';
-
-interface FormProps {
-  isSignUp: boolean;
-}
 
 type Inputs = {
   email: string;
   password: string;
 };
 
-const Form = ({ isSignUp }: FormProps) => {
+const Form = () => {
   const { signIn, signUp, signInWithTwitter } = useAuth();
   const navigate = useNavigate();
+  const [isSignUp, setIsSignUp] = useState(false);
 
   const {
     register,
@@ -88,12 +87,13 @@ const Form = ({ isSignUp }: FormProps) => {
         </button>
         <p className="text-sm text-gray-400 text-center">
           {isSignUp ? 'Already have an account?' : "You don't have an account?"}{' '}
-          <Link
+          <button
+            type="button"
             className="text-indigo-500 font-semibold hover:text-indigo-700"
-            to={isSignUp ? '/login' : '/signup'}
+            onClick={() => setIsSignUp((prevValue) => !prevValue)}
           >
             {isSignUp ? 'Sign in' : 'Sign up'}
-          </Link>
+          </button>
         </p>
       </form>
     </>

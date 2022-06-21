@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from 'contexts/AuthProvider';
 import { Form } from 'components/Form/Form';
 import { LoginSignupTemplate } from 'templates/LoginSignupTemplate';
@@ -17,7 +17,7 @@ const Login = () => {
   return (
     <>
       <LoginSignupTemplate>
-        <Form isSignUp={false} />
+        <Form />
       </LoginSignupTemplate>
     </>
   );
