@@ -8,12 +8,16 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import slugify from 'slugify';
 import { PageTemplate } from 'templates/PageTemplate';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 const ArticleCreation = () => {
-  type FormFields = {
-    title: string;
-    body: string;
-  };
+  const articleFormSchema = yup.object({
+    title: yup.string().required().label('Title'),
+    body: yup.string().required().label('Text'),
+    // graphicURL: yup.string().label('Cover image'),
+  });
+  type FormFields = yup.InferType<typeof articleFormSchema>;
 
   const { user } = useAuth();
   const { mutate } = useCreateArticle();
@@ -26,7 +30,7 @@ const ArticleCreation = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormFields>();
+  } = useForm<FormFields>({ resolver: yupResolver(articleFormSchema) });
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     const insertArticleData: InsertArticleType = {
