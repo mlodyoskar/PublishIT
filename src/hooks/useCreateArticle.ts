@@ -14,7 +14,18 @@ const insertArticle = async ({
   slug,
   user_id,
 }: InsertArticleType) => {
-  const { data: insertedArticle, error } = await supabase
+  const { data: article, error: selectError } = await supabase
+    .from<InsertArticleType>('articles')
+    .select('*')
+    .eq('slug', slug);
+
+  if (!article || article.length > 0) {
+    console.log(article);
+    console.log(selectError);
+    throw new Error('There is already article with that title!');
+  }
+
+  const { data: insertedArticle, error: insertError } = await supabase
     .from<InsertArticleType>('articles')
     .insert([
       {
@@ -24,14 +35,17 @@ const insertArticle = async ({
         user_id,
       },
     ]);
-  if (error) {
-    console.log(error);
+
+  if (insertError) {
+    throw new Error(insertError.message);
   }
   return insertedArticle;
 };
 
-const useCreateArticle = (data: InsertArticleType) => {
-  return useMutation(() => insertArticle(data));
+const useCreateArticle = () => {
+  return useMutation((articleData: InsertArticleType) =>
+    insertArticle(articleData)
+  );
 };
 
 export { useCreateArticle };

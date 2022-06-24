@@ -5,6 +5,7 @@ import { Textarea } from 'components/Textarea/Textarea';
 import { useAuth } from 'contexts/AuthProvider';
 import { InsertArticleType, useCreateArticle } from 'hooks/useCreateArticle';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import slugify from 'slugify';
 import { PageTemplate } from 'templates/PageTemplate';
 
@@ -13,7 +14,13 @@ const ArticleCreation = () => {
     title: string;
     body: string;
   };
+
   const { user } = useAuth();
+  const { mutate } = useCreateArticle();
+  const navigate = useNavigate();
+  if (!user) {
+    return <h1>Nie znaleziono uzytkowika</h1>;
+  }
 
   const {
     register,
@@ -25,11 +32,15 @@ const ArticleCreation = () => {
     const insertArticleData: InsertArticleType = {
       ...data,
       slug: slugify(data.title),
-      user_id: '',
+      user_id: user.id,
     };
-    const insertdData = useCreateArticle(insertArticleData);
-    console.log(insertdData);
+    mutate(insertArticleData, {
+      onSuccess: () => {
+        navigate('/');
+      },
+    });
   };
+
   return (
     <PageTemplate>
       <Header>Add new article 🗞️</Header>
