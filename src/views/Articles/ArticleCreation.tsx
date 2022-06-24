@@ -14,9 +14,6 @@ const ArticleCreation = () => {
     body: string;
   };
   const { user } = useAuth();
-  if (!user) {
-    return <h1>Nie znaleziono uytkownika</h1>;
-  }
 
   const {
     register,
@@ -28,7 +25,7 @@ const ArticleCreation = () => {
     const insertArticleData: InsertArticleType = {
       ...data,
       slug: slugify(data.title),
-      user_id: user.id,
+      user_id: '',
     };
     const insertdData = useCreateArticle(insertArticleData);
     console.log(insertdData);

@@ -31,11 +31,7 @@ const insertArticle = async ({
 };
 
 const useCreateArticle = (data: InsertArticleType) => {
-  return useMutation(insertArticle(data), {
-    onSuccess: () => {
-      console.log('Added');
-    },
-  });
+  return useMutation(() => insertArticle(data));
 };
 
 export { useCreateArticle };
