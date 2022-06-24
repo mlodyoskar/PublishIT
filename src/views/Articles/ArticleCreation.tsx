@@ -13,9 +13,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 const ArticleCreation = () => {
   const articleFormSchema = yup.object({
-    title: yup.string().required().label('Title'),
-    body: yup.string().required().label('Text'),
-    // graphicURL: yup.string().label('Cover image'),
+    title: yup.string().required().max(100).label('Title'),
+    body: yup.string().required().max(600).label('Text'),
   });
   type FormFields = yup.InferType<typeof articleFormSchema>;
 
@@ -49,12 +48,20 @@ const ArticleCreation = () => {
     <PageTemplate>
       <Header>Add new article 🗞️</Header>
       <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
-        <Input type="text" {...register('title')}>
-          Title
-        </Input>
-        <Textarea rows={15} {...register('body')}>
-          Text
-        </Textarea>
+        <Input
+          label="Title"
+          type="text"
+          errorMessage={errors.title?.message}
+          {...register('title')}
+        />
+
+        <Textarea
+          label="Text"
+          errorMessage={errors.body?.message}
+          rows={15}
+          {...register('body')}
+        />
+
         <Button fullw>Add new article</Button>
       </form>
     </PageTemplate>

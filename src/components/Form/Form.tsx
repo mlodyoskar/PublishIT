@@ -4,24 +4,31 @@ import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { BsTwitter } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
-
-type Inputs = {
-  email: string;
-  password: string;
-};
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 const Form = () => {
   const { signIn, signUp, signInWithTwitter } = useAuth();
   const navigate = useNavigate();
   const [isSignUp, setIsSignUp] = useState(false);
 
+  const loginFormSchema = yup.object({
+    email: yup.string().required().email().label('Email'),
+    password: yup
+      .string()
+      .required()
+      .min(6, 'Password is too short - should be 6 chars minimum')
+      .label('Password'),
+  });
+  type FormFields = yup.InferType<typeof loginFormSchema>;
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<FormFields>({ resolver: yupResolver(loginFormSchema) });
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<FormFields> = async (data) => {
     const { error } = isSignUp ? await signUp(data) : await signIn(data);
 
     if (error) {
@@ -45,23 +52,21 @@ const Form = () => {
       <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col mb-6">
           <Input
-            type="email"
+            type="text"
             placeholder="mail@company.com"
+            label="Email"
+            errorMessage={errors.email?.message}
             {...register('email')}
-          >
-            Email address
-          </Input>
-          {errors.email && <span>This field is required</span>}
+          />
         </div>
         <div className="flex flex-col mb-6">
           <Input
+            label="Password"
             placeholder="min. 6 characters"
             type="password"
+            errorMessage={errors.password?.message}
             {...register('password')}
-          >
-            Password
-          </Input>
-          {errors.password && <span>This field is required</span>}
+          />
         </div>
         <div className="w-full flex items-center justify-between mb-6">
           <div className="flex items-center">
