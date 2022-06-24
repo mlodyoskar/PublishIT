@@ -5,7 +5,8 @@ import { ArticleType } from 'types/ArticleType';
 const getAllArticles = async () => {
   const { data: articles, error } = await supabase
     .from<ArticleType>('articles')
-    .select('*, user:user_id(fullName)');
+    .select('*, user:user_id(fullName)')
+    .order('created_at', { ascending: false });
 
   if (error) {
     throw new Error(error.message);

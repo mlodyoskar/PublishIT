@@ -6,6 +6,7 @@ interface InputProps {
   label: string;
   errorMessage?: string;
   placeholder?: string;
+  accept?: string;
 }
 
 const inputErrorStyles =

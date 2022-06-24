@@ -15,6 +15,7 @@ const ArticleCreation = () => {
   const articleFormSchema = yup.object({
     title: yup.string().required().max(100).label('Title'),
     body: yup.string().required().max(600).label('Text'),
+    image: yup.mixed(),
   });
   type FormFields = yup.InferType<typeof articleFormSchema>;
 
@@ -27,6 +28,7 @@ const ArticleCreation = () => {
 
   const {
     register,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm<FormFields>({ resolver: yupResolver(articleFormSchema) });
@@ -43,11 +45,27 @@ const ArticleCreation = () => {
       },
     });
   };
-
+  const image = watch('image');
+  console.log(image);
   return (
     <PageTemplate>
       <Header>Add new article 🗞️</Header>
       <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
+        <Input
+          label="Cover image"
+          type="file"
+          accept="image/png, image/jpg"
+          {...register('image')}
+        />
+        {watch('image') && (
+          <div className="max-h-80 h-80 flex items-center p-2 shadow-sm  rounded-lg border-2">
+            <img
+              className="rounded-md object-cover h-full w-full bg-center"
+              src={URL.createObjectURL(image[0])}
+            />
+          </div>
+        )}
+
         <Input
           label="Title"
           type="text"
