@@ -1,10 +1,9 @@
-import { Button } from 'components/Button/Button';
 import { Input } from 'components/Input/Input';
 import { useAuth } from 'contexts/AuthProvider';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { BsTwitter } from 'react-icons/bs';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 type Inputs = {
   email: string;
