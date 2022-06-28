@@ -6,6 +6,7 @@ export type InsertArticleType = {
   body: string;
   slug: string;
   user_id: string;
+  imageFile?: File;
 };
 
 const insertArticle = async ({
@@ -13,6 +14,7 @@ const insertArticle = async ({
   body,
   slug,
   user_id,
+  imageFile,
 }: InsertArticleType) => {
   const { data: article, error: selectError } = await supabase
     .from<InsertArticleType>('articles')
@@ -24,7 +26,6 @@ const insertArticle = async ({
     console.log(selectError);
     throw new Error('There is already article with that title!');
   }
-
   const { data: insertedArticle, error: insertError } = await supabase
     .from<InsertArticleType>('articles')
     .insert([
@@ -39,6 +40,17 @@ const insertArticle = async ({
   if (insertError) {
     throw new Error(insertError.message);
   }
+
+  if (imageFile) {
+    const { error: uploadError } = await supabase.storage
+      .from('article-image')
+      .upload(slug, imageFile);
+
+    if (uploadError) {
+      throw new Error(uploadError.message);
+    }
+  }
+
   return insertedArticle;
 };
 

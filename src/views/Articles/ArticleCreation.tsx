@@ -15,13 +15,18 @@ const ArticleCreation = () => {
   const articleFormSchema = yup.object({
     title: yup.string().required().max(100).label('Title'),
     body: yup.string().required().max(600).label('Text'),
-    image: yup.mixed(),
   });
-  type FormFields = yup.InferType<typeof articleFormSchema>;
+
+  type YupFormFields = yup.InferType<typeof articleFormSchema>;
+
+  interface FormFields extends YupFormFields {
+    imageFile: File;
+  }
 
   const { user } = useAuth();
   const { mutate } = useCreateArticle();
   const navigate = useNavigate();
+
   if (!user) {
     return <h1>Nie znaleziono uzytkowika</h1>;
   }
@@ -29,6 +34,7 @@ const ArticleCreation = () => {
   const {
     register,
     watch,
+    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm<FormFields>({ resolver: yupResolver(articleFormSchema) });
@@ -38,15 +44,18 @@ const ArticleCreation = () => {
       ...data,
       slug: slugify(data.title),
       user_id: user.id,
+      imageFile: data.imageFile,
     };
     mutate(insertArticleData, {
       onSuccess: () => {
-        navigate('/');
+        navigate(`/`);
       },
     });
   };
-  const image = watch('image');
+  // const image = getValues('imageFile');
+  const image = watch('imageFile')[0];
   console.log(image);
+
   return (
     <PageTemplate>
       <Header>Add new article 🗞️</Header>
@@ -55,13 +64,13 @@ const ArticleCreation = () => {
           label="Cover image"
           type="file"
           accept="image/png, image/jpg"
-          {...register('image')}
+          {...register('imageFile')}
         />
-        {watch('image') && (
+        {image && (
           <div className="max-h-80 h-80 flex items-center p-2 shadow-sm  rounded-lg border-2">
             <img
               className="rounded-md object-cover h-full w-full bg-center"
-              src={URL.createObjectURL(image[0])}
+              src={URL.createObjectURL(image)}
             />
           </div>
         )}
