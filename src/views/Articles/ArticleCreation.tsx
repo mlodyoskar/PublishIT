@@ -15,18 +15,15 @@ const ArticleCreation = () => {
   const articleFormSchema = yup.object({
     title: yup.string().required().max(100).label('Title'),
     body: yup.string().required().max(600).label('Text'),
+    imageFile: yup.mixed(),
   });
 
-  type YupFormFields = yup.InferType<typeof articleFormSchema>;
-
-  interface FormFields extends YupFormFields {
-    imageFile: File;
-  }
+  type FormFields = yup.InferType<typeof articleFormSchema>;
 
   const { user } = useAuth();
-  const { mutate } = useCreateArticle();
+  const { status, mutate } = useCreateArticle();
   const navigate = useNavigate();
-
+  console.log('Status:', status);
   if (!user) {
     return <h1>Nie znaleziono uzytkowika</h1>;
   }
@@ -34,17 +31,18 @@ const ArticleCreation = () => {
   const {
     register,
     watch,
-    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm<FormFields>({ resolver: yupResolver(articleFormSchema) });
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
+    const slug = slugify(data.title);
     const insertArticleData: InsertArticleType = {
       ...data,
-      slug: slugify(data.title),
+      slug: slug,
       user_id: user.id,
-      imageFile: data.imageFile,
+      imageUrl: slug,
+      imageFile: data.imageFile[0],
     };
     mutate(insertArticleData, {
       onSuccess: () => {
@@ -52,9 +50,8 @@ const ArticleCreation = () => {
       },
     });
   };
-  // const image = getValues('imageFile');
-  const image = watch('imageFile')[0];
-  console.log(image);
+
+  const image = watch('imageFile');
 
   return (
     <PageTemplate>
@@ -70,7 +67,7 @@ const ArticleCreation = () => {
           <div className="max-h-80 h-80 flex items-center p-2 shadow-sm  rounded-lg border-2">
             <img
               className="rounded-md object-cover h-full w-full bg-center"
-              src={URL.createObjectURL(image)}
+              src={URL.createObjectURL(image[0])}
             />
           </div>
         )}
@@ -89,7 +86,9 @@ const ArticleCreation = () => {
           {...register('body')}
         />
 
-        <Button fullw>Add new article</Button>
+        <Button disabled={status === 'loading'} fullw>
+          Add new article
+        </Button>
       </form>
     </PageTemplate>
   );

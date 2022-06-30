@@ -5,6 +5,7 @@ type ButtonProps = {
   children: React.ReactNode;
   variant?: 'primary' | 'secondary';
   path?: string;
+  disabled?: boolean;
   fullw?: boolean;
 };
 
@@ -15,9 +16,15 @@ const variantToClass = {
 };
 
 const baseStyles =
-  'flex items-center justify-center rounded-md hover:shadow-none ease-in-out duration-300  px-2 py-1.5 h-full';
+  'flex items-center justify-center rounded-md hover:shadow-none ease-in-out duration-300  px-2 py-1.5 h-full disabled:bg-gray-500 disabled:text-white disabled:shadow-none';
 
-const Button = ({ children, variant = 'primary', fullw, path }: ButtonProps) =>
+const Button = ({
+  children,
+  variant = 'primary',
+  fullw,
+  disabled,
+  path,
+}: ButtonProps) =>
   path ? (
     <Link
       to={path}
@@ -27,6 +34,7 @@ const Button = ({ children, variant = 'primary', fullw, path }: ButtonProps) =>
     </Link>
   ) : (
     <button
+      disabled={disabled}
       className={cls(baseStyles, { 'w-full': fullw }, variantToClass[variant])}
     >
       {children}
