@@ -10,11 +10,12 @@ import slugify from 'slugify';
 import { PageTemplate } from 'templates/PageTemplate';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { FileInput } from 'components/FileInput/FileInput';
 
 const ArticleCreation = () => {
   const articleFormSchema = yup.object({
-    title: yup.string().required().max(100).label('Title'),
-    body: yup.string().required().max(600).label('Text'),
+    title: yup.string().required().min(10).max(100).label('Title'),
+    body: yup.string().required().min(80).max(600).label('Text'),
     imageFile: yup.mixed(),
   });
 
@@ -23,7 +24,7 @@ const ArticleCreation = () => {
   const { user } = useAuth();
   const { status, mutate } = useCreateArticle();
   const navigate = useNavigate();
-  console.log('Status:', status);
+
   if (!user) {
     return <h1>Nie znaleziono uzytkowika</h1>;
   }
@@ -41,7 +42,7 @@ const ArticleCreation = () => {
       ...data,
       slug: slug,
       user_id: user.id,
-      imageUrl: slug,
+      imageUrl: data.imageFile[0] && slug,
       imageFile: data.imageFile[0],
     };
     mutate(insertArticleData, {
@@ -57,19 +58,15 @@ const ArticleCreation = () => {
     <PageTemplate>
       <Header>Add new article 🗞️</Header>
       <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          label="Cover image"
-          type="file"
-          accept="image/png, image/jpg"
-          {...register('imageFile')}
-        />
-        {image && (
+        {image && image[0] ? (
           <div className="max-h-80 h-80 flex items-center p-2 shadow-sm  rounded-lg border-2">
             <img
               className="rounded-md object-cover h-full w-full bg-center"
               src={URL.createObjectURL(image[0])}
             />
           </div>
+        ) : (
+          <FileInput accept="image/png, image/jpg" {...register('imageFile')} />
         )}
 
         <Input
@@ -86,7 +83,7 @@ const ArticleCreation = () => {
           {...register('body')}
         />
 
-        <Button disabled={status === 'loading'} fullw>
+        <Button className="mb-8" disabled={status === 'loading'} fullw>
           Add new article
         </Button>
       </form>

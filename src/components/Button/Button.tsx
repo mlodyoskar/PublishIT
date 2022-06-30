@@ -5,6 +5,7 @@ type ButtonProps = {
   children: React.ReactNode;
   variant?: 'primary' | 'secondary';
   path?: string;
+  className?: string;
   disabled?: boolean;
   fullw?: boolean;
 };
@@ -23,19 +24,30 @@ const Button = ({
   variant = 'primary',
   fullw,
   disabled,
+  className,
   path,
 }: ButtonProps) =>
   path ? (
     <Link
       to={path}
-      className={cls(baseStyles, { 'w-full': fullw }, variantToClass[variant])}
+      className={cls(
+        baseStyles,
+        { 'w-full': fullw },
+        variantToClass[variant],
+        className
+      )}
     >
       {children}
     </Link>
   ) : (
     <button
       disabled={disabled}
-      className={cls(baseStyles, { 'w-full': fullw }, variantToClass[variant])}
+      className={cls(
+        baseStyles,
+        { 'w-full': fullw },
+        variantToClass[variant],
+        className
+      )}
     >
       {children}
     </button>
