@@ -11,6 +11,8 @@ import { PageTemplate } from 'templates/PageTemplate';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FileInput } from 'components/FileInput/FileInput';
+import { Modal } from 'components/Modal/Modal';
+import { useState } from 'react';
 
 const ArticleCreation = () => {
   const articleFormSchema = yup.object({
@@ -22,8 +24,13 @@ const ArticleCreation = () => {
   type FormFields = yup.InferType<typeof articleFormSchema>;
 
   const { user } = useAuth();
-  const { status, error, mutate } = useCreateArticle();
+  const { status, mutate } = useCreateArticle();
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(true);
+
+  const handleModalClick = () => {
+    setIsModalOpen(false);
+  };
 
   if (!user) {
     return <h1>Nie znaleziono uzytkowika</h1>;
@@ -68,6 +75,13 @@ const ArticleCreation = () => {
         ) : (
           <FileInput accept="image/png, image/jpg" {...register('imageFile')} />
         )}
+        <Modal
+          handler={handleModalClick}
+          headerText={'Na pewno chcesz zamknąć?'}
+          isOpen={isModalOpen}
+        >
+          bla
+        </Modal>
 
         <Input
           label="Title"
