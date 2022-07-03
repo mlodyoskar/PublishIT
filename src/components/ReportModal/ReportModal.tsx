@@ -2,12 +2,14 @@ import { Button } from 'components/Button/Button';
 import { Modal } from 'components/Modal/Modal';
 import { RadioInput } from 'components/RadioInput/RadioInput';
 import { Textarea } from 'components/Textarea/Textarea';
+import { InsertReportType } from 'hooks/useCreateReport';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 type ReportModalProps = {
   isOpen: boolean;
   handler: () => void;
+  submitHandler: (data: InsertReportType) => void;
 };
 
 const commentReportFormSchema = yup.object({
@@ -17,7 +19,7 @@ const commentReportFormSchema = yup.object({
 
 type FormFields = yup.InferType<typeof commentReportFormSchema>;
 
-const ReportModal = ({ isOpen, handler }: ReportModalProps) => {
+const ReportModal = ({ isOpen, handler, submitHandler }: ReportModalProps) => {
   const {
     register,
     handleSubmit,
@@ -25,8 +27,9 @@ const ReportModal = ({ isOpen, handler }: ReportModalProps) => {
   } = useForm<FormFields>();
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    console.log(data);
+    console.log('Added');
   };
+
   return (
     <Modal handler={handler} modalHeading="Report Abuse" isOpen={isOpen}>
       <p>

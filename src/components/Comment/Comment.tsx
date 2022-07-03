@@ -1,6 +1,7 @@
 import { Dropdown, dropdownItemsProps } from 'components/Dropdown/Dropdown';
 import { Modal } from 'components/Modal/Modal';
 import { ReportModal } from 'components/ReportModal/ReportModal';
+import { InsertReportType, useCreateReport } from 'hooks/useCreateReport';
 import { useState } from 'react';
 import { BsThreeDots } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
@@ -19,6 +20,11 @@ const Comment = ({
   commentData: CommentType;
 }) => {
   const date = formatDate(created_at);
+  const { mutate } = useCreateReport();
+
+  const handleSubmitReport = (data: InsertReportType) => {
+    mutate(data);
+  };
 
   const [isModalVisible, setisModalVisible] = useState(false);
   const handlesModalVisibility = (isVisible: boolean) => {
@@ -59,6 +65,7 @@ const Comment = ({
       <ReportModal
         isOpen={isModalVisible}
         handler={() => handlesModalVisibility(false)}
+        submitHandler={handleSubmitReport}
       ></ReportModal>
     </div>
   );

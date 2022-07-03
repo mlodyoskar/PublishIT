@@ -1,5 +1,5 @@
 import { Menu, Transition } from '@headlessui/react';
-import { Children, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
 type DropdownProps = {
