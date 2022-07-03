@@ -1,6 +1,5 @@
 import { BsFillLightningChargeFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { Menu, Transition } from '@headlessui/react';
 import { NavigationDropdown } from './NavigationDropdown/NavigationDropdown';
 import { Button } from 'components/Button/Button';
 
@@ -41,26 +40,7 @@ const Navigation = () => {
               </Button>
             </li>
             <li>
-              <Menu as="div">
-                <div>
-                  <Menu.Button className=" bg-gray-50 rounded-full p-0.5 m-auto h-full flex items-center">
-                    <img
-                      className="rounded-full flex"
-                      src="https://i.pravatar.cc/60"
-                    />
-                  </Menu.Button>
-                </div>
-                <Transition
-                  enter="transition ease-out duration-100"
-                  enterFrom="transform opacity-0 scale-95"
-                  enterTo="transform opacity-100 scale-100"
-                  leave="transition ease-in duration-75"
-                  leaveFrom="transform opacity-100 scale-100"
-                  leaveTo="transform opacity-0 scale-95"
-                >
-                  <NavigationDropdown />
-                </Transition>
-              </Menu>
+              <NavigationDropdown />
             </li>
           </ul>
         </div>

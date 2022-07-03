@@ -6,13 +6,13 @@ import { useOnClickOutside } from 'hooks/useClickOutside';
 type ModalProps = {
   isOpen: boolean;
   handler: () => void;
-  headerText: ReactNode;
+  modalHeading: ReactNode;
   children: ReactNode;
 };
 
-const Modal = ({ isOpen, handler, headerText, children }: ModalProps) => {
+const Modal = ({ isOpen, handler, modalHeading, children }: ModalProps) => {
   const portal = document.getElementById('portal');
-  const modalRef = useRef(null);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   useOnClickOutside(modalRef, handler);
   return (
@@ -20,17 +20,17 @@ const Modal = ({ isOpen, handler, headerText, children }: ModalProps) => {
     ReactDOM.createPortal(
       isOpen && (
         <>
-          <div className="fixed w-full h-full bg-black z-0 opacity-30 top-0"></div>
+          <div className="fixed w-full h-full bg-black z-0 opacity-40 top-0"></div>
           <div className="flex items-center justify-center fixed w-full h-full top-0">
             <div
               ref={modalRef}
-              className="flex flex-col h-1/2 w-1/2 z-10 bg-white rounded-md shadow-md"
+              className="flex flex-col max-h-1/2 w-1/2 z-10 bg-white rounded-lg"
             >
               <div className="flex items-center max-h-16 w-full justify-between p-4">
-                <p className="text-2xl text-black ">{headerText}</p>
+                <p className="text-2xl text-black ">{modalHeading}</p>
                 <div onClick={handler} className="h-full cursor-pointer">
                   <AiFillCloseCircle
-                    className="text-indigo-400 hover:text-indigo-700 transition-colors"
+                    className="text-indigo-600 hover:text-indigo-700 transition-colors"
                     size="2rem"
                   />
                 </div>

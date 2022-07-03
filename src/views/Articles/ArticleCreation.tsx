@@ -26,11 +26,6 @@ const ArticleCreation = () => {
   const { user } = useAuth();
   const { status, mutate } = useCreateArticle();
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(true);
-
-  const handleModalClick = () => {
-    setIsModalOpen(false);
-  };
 
   if (!user) {
     return <h1>Nie znaleziono uzytkowika</h1>;
@@ -75,13 +70,6 @@ const ArticleCreation = () => {
         ) : (
           <FileInput accept="image/png, image/jpg" {...register('imageFile')} />
         )}
-        <Modal
-          handler={handleModalClick}
-          headerText={'Na pewno chcesz zamknąć?'}
-          isOpen={isModalOpen}
-        >
-          bla
-        </Modal>
 
         <Input
           label="Title"
