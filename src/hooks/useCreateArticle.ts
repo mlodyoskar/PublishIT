@@ -1,5 +1,6 @@
 import { useMutation } from 'react-query';
 import { supabase } from 'supabase';
+import { showErrorToast } from 'utils/toast';
 
 export type InsertArticleType = {
   title: string;
@@ -24,6 +25,7 @@ const insertArticle = async ({
     .eq('slug', slug);
 
   if (!article || article.length > 0) {
+    showErrorToast('There is already article with that title!');
     throw new Error('There is already article with that title!');
   }
 
@@ -44,7 +46,6 @@ const insertArticle = async ({
   }
 
   if (imageFile) {
-    console.log(imageFile);
     const { error: uploadError } = await supabase.storage
       .from('article-image')
       .upload(slug, imageFile);

@@ -8,6 +8,7 @@ import { PageNotFound } from 'views/404';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Navigation } from 'components/Navigation/Navigation';
 import { ArticlesRouter } from 'views/Articles/ArticleRouter';
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   const { user } = useAuth();
@@ -36,6 +37,7 @@ const App = () => {
         )}
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
+      <ToastContainer />
     </QueryClientProvider>
   );
 };

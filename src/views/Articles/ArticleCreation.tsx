@@ -14,15 +14,15 @@ import { FileInput } from 'components/FileInput/FileInput';
 
 const ArticleCreation = () => {
   const articleFormSchema = yup.object({
-    title: yup.string().required().min(10).max(100).label('Title'),
-    body: yup.string().required().min(80).max(600).label('Text'),
+    title: yup.string().required().label('Title'),
+    body: yup.string().required().label('Text'),
     imageFile: yup.mixed(),
   });
 
   type FormFields = yup.InferType<typeof articleFormSchema>;
 
   const { user } = useAuth();
-  const { status, mutate } = useCreateArticle();
+  const { status, error, mutate } = useCreateArticle();
   const navigate = useNavigate();
 
   if (!user) {
