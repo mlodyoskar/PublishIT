@@ -1,5 +1,4 @@
 import { Dropdown, dropdownItemsProps } from 'components/Dropdown/Dropdown';
-import { Modal } from 'components/Modal/Modal';
 import { ReportModal } from 'components/ReportModal/ReportModal';
 import { InsertReportType, useCreateReport } from 'hooks/useCreateReport';
 import { useState } from 'react';
@@ -57,15 +56,18 @@ const Comment = ({
 
         <p className="text-justify mb-2">{body}</p>
       </div>
-      <Dropdown dropdownItems={dropdownItems}>
-        <button className="absolute right-4 top-2 text-indigo-300 hover:text-indigo-800">
-          <BsThreeDots size="1.2rem" />
-        </button>
+      <Dropdown dropdownSide="left" dropdownItems={dropdownItems}>
+        <BsThreeDots
+          className="absolute right-4 top-2 text-indigo-300 hover:text-indigo-800"
+          size="1.2rem"
+        />
       </Dropdown>
       <ReportModal
         isOpen={isModalVisible}
         handler={() => handlesModalVisibility(false)}
         submitHandler={handleSubmitReport}
+        reportType="comment"
+        commentId={id}
       ></ReportModal>
     </div>
   );

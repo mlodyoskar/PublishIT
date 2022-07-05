@@ -24,6 +24,7 @@ const NavigationDropdown = () => {
   ];
   return (
     <Dropdown
+      dropdownSide="right"
       menuButtonClassName="bg-gray-50 rounded-full p-0.5 m-auto h-full flex items-center"
       dropdownItems={dropdownItems}
     >

@@ -1,33 +1,68 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from 'components/Button/Button';
 import { Modal } from 'components/Modal/Modal';
 import { RadioInput } from 'components/RadioInput/RadioInput';
 import { Textarea } from 'components/Textarea/Textarea';
-import { InsertReportType } from 'hooks/useCreateReport';
+import { useAuth } from 'contexts/AuthProvider';
+import {
+  ReportCategoryType,
+  InsertReportType,
+  ReportType,
+} from 'hooks/useCreateReport';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 import * as yup from 'yup';
 
 type ReportModalProps = {
   isOpen: boolean;
+  reportType: ReportType;
+  commentId: string;
   handler: () => void;
   submitHandler: (data: InsertReportType) => void;
 };
 
 const commentReportFormSchema = yup.object({
-  category: yup.string().required().label('Category of report'),
+  category: yup
+    .mixed<ReportCategoryType>()
+    .required()
+    .label('Category of report'),
   description: yup.string().label('Description'),
 });
 
 type FormFields = yup.InferType<typeof commentReportFormSchema>;
 
-const ReportModal = ({ isOpen, handler, submitHandler }: ReportModalProps) => {
+const ReportModal = ({
+  isOpen,
+  handler,
+  submitHandler,
+  reportType,
+  commentId,
+}: ReportModalProps) => {
+  const { id: article_id } = useParams();
+
+  const { user } = useAuth();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormFields>();
+  } = useForm<FormFields>({ resolver: yupResolver(commentReportFormSchema) });
+
+  if (!user || !article_id) {
+    throw Error('User or comment not found');
+  }
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    console.log('Added');
+    const insertReportData: InsertReportType = {
+      ...data,
+      category: data.category as ReportCategoryType,
+      user_id: user?.id,
+      article_id: article_id,
+      comment_id: commentId,
+      type: reportType,
+    };
+    submitHandler(insertReportData);
+    handler();
   };
 
   return (

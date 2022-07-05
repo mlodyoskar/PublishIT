@@ -1,32 +1,41 @@
 import { useMutation } from 'react-query';
 import { supabase } from 'supabase';
 
-type CategoryType = 'hate-speech' | 'vulgarisms' | 'spam' | 'others';
-type ReportType = 'commentsReports' | 'articlesReports';
+export type ReportCategoryType =
+  | 'hate-speech'
+  | 'vulgarisms'
+  | 'spam'
+  | 'others';
+
+export type ReportType = 'comment' | 'article';
 
 export type InsertReportType = {
   article_id: string;
+  comment_id?: string;
   user_id: string;
-  category: CategoryType;
-  description: string;
-  reportType: ReportType;
+  category: ReportCategoryType;
+  description?: string;
+  type: ReportType;
 };
 
 const insertReport = async ({
   article_id,
+  comment_id,
   user_id,
   category,
   description,
-  reportType,
+  type,
 }: InsertReportType) => {
   const { data: insertedReport, error: insertError } = await supabase
-    .from<InsertReportType>(reportType)
+    .from<InsertReportType>('reports')
     .insert([
       {
         article_id,
+        comment_id,
         user_id,
         category,
         description,
+        type,
       },
     ]);
 
