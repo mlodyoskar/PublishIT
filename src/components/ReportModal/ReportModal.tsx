@@ -55,7 +55,7 @@ const ReportModal = ({
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     const insertReportData: InsertReportType = {
       ...data,
-      category: data.category as ReportCategoryType,
+      category: data.category,
       user_id: user?.id,
       article_id: article_id,
       comment_id: commentId,

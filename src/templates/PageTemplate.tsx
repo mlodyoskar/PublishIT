@@ -1,3 +1,4 @@
+import { AsideFeed } from 'components/AsideFeed/AsideFeed';
 import { MainTemplate } from './MainTemplate';
 
 type PageTemplateProps = {
@@ -5,11 +6,11 @@ type PageTemplateProps = {
 };
 
 const PageTemplate = ({ children }: PageTemplateProps) => {
+  console.log('rerender');
   return (
     <MainTemplate>
-      <h1 className="hidden lg:block">Jestes na dashboardzie</h1>
       <section>{children}</section>
-      <h1 className="hidden lg:block">Jestes na dashboardzie</h1>
+      <AsideFeed />
     </MainTemplate>
   );
 };

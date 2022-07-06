@@ -68,7 +68,7 @@ const Comment = ({
         submitHandler={handleSubmitReport}
         reportType="comment"
         commentId={id}
-      ></ReportModal>
+      />
     </div>
   );
 };

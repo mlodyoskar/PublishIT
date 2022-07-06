@@ -32,7 +32,6 @@ const Form = () => {
     const { error } = isSignUp ? await signUp(data) : await signIn(data);
 
     if (error) {
-      alert('error signing in');
       console.log(error);
     } else {
       navigate('/');
