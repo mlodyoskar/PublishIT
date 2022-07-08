@@ -1,5 +1,6 @@
 import { Button } from 'components/Button/Button';
 import { Comment } from 'components/Comment/Comment';
+import { LoaderSpinner } from 'components/Spinner/Spinner';
 import { useArticle } from 'hooks/useArticle';
 import { useComments } from 'hooks/useComments';
 import { Link, useParams } from 'react-router-dom';
@@ -16,13 +17,15 @@ const ArticleDetails = () => {
   if (article?.isLoading) {
     return (
       <PageTemplate>
-        <article>
-          <h1 className="text-3xl mb-6">Ładowanie</h1>
-        </article>
+        <LoaderSpinner size={150} />
       </PageTemplate>
     );
   }
-
+  // return (
+  //   <PageTemplate>
+  //     <LoaderSpinner size={150} />
+  //   </PageTemplate>
+  // );
   if (!article?.data) {
     return (
       <PageTemplate>

@@ -1,36 +1,87 @@
+import { Button } from 'components/Button/Button';
+import { LoaderSpinner } from 'components/Spinner/Spinner';
+import { useFollowersCount } from 'hooks/useFollowersCount';
+import { AiOutlineUserAdd } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import { getUserAvatarUrl } from 'utils/user';
 
 type AsideFeedItemProps = {
   header: string;
   description: string;
 };
-
 const fakeDataUsers = [
   {
-    name: 'Jakub Bryska',
+    name: 'Jan Kowalski',
+    username: 'oskarpuchalski',
     followers: 25,
   },
   {
     name: 'Oskar Puchalski',
+    username: 'oskarpuchalski',
     followers: 16,
   },
   {
+    name: 'Basia Jurekw',
+    username: 'oskarpuchalski',
+    followers: 8,
+  },
+  {
     name: 'Basia Jurek',
+    username: 'oskarpuchalski',
+    followers: 8,
+  },
+  {
+    name: 'Basia Jureks',
+    username: 'oskarpuchalski',
+    followers: 8,
+  },
+  {
+    name: 'Basia Jurekd',
+    username: 'oskarpuchalski',
     followers: 8,
   },
 ];
 
 const AsideFeedItem = ({ header, description }: AsideFeedItemProps) => {
+  const { data, status } = useFollowersCount();
+
+  if (status === 'loading') {
+    return <LoaderSpinner />;
+  }
+
+  if (!data) {
+    return <div>Couldnt get top followed users</div>;
+  }
+
   return (
-    <div className="flex flex-col shadow-md rounded-md mt-12 p-4 border-2">
-      <h3 className="uppercase text-indigo-700 ">{header}</h3>
+    <div className="flex flex-col shadow-md rounded-lg mt-12 p-4 border-2">
+      <h3 className="uppercase  ">{header}</h3>
       <p className="text-xs text-gray-600 mb-2">{description}</p>
       <hr />
-      <div className="flex flex-col gap-2">
-        {fakeDataUsers.map(({ name, followers }) => (
-          <Link to={`users/${name}`} key={name}>
-            <p>{name}</p>
-            <p>Obserwujących: {followers}</p>
+      <div className="flex flex-col gap-3 py-2">
+        {data.map(({ username, fullname, avatarurl, followers }) => (
+          <Link
+            className="flex items-center gap-2 group"
+            to={`users/${username}`}
+            key={username}
+          >
+            <div className="rounded-xl w-8 h-8">
+              <img
+                className="rounded-md w-8 h-8 object-cover"
+                src={getUserAvatarUrl(avatarurl)}
+              />
+            </div>
+            <div>
+              <p className="group-hover:text-indigo-700 whitespace-nowrap overflow-hidden overflow-ellipsis">
+                {fullname || username}
+              </p>
+              <p className="text-xs text-gray-800">
+                Obserwujących: {followers}
+              </p>
+            </div>
+            <Button className="rounded-md ml-auto bg-indigo-500 flex justify-center items-center w-8 h-8">
+              <AiOutlineUserAdd />
+            </Button>
           </Link>
         ))}
       </div>
