@@ -6,7 +6,6 @@ type PageTemplateProps = {
 };
 
 const PageTemplate = ({ children }: PageTemplateProps) => {
-  console.log('rerender');
   return (
     <MainTemplate>
       <section>{children}</section>

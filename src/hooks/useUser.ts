@@ -1,5 +1,4 @@
 import { UserType } from './../types/UserType';
-import { useAuth } from 'contexts/AuthProvider';
 import { useQuery } from 'react-query';
 import { supabase } from 'supabase';
 
@@ -19,14 +18,8 @@ const getUser = async (id: string) => {
   return users[0];
 };
 
-const useUser = () => {
-  const { user } = useAuth();
-
-  if (!user) {
-    throw new Error("Didn't find user");
-  }
-
-  return useQuery('user', () => getUser(user?.id));
+const useUser = (id: string) => {
+  return useQuery('user', () => getUser(id));
 };
 
 export { useUser };

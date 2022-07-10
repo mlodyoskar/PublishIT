@@ -9,6 +9,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { Navigation } from 'components/Navigation/Navigation';
 import { ArticlesRouter } from 'views/Articles/ArticleRouter';
 import { ToastContainer } from 'react-toastify';
+import { UsersRouter } from 'views/Users/UsersRouter';
 
 const App = () => {
   const { user } = useAuth();
@@ -30,6 +31,7 @@ const App = () => {
               <Route path="/" element={<PrivateOutlet />}>
                 <Route path="/" element={<Home />} />
                 <Route path="/articles/*" element={<ArticlesRouter />} />
+                <Route path="/users/*" element={<UsersRouter />} />
                 <Route path="*" element={<PageNotFound />} />
               </Route>
             </Routes>

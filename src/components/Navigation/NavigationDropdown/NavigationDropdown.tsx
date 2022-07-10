@@ -4,13 +4,17 @@ import { useUser } from 'hooks/useUser';
 import { getUserAvatarUrl } from 'utils/user';
 
 const NavigationDropdown = () => {
-  const { signOut } = useAuth();
-  const { data: user } = useUser();
+  const { user: loggedUser, signOut } = useAuth();
+
+  if (!loggedUser) {
+    throw new Error("Didn't find logged user");
+  }
+  const { data: user } = useUser(loggedUser.id);
 
   const dropdownItems: dropdownItemsProps[] = [
     {
       text: 'My profile',
-      to: `/users/${user?.username}`,
+      to: `/users/${user?.id}`,
     },
     {
       text: 'Settings',

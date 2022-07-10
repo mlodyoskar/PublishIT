@@ -7,40 +7,8 @@ import { getUserAvatarUrl } from 'utils/user';
 
 type AsideFeedItemProps = {
   header: string;
-  description: string;
+  description?: string;
 };
-const fakeDataUsers = [
-  {
-    name: 'Jan Kowalski',
-    username: 'oskarpuchalski',
-    followers: 25,
-  },
-  {
-    name: 'Oskar Puchalski',
-    username: 'oskarpuchalski',
-    followers: 16,
-  },
-  {
-    name: 'Basia Jurekw',
-    username: 'oskarpuchalski',
-    followers: 8,
-  },
-  {
-    name: 'Basia Jurek',
-    username: 'oskarpuchalski',
-    followers: 8,
-  },
-  {
-    name: 'Basia Jureks',
-    username: 'oskarpuchalski',
-    followers: 8,
-  },
-  {
-    name: 'Basia Jurekd',
-    username: 'oskarpuchalski',
-    followers: 8,
-  },
-];
 
 const AsideFeedItem = ({ header, description }: AsideFeedItemProps) => {
   const { data, status } = useFollowersCount();
@@ -55,8 +23,10 @@ const AsideFeedItem = ({ header, description }: AsideFeedItemProps) => {
 
   return (
     <div className="flex flex-col shadow-md rounded-lg mt-12 p-4 border-2">
-      <h3 className="uppercase  ">{header}</h3>
-      <p className="text-xs text-gray-600 mb-2">{description}</p>
+      <div className="mb-2">
+        <h3 className="uppercase  ">{header}</h3>
+        {description && <p className="text-xs text-gray-600">{description}</p>}
+      </div>
       <hr />
       <div className="flex flex-col gap-3 py-2">
         {data.map(({ username, fullname, avatarurl, followers }) => (
