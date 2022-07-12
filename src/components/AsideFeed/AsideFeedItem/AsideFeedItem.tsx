@@ -32,7 +32,7 @@ const AsideFeedItem = ({ header, description }: AsideFeedItemProps) => {
         {data.map(({ username, fullname, avatarurl, followers }) => (
           <Link
             className="flex items-center gap-2 group"
-            to={`users/${username}`}
+            to={`/users/${username}`}
             key={username}
           >
             <div className="rounded-xl w-8 h-8">

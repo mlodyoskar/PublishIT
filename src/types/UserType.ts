@@ -4,4 +4,5 @@ export type UserType = {
   fullName: string;
   avatarUrl: string;
   email: string;
+  bio?: string;
 };
