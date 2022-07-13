@@ -27,10 +27,10 @@ const Navigation = () => {
           <ul className="hidden md:flex h-3/5 items-center w-full gap-4">
             <li className="h-full flex items-center">
               <Link
-                className="text-gray-50 text-xl py-2 px-3 font-semibold h-full"
+                className="text-indigo-500 hover:text-indigo-800 transition-all flex rounded bg-gray-50 text-xl py-2 px-3 font-semibold h-full"
                 to="/"
               >
-                <BsFillBookmarkFill />
+                <BsFillBookmarkFill size="1.4rem" className="m-auto" />
               </Link>
             </li>
             <li className="h-full flex items-center">

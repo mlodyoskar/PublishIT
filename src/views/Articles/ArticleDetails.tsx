@@ -37,7 +37,7 @@ const ArticleDetails = () => {
     body,
     created_at,
     imageUrl,
-    user: { fullName, username, avatarUrl },
+    user: { id: userId, fullName, username, avatarUrl },
   } = article.data;
 
   return (
@@ -59,10 +59,10 @@ const ArticleDetails = () => {
                 src={`${getUserAvatarUrl(avatarUrl)}`}
               />
               <Link
-                to={`/users/${username}`}
+                to={`/users/${userId}`}
                 className="text-xl hover:text-indigo-700 ease-in-out duration-300"
               >
-                {fullName}
+                {fullName || username}
               </Link>
             </div>
             <div>
