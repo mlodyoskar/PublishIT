@@ -1,33 +1,48 @@
-import { useAuth } from 'contexts/AuthProvider';
 import { useMutation } from 'react-query';
 import { supabase } from 'supabase';
 import { showErrorToast } from 'utils/toast';
 
 export type InsertUserType = {
+  id?: string;
   username: string;
   email: string;
   password: string;
 };
 
 const insertUser = async ({ email, username, password }: InsertUserType) => {
-  const { data: user, error } = await supabase
+  const { data: selectedUser, error } = await supabase
     .from<InsertUserType>('users')
     .select('*')
     .eq('email', email)
-    .single();
+    .maybeSingle();
 
-  if (user) {
+  console.log('selscted user:', selectedUser);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  if (selectedUser) {
     showErrorToast('This email address is already being used');
     throw new Error('This email address is already being used');
   }
 
-  supabase.auth.signUp({ email, password });
+  const { user, error: signUpError } = await supabase.auth.signUp({
+    email,
+    password,
+  });
 
-  const { data: insertedArticle, error: insertError } = await supabase
+  if (signUpError) {
+    throw new Error(signUpError.message);
+  }
+
+  const { data: insertedUser, error: insertError } = await supabase
     .from<InsertUserType>('users')
     .insert([
       {
+        id: user?.id,
         username,
+        email,
       },
     ]);
 
@@ -35,7 +50,7 @@ const insertUser = async ({ email, username, password }: InsertUserType) => {
     throw new Error(insertError.message);
   }
 
-  return insertedArticle;
+  return insertedUser;
 };
 
 const useCreateUser = () => {

@@ -5,8 +5,10 @@ interface InputProps {
   type: string;
   label: string;
   errorMessage?: string;
+  inputMode?: React.HTMLAttributes<HTMLLIElement>['inputMode'];
   placeholder?: string;
   accept?: string;
+  autoComplete?: string;
 }
 
 const inputErrorStyles =

@@ -51,6 +51,7 @@ const SignupForm = ({ handleSetIsLoginClick }: SignupFormProps) => {
         <div className="flex flex-col mb-6">
           <Input
             type="text"
+            autoComplete="username"
             placeholder="john.doe"
             label="Username"
             errorMessage={errors.username?.message}
@@ -62,6 +63,8 @@ const SignupForm = ({ handleSetIsLoginClick }: SignupFormProps) => {
             type="text"
             placeholder="mail@company.com"
             label="Email"
+            autoComplete="email"
+            inputMode="email"
             errorMessage={errors.email?.message}
             {...register('email')}
           />
@@ -71,6 +74,7 @@ const SignupForm = ({ handleSetIsLoginClick }: SignupFormProps) => {
             label="Password"
             placeholder="min. 6 characters"
             type="password"
+            autoComplete="password"
             errorMessage={errors.password?.message}
             {...register('password')}
           />
