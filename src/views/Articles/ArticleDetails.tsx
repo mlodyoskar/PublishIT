@@ -21,11 +21,7 @@ const ArticleDetails = () => {
       </PageTemplate>
     );
   }
-  // return (
-  //   <PageTemplate>
-  //     <LoaderSpinner size={150} />
-  //   </PageTemplate>
-  // );
+
   if (!article?.data) {
     return (
       <PageTemplate>
@@ -51,7 +47,7 @@ const ArticleDetails = () => {
           <h1 className="text-3xl mb-6">{title}</h1>
           {imageUrl && (
             <img
-              className="w-full rounded-md max-h-96"
+              className="w-full rounded-md max-h-96 object-cover"
               src={getArticleImageUrl(imageUrl)}
             />
           )}

@@ -10,7 +10,7 @@ type ArticleListProps = {
 
 const ArticleList = ({ articles }: ArticleListProps) => {
   return (
-    <section className="flex flex-col gap-4">
+    <section className="flex flex-col gap-4 my-4">
       {articles.map(
         ({ id, title, body, created_at, imageUrl, user: { fullName } }) => {
           const formatedDate = dayjs(created_at).format('DD.MM.YYYY HH:mm');
