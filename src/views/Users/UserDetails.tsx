@@ -29,7 +29,7 @@ const UserDetails = () => {
   }
   return (
     <PageTemplate>
-      <div className="rounded-md mt-12 flex gap-6  px-4 shadow-lg border-2 py-4">
+      <div className="rounded-md mt-12 flex gap-6  px-4 shadow-md border-2 shadow-indigo-400 py-4">
         <div className="">
           <img
             className="w-24 h-24 rounded-md object-cover"
