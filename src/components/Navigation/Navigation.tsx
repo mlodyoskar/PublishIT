@@ -1,9 +1,14 @@
-import { BsFillLightningChargeFill } from 'react-icons/bs';
+import { BsFillBookmarkFill, BsFillLightningChargeFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { NavigationDropdown } from './NavigationDropdown/NavigationDropdown';
 import { Button } from 'components/Button/Button';
+import { useState } from 'react';
+import cls from 'classnames';
+import { Hamburger } from './Hamburger/Hamburger';
 
 const Navigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <nav className="w-full bg-indigo-500 h-[80px] flex items-center justify-center drop-shadow-xl mb-4">
       <div className="flex max-w-7xl w-full h-full justify-between">
@@ -14,22 +19,18 @@ const Navigation = () => {
           />
           <p className="text-3xl text-gray-50">PublishIT</p>
         </Link>
-        <div className="flex items-center">
-          <ul className="flex h-3/5 items-center w-full gap-4">
+        <div className="flex mr-4 items-center">
+          <Hamburger
+            isOpen={isOpen}
+            handleClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
+          />
+          <ul className="hidden md:flex h-3/5 items-center w-full gap-4">
             <li className="h-full flex items-center">
               <Link
                 className="text-gray-50 text-xl py-2 px-3 font-semibold h-full"
                 to="/"
               >
-                Strona główna
-              </Link>
-            </li>
-            <li className="h-full flex items-center">
-              <Link
-                className="text-gray-50 text-xl py-2 px-3 font-semibold h-full"
-                to="/"
-              >
-                Zapisane posty
+                <BsFillBookmarkFill />
               </Link>
             </li>
             <li className="h-full flex items-center">
