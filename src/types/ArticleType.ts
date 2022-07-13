@@ -7,6 +7,7 @@ export type ArticleType = {
   title: string;
   body: string;
   slug: string;
+  user_id: string;
   user: UserType;
   imageUrl: string;
 };
