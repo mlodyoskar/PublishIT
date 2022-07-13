@@ -5,7 +5,7 @@ import { UserDetails } from './UserDetails';
 const UsersRouter = () => (
   <Routes>
     <Route path="/" element={<PageNotFound />} />
-    <Route path="/:username" element={<UserDetails />} />
+    <Route path="/:id" element={<UserDetails />} />
   </Routes>
 );
 

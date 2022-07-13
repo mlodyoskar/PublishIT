@@ -2,6 +2,7 @@ import { useQuery } from 'react-query';
 import { supabase } from 'supabase';
 
 export type FollowersCountType = {
+  id: string;
   username: string;
   fullname: string;
   avatarurl: string;

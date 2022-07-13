@@ -18,32 +18,11 @@ const getUser = async (id: string) => {
   return users[0];
 };
 
-const useUser = (id: string) => {
+const useUser = (id: string | undefined) => {
+  if (id === undefined) {
+    throw new Error('Id wasnt provided');
+  }
   return useQuery(['user', id], () => getUser(id));
 };
 
-const getUserByUsername = async (username: string) => {
-  const { data: users, error } = await supabase
-    .from<UserType>('users')
-    .select('*')
-    .eq('username', username);
-
-  if (error) {
-    throw new Error(error.message);
-  }
-  if (!users) {
-    throw new Error('Users not found');
-  }
-
-  return users[0];
-};
-
-const useUserUsername = (username: string | undefined) => {
-  if (!username) {
-    throw new Error("Users username wasn't given");
-  }
-
-  return useQuery(['user', username], () => getUserByUsername(username));
-};
-
-export { useUser, useUserUsername };
+export { useUser };

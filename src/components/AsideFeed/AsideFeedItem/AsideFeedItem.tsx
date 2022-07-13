@@ -29,10 +29,10 @@ const AsideFeedItem = ({ header, description }: AsideFeedItemProps) => {
       </div>
       <hr />
       <div className="flex flex-col gap-3 py-2">
-        {data.map(({ username, fullname, avatarurl, followers }) => (
+        {data.map(({ id, username, fullname, avatarurl, followers }) => (
           <Link
             className="flex items-center gap-2 group"
-            to={`/users/${username}`}
+            to={`/users/${id}`}
             key={username}
           >
             <div className="rounded-xl w-8 h-8">
