@@ -4,9 +4,7 @@ import { Textarea } from 'components/Textarea/Textarea';
 import { useAuth } from 'contexts/AuthProvider';
 import { InsertCommentType, useCreateComment } from 'hooks/useCreateComment';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { QueryClient } from 'react-query';
 import { useParams } from 'react-router-dom';
-import { queryClient } from 'utils/queryClient';
 import * as yup from 'yup';
 
 const commentFormSchema = yup.object({
@@ -23,11 +21,11 @@ const CommentForm = () => {
 		return <div>User or article id not found</div>;
 	}
 
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm<FormFields>({ resolver: yupResolver(commentFormSchema) });
+	const { register, handleSubmit, resetField, formState } = useForm<FormFields>(
+		{
+			resolver: yupResolver(commentFormSchema),
+		}
+	);
 
 	const onSubmit: SubmitHandler<FormFields> = async (data) => {
 		const commentToInsert: InsertCommentType = {
@@ -37,6 +35,8 @@ const CommentForm = () => {
 		};
 
 		addComment(commentToInsert);
+
+		resetField('body');
 	};
 
 	return (
