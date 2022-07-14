@@ -5,8 +5,11 @@ import { CommentType } from 'types/CommentType';
 const getAllArticleComments = async (id: string) => {
 	const { data: comments, error } = await supabase
 		.from<CommentType>('comments')
-		.select('id, created_at, body, user:user_id(fullName, username, avatarUrl)')
-		.eq('article_id', id);
+		.select(
+			'id, article_id, created_at, body, user:user_id(fullName, username, avatarUrl)'
+		)
+		.eq('article_id', id)
+		.order('created_at', { ascending: false });
 
 	if (error) {
 		throw new Error(error.message);

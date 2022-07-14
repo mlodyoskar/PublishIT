@@ -1,31 +1,49 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from 'components/Button/Button';
 import { Textarea } from 'components/Textarea/Textarea';
+import { useAuth } from 'contexts/AuthProvider';
+import { InsertCommentType, useCreateComment } from 'hooks/useCreateComment';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { QueryClient } from 'react-query';
+import { useParams } from 'react-router-dom';
+import { queryClient } from 'utils/queryClient';
 import * as yup from 'yup';
 
-const CommentForm = () => {
-	const commentFormSchema = yup.object({
-		body: yup.string().label('Comment'),
-	});
+const commentFormSchema = yup.object({
+	body: yup.string().required().label('Comment'),
+});
+type FormFields = yup.InferType<typeof commentFormSchema>;
 
-	type FormFields = yup.InferType<typeof commentFormSchema>;
+const CommentForm = () => {
+	const { mutate: addComment } = useCreateComment();
+	const { id: articleId } = useParams();
+	const { user } = useAuth();
+
+	if (!articleId || !user) {
+		return <div>User or article id not found</div>;
+	}
 
 	const {
 		register,
 		handleSubmit,
-		watch,
 		formState: { errors },
 	} = useForm<FormFields>({ resolver: yupResolver(commentFormSchema) });
 
 	const onSubmit: SubmitHandler<FormFields> = async (data) => {
-		console.log(data);
+		const commentToInsert: InsertCommentType = {
+			body: data.body,
+			article_id: articleId,
+			user_id: user.id,
+		};
+
+		addComment(commentToInsert);
 	};
-	const showButton = watch('body') !== '';
-	console.log(showButton);
 
 	return (
-		<form className="flex flex-col gap-4 py-4 px-2">
+		<form
+			onSubmit={handleSubmit(onSubmit)}
+			className="flex flex-col gap-4 py-4 px-2"
+		>
 			<Textarea {...register('body')} label="Add comment" rows={2} />
 			<Button fullw={false}>Add comment</Button>
 		</form>
