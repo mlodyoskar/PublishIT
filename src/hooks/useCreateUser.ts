@@ -3,58 +3,58 @@ import { supabase } from 'supabase';
 import { showErrorToast } from 'utils/toast';
 
 export type InsertUserType = {
-  id?: string;
-  username: string;
-  email: string;
-  password: string;
+	id?: string;
+	username: string;
+	email: string;
+	password: string;
 };
 
 const insertUser = async ({ email, username, password }: InsertUserType) => {
-  const { data: selectedUser, error } = await supabase
-    .from<InsertUserType>('users')
-    .select('*')
-    .eq('email', email)
-    .maybeSingle();
+	const { data: selectedUser, error } = await supabase
+		.from<InsertUserType>('users')
+		.select('*')
+		.eq('email', email)
+		.maybeSingle();
 
-  console.log('selscted user:', selectedUser);
+	console.log('selscted user:', selectedUser);
 
-  if (error) {
-    throw new Error(error.message);
-  }
+	if (error) {
+		throw new Error(error.message);
+	}
 
-  if (selectedUser) {
-    showErrorToast('This email address is already being used');
-    throw new Error('This email address is already being used');
-  }
+	if (selectedUser) {
+		showErrorToast('This email address is already being used');
+		throw new Error('This email address is already being used');
+	}
 
-  const { user, error: signUpError } = await supabase.auth.signUp({
-    email,
-    password,
-  });
+	const { user, error: signUpError } = await supabase.auth.signUp({
+		email,
+		password,
+	});
 
-  if (signUpError) {
-    throw new Error(signUpError.message);
-  }
+	if (signUpError) {
+		throw new Error(signUpError.message);
+	}
 
-  const { data: insertedUser, error: insertError } = await supabase
-    .from<InsertUserType>('users')
-    .insert([
-      {
-        id: user?.id,
-        username,
-        email,
-      },
-    ]);
+	const { data: insertedUser, error: insertError } = await supabase
+		.from<InsertUserType>('users')
+		.insert([
+			{
+				id: user?.id,
+				username,
+				email,
+			},
+		]);
 
-  if (insertError) {
-    throw new Error(insertError.message);
-  }
+	if (insertError) {
+		throw new Error(insertError.message);
+	}
 
-  return insertedUser;
+	return insertedUser;
 };
 
 const useCreateUser = () => {
-  return useMutation((userData: InsertUserType) => insertUser(userData));
+	return useMutation((userData: InsertUserType) => insertUser(userData));
 };
 
 export { useCreateUser };

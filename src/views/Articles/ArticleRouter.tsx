@@ -5,12 +5,12 @@ import { ArticleEdition } from './ArticleEdition';
 import { ArticleListing } from './ArticleListing';
 
 const ArticlesRouter = () => (
-  <Routes>
-    <Route path="/" element={<ArticleListing />} />
-    <Route path="/new/*" element={<ArticleCreation />} />
-    <Route path="/:id" element={<ArticleDetails />} />
-    <Route path="/:id/edit/*" element={<ArticleEdition />} />
-  </Routes>
+	<Routes>
+		<Route path="/" element={<ArticleListing />} />
+		<Route path="/new/*" element={<ArticleCreation />} />
+		<Route path="/:id" element={<ArticleDetails />} />
+		<Route path="/:id/edit/*" element={<ArticleEdition />} />
+	</Routes>
 );
 
 export { ArticlesRouter };

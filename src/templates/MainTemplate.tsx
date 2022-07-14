@@ -1,11 +1,11 @@
 import { GridTemplate } from './GridTemplate';
 
 type MainTemplateProps = {
-  children: React.ReactNode;
+	children: React.ReactNode;
 };
 
 const MainTemplate = ({ children }: MainTemplateProps) => {
-  return <GridTemplate>{children}</GridTemplate>;
+	return <GridTemplate>{children}</GridTemplate>;
 };
 
 export { MainTemplate };
