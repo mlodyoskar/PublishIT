@@ -45,9 +45,7 @@ const AsideFeedItem = ({ header, description }: AsideFeedItemProps) => {
 							<p className="group-hover:text-indigo-700 whitespace-nowrap overflow-hidden overflow-ellipsis">
 								{fullname || username}
 							</p>
-							<p className="text-xs text-gray-800">
-								Obserwujących: {followers}
-							</p>
+							<p className="text-xs text-gray-800">Obserwujących: {followers}</p>
 						</div>
 						<Button className="rounded-md ml-auto bg-indigo-500 flex justify-center items-center w-8 h-8">
 							<AiOutlineUserAdd />

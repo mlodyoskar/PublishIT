@@ -12,10 +12,7 @@ const LoginSignupTemplate = ({ children }: LoginSignUpProps) => {
 		<div className="h-screen flex">
 			<div className="flex flex-col justify-center items-center w-full md:w-2/4 p-6 m-auto h-full max-w-3xl">
 				<div className=" mb-6 flex justify-start items-center w-full md:w-4/5 ">
-					<BsFillLightningChargeFill
-						size="3rem"
-						className="text-indigo-500 mr-2"
-					/>
+					<BsFillLightningChargeFill size="3rem" className="text-indigo-500 mr-2" />
 					<p className="text-3xl text-indigo-500">PublishIT</p>
 				</div>
 				<div className=" flex flex-col items-center justify-center w-full md:w-4/5 h-4/5">

@@ -47,9 +47,7 @@ const insertReport = async ({
 };
 
 const useCreateReport = () => {
-	return useMutation((reportData: InsertReportType) =>
-		insertReport(reportData)
-	);
+	return useMutation((reportData: InsertReportType) => insertReport(reportData));
 };
 
 export { useCreateReport };

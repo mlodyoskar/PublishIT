@@ -40,14 +40,10 @@ const UserDetails = () => {
 						{userDetails.fullName || userDetails.username}
 					</h1>
 					{userDetails.fullName && (
-						<span className="text-gray-700 text-sm">
-							@{userDetails.username}
-						</span>
+						<span className="text-gray-700 text-sm">@{userDetails.username}</span>
 					)}
 
-					<p>
-						{userDetails.bio ? userDetails.bio : 'User didnt provide bio yet'}
-					</p>
+					<p>{userDetails.bio ? userDetails.bio : 'User didnt provide bio yet'}</p>
 					<div className="flex gap-6 pt-4">
 						<p className="text-gray-600 font-medium">
 							Followers: {userDetails.followersCount}

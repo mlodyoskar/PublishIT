@@ -88,8 +88,8 @@ const SignupForm = ({ handleSetIsLoginClick }: SignupFormProps) => {
 					onClick={signInWithTwitter}
 					className="w-full border border-gray-300 flex items-center justify-center text-gray-900 p-2 rounded-md mb-4 hover:bg-gray-50"
 				>
-					<BsTwitter size="1.4rem" className="text-[#1DA1F2] mr-4" /> Sign up
-					with Twitter
+					<BsTwitter size="1.4rem" className="text-[#1DA1F2] mr-4" /> Sign up with
+					Twitter
 				</button>
 				<p className="text-sm text-gray-400 text-center">
 					Already have an account?{' '}

@@ -42,9 +42,7 @@ const ArticleList = ({ articles }: ArticleListProps) => {
 									</h2>
 									<p className="line-clamp-3 mb-2">{body}</p>
 									<p className="text-right justify-self-end mt-auto">
-										<span className="font-semibold">
-											{fullName || username}
-										</span>{' '}
+										<span className="font-semibold">{fullName || username}</span>{' '}
 										<span className="text-gray-600">{formatedDate}</span>
 									</p>
 								</div>

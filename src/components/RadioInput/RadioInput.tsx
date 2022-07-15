@@ -28,9 +28,7 @@ const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
 					/>
 					{label}
 
-					{errorMessage && (
-						<div className="text-red-600 mt-1">{errorMessage}</div>
-					)}
+					{errorMessage && <div className="text-red-600 mt-1">{errorMessage}</div>}
 				</label>
 			</div>
 		);

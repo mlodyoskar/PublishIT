@@ -18,12 +18,9 @@ const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
 					<div className="flex flex-col justify-center items-center pt-5 pb-6">
 						<AiOutlineCloudUpload size="3rem" className="text-indigo-500" />
 						<p className="mb-2 text-sm text-indigo-500">
-							<span className="font-semibold">Click to upload</span> or drag and
-							drop
+							<span className="font-semibold">Click to upload</span> or drag and drop
 						</p>
-						<p className="text-xs text-indigo-500">
-							PNG or JPG (MAX. 800x400px)
-						</p>
+						<p className="text-xs text-indigo-500">PNG or JPG (MAX. 800x400px)</p>
 					</div>
 					<input
 						ref={ref}
