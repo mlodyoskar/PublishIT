@@ -46,13 +46,16 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 		};
 	}, []);
 
-	const value = {
-		signUp: (data: UserCredentials) => supabase.auth.signUp(data),
-		signIn: (data: UserCredentials) => supabase.auth.signIn(data),
-		signInWithTwitter: () => supabase.auth.signIn({ provider: 'twitter' }),
-		signOut: () => supabase.auth.signOut(),
-		user,
-	};
+	const value = React.useMemo(
+		() => ({
+			signUp: (data: UserCredentials) => supabase.auth.signUp(data),
+			signIn: (data: UserCredentials) => supabase.auth.signIn(data),
+			signInWithTwitter: () => supabase.auth.signIn({ provider: 'twitter' }),
+			signOut: () => supabase.auth.signOut(),
+			user,
+		}),
+		[user]
+	);
 
 	return (
 		<AuthContext.Provider value={value}>
