@@ -1,7 +1,7 @@
 export type CommentType = {
 	id: string;
-	created_at: Date;
-	updated_at: Date;
+	created_at: string;
+	updated_at: string;
 	body: string;
 	user: {
 		fullName: string;

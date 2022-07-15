@@ -1,6 +1,9 @@
 import { Dropdown, dropdownItemsProps } from 'components/Dropdown/Dropdown';
 import { ReportModal } from 'components/ReportModal/ReportModal';
-import { InsertReportType, useCreateReport } from 'hooks/useCreateReport';
+import {
+	InsertReportType,
+	useCreateReport,
+} from 'features/Article/hooks/useCreateReport';
 import { useState } from 'react';
 import { BsThreeDots } from 'react-icons/bs';
 import { Link } from 'react-router-dom';

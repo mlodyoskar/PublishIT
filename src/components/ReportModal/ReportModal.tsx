@@ -8,7 +8,7 @@ import {
 	ReportCategoryType,
 	InsertReportType,
 	ReportType,
-} from 'hooks/useCreateReport';
+} from 'features/Article/hooks/useCreateReport';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import * as yup from 'yup';

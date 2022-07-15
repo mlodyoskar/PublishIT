@@ -1,6 +1,6 @@
 import { Dropdown, dropdownItemsProps } from 'components/Dropdown/Dropdown';
 import { useAuth } from 'contexts/AuthProvider';
-import { useUser } from 'hooks/useUser';
+import { useUser } from 'hooks/api/useUser';
 import { getUserAvatarUrl } from 'utils/user';
 
 const NavigationDropdown = () => {

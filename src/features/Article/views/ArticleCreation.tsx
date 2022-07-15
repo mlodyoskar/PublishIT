@@ -3,7 +3,10 @@ import { Header } from 'components/Header/Header';
 import { Input } from 'components/Input/Input';
 import { Textarea } from 'components/Textarea/Textarea';
 import { useAuth } from 'contexts/AuthProvider';
-import { InsertArticleType, useCreateArticle } from 'hooks/useCreateArticle';
+import {
+	InsertArticleType,
+	useCreateArticle,
+} from 'features/Article/hooks/useCreateArticle';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import slugify from 'slugify';

@@ -1,4 +1,4 @@
-import { UserType } from './../types/UserType';
+import { UserType } from '../../types/UserType';
 import { useQuery } from 'react-query';
 import { supabase } from 'supabase';
 

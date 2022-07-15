@@ -1,5 +1,5 @@
 import { Button } from 'components/Button/Button';
-import { FollowersCountType } from 'hooks/useFollowersCount';
+import { FollowersCountType } from 'features/Home/hooks/useFollowersCount';
 import { AiOutlineUserAdd } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { getUserAvatarUrl } from 'utils/user';

@@ -1,7 +1,7 @@
 import { ArticleList } from 'components/ArticleList/ArticleList';
 import { LoaderSpinner } from 'components/Spinner/Spinner';
-import { useArticles } from 'hooks/useArticles';
-import { useUserDetails } from 'hooks/useUserDeatils';
+import { useArticles } from 'features/Article/hooks/useArticles';
+import { useUserDetails } from 'features/User/hooks/useUserDeatils';
 import { useParams } from 'react-router-dom';
 import { PageTemplate } from 'templates/PageTemplate';
 import { getUserAvatarUrl } from 'utils/user';

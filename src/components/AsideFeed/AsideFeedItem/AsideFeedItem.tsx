@@ -1,6 +1,6 @@
 import { Button } from 'components/Button/Button';
 import { LoaderSpinner } from 'components/Spinner/Spinner';
-import { useFollowersCount } from 'hooks/useFollowersCount';
+import { useFollowersCount } from 'features/Home/hooks/useFollowersCount';
 import { AiOutlineUserAdd } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { getUserAvatarUrl } from 'utils/user';

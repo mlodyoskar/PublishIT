@@ -1,6 +1,6 @@
 import { PageTemplate } from 'templates/PageTemplate';
 import { ArticleList } from 'components/ArticleList/ArticleList';
-import { useArticles } from 'hooks/useArticles';
+import { useArticles } from 'features/Article/hooks/useArticles';
 import { LoaderSpinner } from 'components/Spinner/Spinner';
 
 const Home = () => {

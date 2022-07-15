@@ -2,7 +2,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from 'components/Button/Button';
 import { Textarea } from 'components/Textarea/Textarea';
 import { useAuth } from 'contexts/AuthProvider';
-import { InsertCommentType, useCreateComment } from 'hooks/useCreateComment';
+import {
+	InsertCommentType,
+	useCreateComment,
+} from 'features/Article/hooks/useCreateComment';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import * as yup from 'yup';
