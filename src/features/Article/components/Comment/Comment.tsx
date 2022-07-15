@@ -1,6 +1,9 @@
 import { Dropdown, dropdownItemsProps } from 'components/Dropdown/Dropdown';
 import { ReportModal } from 'components/ReportModal/ReportModal';
-import { InsertReportType, useCreateReport } from 'hooks/useCreateReport';
+import {
+	InsertReportType,
+	useCreateReport,
+} from 'features/Article/hooks/useCreateReport';
 import { useState } from 'react';
 import { BsThreeDots } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
@@ -13,7 +16,7 @@ const Comment = ({
 		id,
 		body,
 		created_at,
-		user: { fullName, username, avatarUrl },
+		user: { id: userId, fullName, username, avatarUrl },
 	},
 }: {
 	commentData: CommentType;
@@ -26,6 +29,7 @@ const Comment = ({
 	};
 
 	const [isModalVisible, setisModalVisible] = useState(false);
+
 	const handlesModalVisibility = (isVisible: boolean) => {
 		setisModalVisible(isVisible);
 	};
@@ -38,18 +42,21 @@ const Comment = ({
 	return (
 		<div
 			key={id}
-			className="border-b-2 border-indigo-400 my-2 p-2 flex gap-2 relative"
+			className="my-2 p-2 flex gap-2 relative border-b-2 border-gray-100 last:border-none"
 		>
-			<div className="w-1/12">
+			<Link to={`/users/${userId}`} className="w-1/12">
 				<img
-					className="w-12 h-12 rounded-xl object-cover"
+					className="hover:scale-105 transition-transform w-12 h-12 m-auto rounded-xl object-cover"
 					src={`${getUserAvatarUrl(avatarUrl)}`}
 				/>
-			</div>
+			</Link>
 			<div className="w-10/12 relative">
-				<p className="text-sm text-indigo-600 mb-2">
-					<Link className="hover:text-indigo-900" to={`/users/${username}`}>
-						{fullName}
+				<p className="text-sm text-gray-800 mb-2">
+					<Link
+						className="hover:underline hover:text-indigo-500"
+						to={`/users/${userId}`}
+					>
+						{fullName || username}
 					</Link>{' '}
 					| <span>{date}</span>
 				</p>

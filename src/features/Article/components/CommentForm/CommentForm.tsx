@@ -2,7 +2,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from 'components/Button/Button';
 import { Textarea } from 'components/Textarea/Textarea';
 import { useAuth } from 'contexts/AuthProvider';
-import { InsertCommentType, useCreateComment } from 'hooks/useCreateComment';
+import {
+	InsertCommentType,
+	useCreateComment,
+} from 'features/Article/hooks/useCreateComment';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import * as yup from 'yup';
@@ -21,11 +24,9 @@ const CommentForm = () => {
 		return <div>User or article id not found</div>;
 	}
 
-	const { register, handleSubmit, resetField, formState } = useForm<FormFields>(
-		{
-			resolver: yupResolver(commentFormSchema),
-		}
-	);
+	const { register, handleSubmit, resetField } = useForm<FormFields>({
+		resolver: yupResolver(commentFormSchema),
+	});
 
 	const onSubmit: SubmitHandler<FormFields> = async (data) => {
 		const commentToInsert: InsertCommentType = {
@@ -42,7 +43,7 @@ const CommentForm = () => {
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			className="flex flex-col gap-4 py-4 px-2"
+			className="flex flex-col gap-4 py-4"
 		>
 			<Textarea {...register('body')} label="Add comment" rows={2} />
 			<Button fullw={false}>Add comment</Button>

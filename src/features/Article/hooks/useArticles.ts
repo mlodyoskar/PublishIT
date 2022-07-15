@@ -1,4 +1,3 @@
-import { equal } from 'assert';
 import { useQuery } from 'react-query';
 import { supabase } from 'supabase';
 import { ArticleType } from 'types/ArticleType';

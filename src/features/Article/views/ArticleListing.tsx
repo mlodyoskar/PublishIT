@@ -1,16 +1,14 @@
 import { Button } from 'components/Button/Button';
-import { Comment } from 'components/Comment/Comment';
-import { CommentForm } from 'components/CommentForm/CommentForm';
-import { LoaderSpinner } from 'components/Spinner/Spinner';
-import { useArticle } from 'hooks/useArticle';
-import { useComments } from 'hooks/useComments';
+import { Comment } from 'features/Article/components/Comment/Comment';
+import { useArticle } from 'features/Article/hooks/useArticle';
+import { useComments } from 'features/Article/hooks/useComments';
 import { Link, useParams } from 'react-router-dom';
 import { PageTemplate } from 'templates/PageTemplate';
 import { getArticleImageUrl } from 'utils/article';
 import { formatDate } from 'utils/date';
 import { getUserAvatarUrl } from 'utils/user';
 
-const ArticleDetails = () => {
+const ArticleListing = () => {
 	const { id } = useParams();
 	const article = useArticle(id);
 	const { data: comments } = useComments(id);
@@ -18,7 +16,9 @@ const ArticleDetails = () => {
 	if (article?.isLoading) {
 		return (
 			<PageTemplate>
-				<LoaderSpinner size={150} />
+				<article>
+					<h1 className="text-3xl mb-6">Ładowanie</h1>
+				</article>
 			</PageTemplate>
 		);
 	}
@@ -38,7 +38,7 @@ const ArticleDetails = () => {
 		body,
 		created_at,
 		imageUrl,
-		user: { id: userId, fullName, username, avatarUrl },
+		user: { fullName, username, avatarUrl },
 	} = article.data;
 
 	return (
@@ -48,7 +48,7 @@ const ArticleDetails = () => {
 					<h1 className="text-3xl mb-6">{title}</h1>
 					{imageUrl && (
 						<img
-							className="w-full rounded-md max-h-96 object-cover"
+							className="w-full rounded-md max-h-96"
 							src={getArticleImageUrl(imageUrl)}
 						/>
 					)}
@@ -60,10 +60,10 @@ const ArticleDetails = () => {
 								src={`${getUserAvatarUrl(avatarUrl)}`}
 							/>
 							<Link
-								to={`/users/${userId}`}
+								to={`/users/${username}`}
 								className="text-xl hover:text-indigo-700 ease-in-out duration-300"
 							>
-								{fullName || username}
+								{fullName}
 							</Link>
 						</div>
 						<div>
@@ -75,14 +75,12 @@ const ArticleDetails = () => {
 						<p className="text-gray-600 text-sm">{formatDate(created_at)}</p>
 					</div>
 				</article>
-				<div>
-					<CommentForm />
-				</div>
+
 				<div>
 					<p className="text-xl my-2 uppercase text-indigo-700">
 						Komentarze <span className="text-lg">({comments?.length})</span>
 					</p>
-					<section className="bg-indigo-50 rounded-md">
+					<section className="bg-indigo-100 rounded-md">
 						{comments &&
 							comments.map((comment) => {
 								return <Comment key={comment.id} commentData={comment} />;
@@ -94,4 +92,4 @@ const ArticleDetails = () => {
 	);
 };
 
-export { ArticleDetails };
+export { ArticleListing };

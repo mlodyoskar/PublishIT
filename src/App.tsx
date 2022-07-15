@@ -2,14 +2,14 @@ import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 import { useAuth } from 'contexts/AuthProvider';
 import { Navigate } from 'react-router-dom';
 import { QueryClientProvider } from 'react-query';
-import { Home } from 'views/Home';
-import { Login } from 'views/Login';
+import { Home } from 'features/Home/views/Home';
+import { Login } from 'features/Login/views/Login';
 import { PageNotFound } from 'views/404';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Navigation } from 'components/Navigation/Navigation';
-import { ArticlesRouter } from 'views/Articles/ArticleRouter';
+import { ArticlesRouter } from 'features/Article/views/ArticleRouter';
 import { ToastContainer } from 'react-toastify';
-import { UsersRouter } from 'views/Users/UsersRouter';
+import { UsersRouter } from 'features/User/views/UsersRouter';
 import { queryClient } from 'utils/queryClient';
 
 const App = () => {

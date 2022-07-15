@@ -5,7 +5,7 @@ import { BsTwitter } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useCreateUser } from 'hooks/useCreateUser';
+import { useCreateUser } from 'features/Login/hooks/useCreateUser';
 
 type SignupFormProps = {
 	handleSetIsLoginClick: () => void;

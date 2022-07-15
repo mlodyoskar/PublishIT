@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useAuth } from 'contexts/AuthProvider';
-import { LoginForm } from 'components/LoginForm/LoginForm';
+import { LoginForm } from 'features/Login/components/LoginForm/LoginForm';
 import { LoginSignupTemplate } from 'templates/LoginSignupTemplate';
-import { SignupForm } from 'components/SignupForm/SignUpForm';
+import { SignupForm } from 'features/Login/components/SignupForm/SignUpForm';
 
 const Login = () => {
 	const { user } = useAuth();

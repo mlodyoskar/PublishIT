@@ -3,7 +3,10 @@ import { Header } from 'components/Header/Header';
 import { Input } from 'components/Input/Input';
 import { Textarea } from 'components/Textarea/Textarea';
 import { useAuth } from 'contexts/AuthProvider';
-import { InsertArticleType, useCreateArticle } from 'hooks/useCreateArticle';
+import {
+	InsertArticleType,
+	useCreateArticle,
+} from 'features/Article/hooks/useCreateArticle';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import slugify from 'slugify';
@@ -11,8 +14,6 @@ import { PageTemplate } from 'templates/PageTemplate';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FileInput } from 'components/FileInput/FileInput';
-import { Modal } from 'components/Modal/Modal';
-import { useState } from 'react';
 
 const ArticleCreation = () => {
 	const articleFormSchema = yup.object({

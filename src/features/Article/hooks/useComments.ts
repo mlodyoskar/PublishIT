@@ -6,7 +6,7 @@ const getAllArticleComments = async (id: string) => {
 	const { data: comments, error } = await supabase
 		.from<CommentType>('comments')
 		.select(
-			'id, article_id, created_at, body, user:user_id(fullName, username, avatarUrl)'
+			'id, article_id, created_at, body, user:user_id(id, fullName, username, avatarUrl)'
 		)
 		.eq('article_id', id)
 		.order('created_at', { ascending: false });
