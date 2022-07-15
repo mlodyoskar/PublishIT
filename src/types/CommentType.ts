@@ -4,6 +4,7 @@ export type CommentType = {
 	updated_at: string;
 	body: string;
 	user: {
+		id: string;
 		fullName: string;
 		username: string;
 		avatarUrl: string;

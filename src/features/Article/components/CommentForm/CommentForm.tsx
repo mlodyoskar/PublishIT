@@ -43,7 +43,7 @@ const CommentForm = () => {
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			className="flex flex-col gap-4 py-4 px-2"
+			className="flex flex-col gap-4 py-4"
 		>
 			<Textarea {...register('body')} label="Add comment" rows={2} />
 			<Button fullw={false}>Add comment</Button>

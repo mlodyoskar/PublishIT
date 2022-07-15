@@ -46,7 +46,7 @@ const ArticleDetails = () => {
 	return (
 		<PageTemplate>
 			<div>
-				<article className="bg-indigo-50 rounded-md p-6">
+				<article className="border-2 border-indigo-300 rounded-md p-6">
 					<h1 className="text-3xl mb-6">{title}</h1>
 					{imageUrl && (
 						<img
@@ -84,7 +84,7 @@ const ArticleDetails = () => {
 					<p className="text-xl my-2 uppercase text-indigo-700">
 						Komentarze <span className="text-lg">({comments?.length})</span>
 					</p>
-					<section className="bg-indigo-50 rounded-md">
+					<section className="border-2 border-indigo-300 rounded-md mb-4">
 						{comments &&
 							comments.map((comment) => {
 								return <Comment key={comment.id} commentData={comment} />;
