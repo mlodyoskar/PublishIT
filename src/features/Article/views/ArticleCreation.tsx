@@ -14,8 +14,6 @@ import { PageTemplate } from 'templates/PageTemplate';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FileInput } from 'components/FileInput/FileInput';
-import { Modal } from 'components/Modal/Modal';
-import { useState } from 'react';
 
 const ArticleCreation = () => {
 	const articleFormSchema = yup.object({

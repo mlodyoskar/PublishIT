@@ -24,11 +24,9 @@ const CommentForm = () => {
 		return <div>User or article id not found</div>;
 	}
 
-	const { register, handleSubmit, resetField, formState } = useForm<FormFields>(
-		{
-			resolver: yupResolver(commentFormSchema),
-		}
-	);
+	const { register, handleSubmit, resetField } = useForm<FormFields>({
+		resolver: yupResolver(commentFormSchema),
+	});
 
 	const onSubmit: SubmitHandler<FormFields> = async (data) => {
 		const commentToInsert: InsertCommentType = {

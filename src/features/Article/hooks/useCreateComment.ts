@@ -1,4 +1,4 @@
-import { useMutation, QueryClient } from 'react-query';
+import { useMutation } from 'react-query';
 import { supabase } from 'supabase';
 import { queryClient } from 'utils/queryClient';
 
