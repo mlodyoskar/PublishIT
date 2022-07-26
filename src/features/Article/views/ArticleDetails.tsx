@@ -41,12 +41,12 @@ const ArticleDetails = () => {
 		user: { id: userId, fullName, username, avatarUrl },
 	} = article.data;
 
-	console.log(typeof created_at);
+	console.log(comments);
 
 	return (
 		<PageTemplate>
-			<div className="mt-12">
-				<article className="border-2 border-indigo-300 rounded-md p-6">
+			<div className="lg:mt-12">
+				<article className="border-2 border-indigo-300 rounded-md p-3 lg:p-6">
 					<h1 className="text-3xl mb-6">{title}</h1>
 					{imageUrl && (
 						<img
@@ -84,12 +84,13 @@ const ArticleDetails = () => {
 					<p className="text-xl my-2 uppercase text-indigo-700">
 						Komentarze <span className="text-lg">({comments?.length})</span>
 					</p>
-					<section className="border-2 border-indigo-300 rounded-md mb-4">
-						{comments &&
-							comments.map((comment) => {
+					{comments && comments?.length > 0 && (
+						<section className="border-2 border-indigo-300 rounded-md mb-4">
+							{comments.map((comment) => {
 								return <Comment key={comment.id} commentData={comment} />;
 							})}
-					</section>
+						</section>
+					)}
 				</div>
 			</div>
 		</PageTemplate>
