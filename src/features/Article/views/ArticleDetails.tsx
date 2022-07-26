@@ -45,7 +45,7 @@ const ArticleDetails = () => {
 
 	return (
 		<PageTemplate>
-			<div>
+			<div className="mt-12">
 				<article className="border-2 border-indigo-300 rounded-md p-6">
 					<h1 className="text-3xl mb-6">{title}</h1>
 					{imageUrl && (
