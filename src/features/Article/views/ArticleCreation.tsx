@@ -14,6 +14,7 @@ import { PageTemplate } from 'templates/PageTemplate';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FileInput } from 'components/FileInput/FileInput';
+import { BsFillTrashFill } from 'react-icons/bs';
 
 const ArticleCreation = () => {
 	const articleFormSchema = yup.object({
@@ -36,6 +37,7 @@ const ArticleCreation = () => {
 		register,
 		watch,
 		handleSubmit,
+		setValue,
 		formState: { errors },
 	} = useForm<FormFields>({ resolver: yupResolver(articleFormSchema) });
 
@@ -55,18 +57,30 @@ const ArticleCreation = () => {
 		});
 	};
 
+	const deleteThumbnail = () => {
+		setValue('imageFile', undefined);
+	};
+
 	const image = watch('imageFile');
+	console.log(image);
 
 	return (
 		<PageTemplate>
 			<Header>Add new article 🗞️</Header>
 			<form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
 				{image && image[0] ? (
-					<div className="max-h-80 h-80 flex items-center p-2 shadow-sm  rounded-lg border-2">
+					<div className="max-h-80 h-80 flex items-center p-2 shadow-sm relative rounded-lg border-2">
 						<img
 							className="rounded-md object-cover h-full w-full bg-center"
 							src={URL.createObjectURL(image[0])}
 						/>
+						<button
+							onClick={deleteThumbnail}
+							className="bg-white absolute bottom-4 right-4 p-1 rounded-md flex justify-center items-center"
+						>
+							<p className="sr-only">Delete photo</p>
+							<BsFillTrashFill size="2rem" className=" text-indigo-500" />
+						</button>
 					</div>
 				) : (
 					<FileInput accept="image/png, image/jpg" {...register('imageFile')} />
