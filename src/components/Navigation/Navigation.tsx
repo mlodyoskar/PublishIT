@@ -10,12 +10,12 @@ const Navigation = () => {
 
 	return (
 		<nav className="w-full bg-indigo-500 h-[80px] flex items-center justify-center drop-shadow-xl mb-4">
-			<div className="flex max-w-7xl w-full h-full justify-between">
+			<div className="flex max-w-7xl w-full h-full justify-between px-4">
 				<Link to="/" className=" mb-6 flex items-center  h-full ">
 					<BsFillLightningChargeFill size="3rem" className="text-gray-50 mr-2" />
 					<p className="text-3xl text-gray-50">PublishIT</p>
 				</Link>
-				<div className="flex mr-4 items-center">
+				<div className="flex items-center">
 					<Hamburger
 						isOpen={isOpen}
 						handleClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}

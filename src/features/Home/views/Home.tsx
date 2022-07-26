@@ -3,9 +3,13 @@ import { ArticleList } from 'components/ArticleList/ArticleList';
 import { useArticles } from 'features/Article/hooks/useArticles';
 import { LoaderSpinner } from 'components/Spinner/Spinner';
 import { AddArticleButton } from 'features/Home/components/AddArticleButton/AddArticleButton';
+import { useScrollPosition } from 'features/Article/hooks/useScrollPosition';
 
 const Home = () => {
 	const { data: articles, status } = useArticles();
+	const scrollFromTop = useScrollPosition();
+	const addArticleButtonVisible = scrollFromTop < 60;
+
 	if (status === 'loading') {
 		return (
 			<PageTemplate>
@@ -27,7 +31,7 @@ const Home = () => {
 				<h1 className="text-3xl mb-4">All articles 🗞️</h1>
 				<ArticleList articles={articles} />
 			</div>
-			<AddArticleButton />
+			<AddArticleButton visible={addArticleButtonVisible} />
 		</PageTemplate>
 	);
 };
