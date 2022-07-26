@@ -20,7 +20,6 @@ const insertComment = async ({
 			user_id,
 			body,
 		});
-	console.log(insertedComment);
 
 	if (insertError) {
 		throw new Error(insertError.message);

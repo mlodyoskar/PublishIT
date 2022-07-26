@@ -62,7 +62,6 @@ const ArticleCreation = () => {
 	};
 
 	const image = watch('imageFile');
-	console.log(image);
 
 	return (
 		<PageTemplate>

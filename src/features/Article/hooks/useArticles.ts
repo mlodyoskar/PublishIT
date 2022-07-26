@@ -9,8 +9,6 @@ const getAllArticles = async () => {
 		.order('created_at', { ascending: false })
 		.eq('published', true);
 
-	console.log(articles);
-
 	if (error) {
 		throw new Error(error.message);
 	}

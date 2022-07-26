@@ -16,8 +16,6 @@ const insertUser = async ({ email, username, password }: InsertUserType) => {
 		.eq('email', email)
 		.maybeSingle();
 
-	console.log('selscted user:', selectedUser);
-
 	if (error) {
 		throw new Error(error.message);
 	}
