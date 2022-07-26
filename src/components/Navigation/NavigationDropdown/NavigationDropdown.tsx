@@ -17,8 +17,8 @@ const NavigationDropdown = () => {
 			to: `/users/${user?.id}`,
 		},
 		{
-			text: 'Settings',
-			to: '/settings',
+			text: 'Edit profile',
+			to: '/edit',
 		},
 		{
 			text: 'Logout',
