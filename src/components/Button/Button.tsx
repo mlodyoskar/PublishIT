@@ -8,6 +8,7 @@ type ButtonProps = {
 	className?: string;
 	disabled?: boolean;
 	fullw?: boolean;
+	type?: 'submit';
 };
 
 const variantToClass = {
@@ -26,6 +27,7 @@ const Button = ({
 	disabled,
 	className,
 	path,
+	type,
 }: ButtonProps) =>
 	path ? (
 		<Link
@@ -48,6 +50,7 @@ const Button = ({
 				variantToClass[variant],
 				className
 			)}
+			type={type}
 		>
 			{children}
 		</button>

@@ -18,7 +18,7 @@ const NavigationDropdown = () => {
 		},
 		{
 			text: 'Edit profile',
-			to: '/edit',
+			to: `/users/${user?.id}/edit`,
 		},
 		{
 			text: 'Logout',

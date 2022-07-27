@@ -50,6 +50,7 @@ const ArticleCreation = () => {
 			imageUrl: data.imageFile[0] && slug,
 			imageFile: data.imageFile[0],
 		};
+
 		mutate(insertArticleData, {
 			onSuccess: () => {
 				navigate(`/`);
