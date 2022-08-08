@@ -9,6 +9,7 @@ type ButtonProps = {
 	disabled?: boolean;
 	fullw?: boolean;
 	type?: 'submit';
+	onClick?: () => void;
 };
 
 const variantToClass = {
@@ -28,6 +29,7 @@ const Button = ({
 	className,
 	path,
 	type,
+	onClick,
 }: ButtonProps) =>
 	path ? (
 		<Link
@@ -43,6 +45,7 @@ const Button = ({
 		</Link>
 	) : (
 		<button
+			onClick={onClick}
 			disabled={disabled}
 			className={cls(
 				baseStyles,

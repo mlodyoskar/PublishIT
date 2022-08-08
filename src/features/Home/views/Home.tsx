@@ -25,6 +25,7 @@ const Home = () => {
 			</PageTemplate>
 		);
 	}
+
 	return (
 		<PageTemplate>
 			<div className="md:m-0">

@@ -4,6 +4,8 @@ import { NavigationDropdown } from './NavigationDropdown/NavigationDropdown';
 import { Button } from 'components/Button/Button';
 import { useState } from 'react';
 import { Hamburger } from './Hamburger/Hamburger';
+import { Input } from 'components/Input/Input';
+import { NavigationSearch } from './NavigationSearch/NavigationSearch';
 
 const Navigation = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +22,11 @@ const Navigation = () => {
 						isOpen={isOpen}
 						handleClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
 					/>
+
 					<ul className="hidden md:flex h-3/5 items-center w-full gap-4">
+						<li className="h-full flex items-center">
+							<NavigationSearch />
+						</li>
 						<li className="h-full flex items-center">
 							<Link
 								className="text-indigo-500 hover:text-indigo-800 transition-all flex rounded bg-gray-50 text-xl py-2 px-3 font-semibold h-full"
