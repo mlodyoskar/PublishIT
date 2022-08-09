@@ -1,10 +1,15 @@
 import { useQuery } from 'react-query';
 import { supabase } from 'supabase';
 import { ArticleType } from 'types/ArticleType';
+import { UserType } from 'types/UserType';
+
+interface ArticleDetails extends ArticleType {
+	user: UserType;
+}
 
 const getArticle = async (id: string) => {
 	const { data: articles, error } = await supabase
-		.from<ArticleType>('articles')
+		.from<ArticleDetails>('articles')
 		.select('*, user:user_id(id, fullName,username, avatarUrl)')
 		.eq('id', id);
 

@@ -1,14 +1,11 @@
-import { UserType } from './UserType';
-
 export type ArticleType = {
 	id: number;
 	created_at: string;
-	updatet_at: string;
+	updated_at: string;
 	title: string;
 	body: string;
-	slug: string;
 	user_id: string;
-	user: UserType;
+	slug: string;
 	imageUrl: string;
 	published: boolean;
 };

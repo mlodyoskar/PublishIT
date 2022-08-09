@@ -1,10 +1,15 @@
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 import { ArticleType } from 'types/ArticleType';
+import { UserType } from 'types/UserType';
 import { getArticleImageUrl } from 'utils/article';
 
+interface Article extends ArticleType {
+	user: UserType;
+}
+
 type ArticleListProps = {
-	articles: ArticleType[];
+	articles: Article[];
 };
 
 const ArticleList = ({ articles }: ArticleListProps) => {

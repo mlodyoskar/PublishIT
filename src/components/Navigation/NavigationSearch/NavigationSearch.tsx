@@ -24,6 +24,8 @@ const NavigationSearch = () => {
 
 	const { data: searchedArticles } = useSearch(debounceSearchValue);
 
+	console.log(searchedArticles);
+
 	return (
 		<div className="h-full">
 			<div className="h-full relative">
@@ -35,21 +37,25 @@ const NavigationSearch = () => {
 					ref={inputRef}
 				/>
 			</div>
-			<div
-				className={cls('bg-gray-50 flex flex-col rounded-md absolute top-18', {})}
-			>
-				{searchedArticles?.map(({ id, title }) => (
-					<Link
-						to={`/articles/${id}`}
-						className={cls(
-							'flex gap-2 items-center h-16 w-60 hover:rounded-md hover:bg-indigo-100 border-indigo-600 px-2 overflow-hidden'
-						)}
-						key={id}
-					>
-						<p>{title}</p>
-					</Link>
-				))}
-			</div>
+			{searchedArticles && (
+				<div
+					className={cls('bg-gray-50 flex flex-col rounded-md absolute top-18', {
+						hidden: searchedArticles.length === 0,
+					})}
+				>
+					{searchedArticles.map(({ id, title }) => (
+						<Link
+							to={`/articles/${id}`}
+							className={cls(
+								'flex gap-2 items-center h-16 w-60 hover:rounded-md hover:bg-indigo-100 border-indigo-600 px-2 overflow-hidden'
+							)}
+							key={id}
+						>
+							<p>{title}</p>
+						</Link>
+					))}
+				</div>
+			)}
 		</div>
 	);
 };
