@@ -41,8 +41,6 @@ const ArticleDetails = () => {
 		user: { id: userId, fullName, username, avatarUrl },
 	} = article.data;
 
-	console.log(comments);
-
 	return (
 		<PageTemplate>
 			<div className="lg:mt-12">

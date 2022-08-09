@@ -8,8 +8,13 @@ import { useState } from 'react';
 import { BsThreeDots } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { CommentType } from 'types/CommentType';
+import { UserType } from 'types/UserType';
 import { formatDate } from 'utils/date';
 import { getUserAvatarUrl } from 'utils/user';
+
+interface Comment extends CommentType {
+	user: UserType;
+}
 
 const Comment = ({
 	commentData: {
@@ -19,7 +24,7 @@ const Comment = ({
 		user: { id: userId, fullName, username, avatarUrl },
 	},
 }: {
-	commentData: CommentType;
+	commentData: Comment;
 }) => {
 	const date = formatDate(created_at);
 	const { mutate } = useCreateReport();

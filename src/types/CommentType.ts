@@ -3,11 +3,6 @@ export type CommentType = {
 	created_at: string;
 	updated_at: string;
 	body: string;
-	user: {
-		id: string;
-		fullName: string;
-		username: string;
-		avatarUrl: string;
-	};
+	user_id: string;
 	article_id: number;
 };
