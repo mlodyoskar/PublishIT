@@ -35,22 +35,30 @@ const insertFollow = async ({ user_id, follower_id }: InsertFollowType) => {
 	const followingAlready = await getIfIsFollowingAlready(user_id, follower_id);
 
 	if (followingAlready) {
-		showErrorToast('You are already follwing this user!');
-		throw new Error('You are already follwing this user!');
+		const { data: deletedFollower, error: deleteError } = await supabase
+			.from<InsertFollowType>('userFollowers')
+			.delete()
+			.match({ follower_id: follower_id, user_id: user_id });
+
+		console.log(deletedFollower);
+
+		if (deleteError) {
+			throw new Error(deleteError.message);
+		}
+	} else {
+		const { data: insertedFollow, error: insertError } = await supabase
+			.from<InsertFollowType>('userFollowers')
+			.insert({
+				user_id,
+				follower_id,
+			});
+
+		if (insertError) {
+			throw new Error(insertError.message);
+		}
+
+		return insertedFollow;
 	}
-
-	const { data: insertedFollow, error: insertError } = await supabase
-		.from<InsertFollowType>('userFollowers')
-		.insert({
-			user_id,
-			follower_id,
-		});
-
-	if (insertError) {
-		throw new Error(insertError.message);
-	}
-
-	return insertedFollow;
 };
 
 const useFollowUser = () => {

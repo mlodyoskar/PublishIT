@@ -5,6 +5,7 @@ import { useAuth } from 'contexts/AuthProvider';
 import { useArticles } from 'features/Article/hooks/useArticles';
 import { useUserDetails } from 'features/User/hooks/useUserDeatils';
 import { AiOutlineUserAdd } from 'react-icons/ai';
+import { RiUserUnfollowLine } from 'react-icons/ri';
 import { useParams } from 'react-router-dom';
 import { PageTemplate } from 'templates/PageTemplate';
 import { getUserAvatarUrl } from 'utils/user';
@@ -81,15 +82,23 @@ const UserDetails = () => {
 					</div>
 				</div>
 				<div className="w-1/6 flex justify-center ">
-					{user.id !== id && (
-						<Button
-							onClick={() => handleFollowButtonClick(id)}
-							className="h-12 w-full flex gap-2"
-						>
-							<AiOutlineUserAdd />
-							{!isFollowingAlready ? 'Follow' : 'Unfollow'}
-						</Button>
-					)}
+					{user.id !== id &&
+						(isFollowingAlready ? (
+							<Button
+								onClick={() => handleFollowButtonClick(id)}
+								className="h-12 w-full flex gap-2"
+							>
+								<RiUserUnfollowLine /> Unfollow
+							</Button>
+						) : (
+							<Button
+								onClick={() => handleFollowButtonClick(id)}
+								className="h-12 w-full flex gap-2"
+							>
+								<AiOutlineUserAdd />
+								Follow
+							</Button>
+						))}
 				</div>
 			</div>
 			{userArticles && userArticles.length > 0 && (
