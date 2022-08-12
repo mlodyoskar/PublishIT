@@ -24,8 +24,6 @@ const NavigationSearch = () => {
 
 	const { data: searchedArticles } = useSearch(debounceSearchValue);
 
-	console.log(searchedArticles);
-
 	return (
 		<div className="h-full">
 			<div className="h-full relative">
