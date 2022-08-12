@@ -6,6 +6,7 @@ import { useFollowUser } from 'features/User/hooks/useFollowUser';
 import { AiOutlineUserAdd } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { getUserAvatarUrl } from 'utils/user';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 type AsideFeedItemProps = {
 	header: string;
@@ -16,6 +17,7 @@ const AsideFeedItem = ({ header, description }: AsideFeedItemProps) => {
 	const { data, status } = useFollowersCount();
 	const { mutate } = useFollowUser();
 	const { user } = useAuth();
+	const [animationParent] = useAutoAnimate<HTMLDivElement>();
 
 	if (!user) {
 		return <div>Couldnt get top followed users</div>;
@@ -39,7 +41,7 @@ const AsideFeedItem = ({ header, description }: AsideFeedItemProps) => {
 				{description && <p className="text-xs text-gray-600">{description}</p>}
 			</div>
 			<hr />
-			<div className="flex flex-col gap-3 py-2">
+			<div ref={animationParent} className="flex flex-col gap-3 py-2">
 				{data.map(({ id, username, fullname, avatarurl, followers }) => (
 					<div className="flex" key={username}>
 						<Link className="flex items-center gap-2 group" to={`/users/${id}`}>
