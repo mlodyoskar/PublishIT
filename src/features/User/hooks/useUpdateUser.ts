@@ -6,7 +6,6 @@ import { queryClient } from 'utils/queryClient';
 
 export type InsertUserType = {
 	id: string;
-	username: string;
 	fullName: string;
 	bio?: string;
 	imageFile?: File;
@@ -14,15 +13,13 @@ export type InsertUserType = {
 
 const updateUserDetails = async ({
 	id,
-	username,
 	fullName,
 	bio,
 	imageFile,
 }: InsertUserType) => {
-	const uuid = uuidv4();
 	const { data: updatedUser, error: updateError } = await supabase
 		.from<UserType>('users')
-		.update({ bio, fullName, avatarUrl: uuid })
+		.update({ bio, fullName })
 		.match({ id });
 
 	if (updateError) {
@@ -30,6 +27,13 @@ const updateUserDetails = async ({
 	}
 
 	if (imageFile) {
+		const uuid = uuidv4();
+
+		const { data: updatedUser, error: updateError } = await supabase
+			.from<UserType>('users')
+			.update({ avatarUrl: uuid })
+			.match({ id });
+
 		const { error: uploadError } = await supabase.storage
 			.from('avatars')
 			.upload(uuid, imageFile);
