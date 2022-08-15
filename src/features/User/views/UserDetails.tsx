@@ -60,7 +60,7 @@ const UserDetails = () => {
 				<div className="w-1/6">
 					<img
 						className="w-24 h-24 rounded-md object-cover"
-						src={getUserAvatarUrl(userDetails.avatarUrl)}
+						src={getUserAvatarUrl(userDetails.id)}
 					/>
 				</div>
 				<div className="w-4/6">

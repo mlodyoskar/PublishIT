@@ -32,6 +32,7 @@ const getUserDatails = async (id: string) => {
 	}
 
 	const userDetails = {
+		id: userDetailsSelect.id,
 		followersCount: followers.length,
 		followedByCount: followedBy.length,
 		fullName: userDetailsSelect.fullName,
@@ -47,7 +48,9 @@ const useUserDetails = (id: string | undefined) => {
 	if (id === undefined) {
 		throw new Error("Id wasn't provided");
 	}
-	return useQuery(['userDetails', id], () => getUserDatails(id));
+	return useQuery(['userDetails', id], () => getUserDatails(id), {
+		refetchOnWindowFocus: false,
+	});
 };
 
 export { useUserDetails };

@@ -5,27 +5,34 @@ export type InsertUserType = {
 	id: string;
 	fullName: string;
 	bio?: string;
+	imageFile?: File;
 };
 
-const updateUserDetails = async ({ id, fullName, bio }: InsertUserType) => {
+const updateUserDetails = async ({
+	id,
+	fullName,
+	bio,
+	imageFile,
+}: InsertUserType) => {
 	const { data: updatedUser, error: updateError } = await supabase
 		.from<InsertUserType>('users')
 		.update({ bio, fullName })
-		.match({ id: '20d2c25c-299f-4f1b-a5d7-83505273a098' });
+		.match({ id });
 
 	if (updateError) {
 		throw new Error(updateError.message);
 	}
 
-	// if (imageFile) {
-	// 	const { error: uploadError } = await supabase.storage
-	// 		.from('article-image')
-	// 		.upload(slug, imageFile);
+	if (imageFile) {
+		const { error: uploadError } = await supabase.storage
+			.from('avatars')
+			.upload(id, imageFile);
 
-	// 	if (uploadError) {
-	// 		throw new Error(uploadError.message);
-	// 	}
-	// }
+		if (uploadError) {
+			console.log(uploadError);
+			throw new Error(uploadError.message);
+		}
+	}
 
 	return updatedUser;
 };

@@ -35,7 +35,7 @@ const NavigationDropdown = () => {
 		>
 			<img
 				className="rounded-full w-12 h-12 object-cover flex"
-				src={getUserAvatarUrl(user?.avatarUrl || 'placeholder')}
+				src={getUserAvatarUrl(user?.id || 'placeholder')}
 			/>
 		</Dropdown>
 	);
