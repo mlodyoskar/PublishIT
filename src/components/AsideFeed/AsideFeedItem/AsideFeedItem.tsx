@@ -42,13 +42,13 @@ const AsideFeedItem = ({ header, description }: AsideFeedItemProps) => {
 			</div>
 			<hr />
 			<div ref={animationParent} className="flex flex-col gap-3 py-2">
-				{data.map(({ id, username, fullname, followers }) => (
+				{data.map(({ id, username, fullname, followers, avatarurl }) => (
 					<div className="flex" key={username}>
 						<Link className="flex items-center gap-2 group" to={`/users/${id}`}>
 							<div className="rounded-xl w-8 h-8">
 								<img
 									className="rounded-md w-8 h-8 object-cover"
-									src={getUserAvatarUrl(id)}
+									src={getUserAvatarUrl(avatarurl)}
 								/>
 							</div>
 							<div>

@@ -38,7 +38,7 @@ const ArticleListing = () => {
 		body,
 		created_at,
 		imageUrl,
-		user: { fullName, username, avatarUrl },
+		user: { id: userId, fullName, username, avatarUrl },
 	} = article.data;
 
 	return (
@@ -57,7 +57,7 @@ const ArticleListing = () => {
 							<img
 								alt="article creator avatar"
 								className="w-10 h-10 rounded-xl object-cover"
-								src={`${getUserAvatarUrl(avatarUrl)}`}
+								src={`${getUserAvatarUrl(userId)}`}
 							/>
 							<Link
 								to={`/users/${username}`}

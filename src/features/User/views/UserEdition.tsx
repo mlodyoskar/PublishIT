@@ -37,22 +37,6 @@ const UserEdition = () => {
 		}
 	);
 
-	const onSubmit: SubmitHandler<FormFields> = async (data) => {
-		if (!userId) {
-			return;
-		}
-
-		mutate(
-			{
-				id: userId,
-				bio: data.bio,
-				fullName: data.fullName,
-				imageFile: data.imageFile[0],
-			},
-			{ onSuccess: () => navigate(`/users/${userId}`) }
-		);
-	};
-
 	useEffect(() => {
 		if (userData === undefined) {
 			return;
@@ -75,6 +59,23 @@ const UserEdition = () => {
 	if (!userData) {
 		return <PageNotFound />;
 	}
+
+	const onSubmit: SubmitHandler<FormFields> = async (data) => {
+		if (!userId) {
+			return;
+		}
+
+		mutate(
+			{
+				id: userId,
+				username: userData.username,
+				bio: data.bio,
+				fullName: data.fullName,
+				imageFile: data.imageFile[0],
+			},
+			{ onSuccess: () => navigate(`/users/${userId}`) }
+		);
+	};
 
 	const deleteThumbnail = () => {
 		setValue('imageFile', undefined);

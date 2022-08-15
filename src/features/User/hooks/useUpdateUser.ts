@@ -1,8 +1,12 @@
+import { UserType } from './../../../types/UserType';
 import { useMutation } from 'react-query';
 import { supabase } from 'supabase';
+import { v4 as uuidv4 } from 'uuid';
+import { queryClient } from 'utils/queryClient';
 
 export type InsertUserType = {
 	id: string;
+	username: string;
 	fullName: string;
 	bio?: string;
 	imageFile?: File;
@@ -10,13 +14,15 @@ export type InsertUserType = {
 
 const updateUserDetails = async ({
 	id,
+	username,
 	fullName,
 	bio,
 	imageFile,
 }: InsertUserType) => {
+	const uuid = uuidv4();
 	const { data: updatedUser, error: updateError } = await supabase
-		.from<InsertUserType>('users')
-		.update({ bio, fullName })
+		.from<UserType>('users')
+		.update({ bio, fullName, avatarUrl: uuid })
 		.match({ id });
 
 	if (updateError) {
@@ -26,10 +32,9 @@ const updateUserDetails = async ({
 	if (imageFile) {
 		const { error: uploadError } = await supabase.storage
 			.from('avatars')
-			.upload(id, imageFile);
+			.upload(uuid, imageFile);
 
 		if (uploadError) {
-			console.log(uploadError);
 			throw new Error(uploadError.message);
 		}
 	}
@@ -38,7 +43,11 @@ const updateUserDetails = async ({
 };
 
 const useUpdateUser = () => {
-	return useMutation((userData: InsertUserType) => updateUserDetails(userData));
+	return useMutation((userData: InsertUserType) => updateUserDetails(userData), {
+		onSuccess: () => {
+			queryClient.invalidateQueries('user');
+		},
+	});
 };
 
 export { useUpdateUser };
