@@ -29,7 +29,7 @@ const updateUserDetails = async ({
 	if (imageFile) {
 		const uuid = uuidv4();
 
-		const { data: updatedUser, error: updateError } = await supabase
+		await supabase
 			.from<UserType>('users')
 			.update({ avatarUrl: uuid })
 			.match({ id });
