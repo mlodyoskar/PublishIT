@@ -9,7 +9,10 @@ interface ArticleDetails extends ArticleType {
 	user: UserType;
 }
 
-const getIfArticleIsSaved = async (articleId: string, userId: string) => {
+export const getIfArticleIsSaved = async (
+	articleId: string,
+	userId: string
+) => {
 	const { data: savedArticle, error } = await supabase
 		.from<SavedArticles>('savedArticles')
 		.select('id')

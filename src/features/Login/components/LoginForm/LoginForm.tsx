@@ -5,6 +5,7 @@ import { BsTwitter } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { showErrorToast } from 'utils/toast';
 
 type LoginFormProps = {
 	handleSetIsLoginClick: () => void;
@@ -30,6 +31,7 @@ const LoginForm = ({ handleSetIsLoginClick }: LoginFormProps) => {
 		const { error } = await signIn(data);
 
 		if (error) {
+			showErrorToast(error.message);
 			console.log(error);
 		} else {
 			navigate('/');

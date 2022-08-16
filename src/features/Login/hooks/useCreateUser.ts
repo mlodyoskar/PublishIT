@@ -31,6 +31,7 @@ const insertUser = async ({ email, username, password }: InsertUserType) => {
 	});
 
 	if (signUpError) {
+		showErrorToast(signUpError.message);
 		throw new Error(signUpError.message);
 	}
 
