@@ -68,7 +68,6 @@ const UserEdition = () => {
 		mutate(
 			{
 				id: userId,
-				username: userData.username,
 				bio: data.bio,
 				fullName: data.fullName,
 				imageFile: data.imageFile[0],

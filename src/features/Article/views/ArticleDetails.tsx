@@ -9,11 +9,14 @@ import { PageTemplate } from 'templates/PageTemplate';
 import { getArticleImageUrl } from 'utils/article';
 import { formatDate } from 'utils/date';
 import { getUserAvatarUrl } from 'utils/user';
+import { BsFillBookmarkFill } from 'react-icons/bs';
+import { useSaveArticle } from '../hooks/useSaveArticle';
 
 const ArticleDetails = () => {
 	const { id } = useParams();
 	const article = useArticle(id);
 	const { data: comments } = useComments(id);
+	const { mutate } = useSaveArticle();
 
 	if (article?.isLoading) {
 		return (
@@ -34,12 +37,17 @@ const ArticleDetails = () => {
 	}
 
 	const {
+		id: articleId,
 		title,
 		body,
 		created_at,
 		imageUrl,
 		user: { id: userId, fullName, username, avatarUrl },
 	} = article.data;
+
+	const handleSaveArticle = () => {
+		mutate({ article_id: articleId });
+	};
 
 	return (
 		<PageTemplate>
@@ -67,7 +75,14 @@ const ArticleDetails = () => {
 							</Link>
 						</div>
 						<div>
-							<Button variant="primary">Obserwuj</Button>
+							<Button
+								onClick={handleSaveArticle}
+								className="flex gap-2"
+								variant="primary"
+							>
+								<BsFillBookmarkFill />
+								Zapisz
+							</Button>
 						</div>
 					</div>
 					<p className="text-justify my-4">{body}</p>
