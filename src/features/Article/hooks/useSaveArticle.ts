@@ -1,7 +1,9 @@
-import { useAuth } from 'contexts/AuthProvider';
-import { useQuery, useMutation } from 'react-query';
+import { queryClient } from 'utils/queryClient';
+import { useMutation } from 'react-query';
 import { supabase } from 'supabase';
 import { SavedArticles } from 'types/SavedArticles';
+
+type InsertSavedPost = Pick<SavedArticles, 'article_id' | 'user_id'>;
 
 const saveArticle = async (articleId: string, userId: string) => {
 	const { error } = await supabase
@@ -14,8 +16,14 @@ const saveArticle = async (articleId: string, userId: string) => {
 };
 
 const useSaveArticle = () => {
-	return useMutation((savedArticleData: SavedArticles) =>
-		saveArticle(savedArticleData.article_id, savedArticleData.user_id)
+	return useMutation(
+		({ article_id, user_id }: InsertSavedPost) =>
+			saveArticle(article_id, user_id),
+		{
+			onSuccess: () => {
+				queryClient.invalidateQueries(['articles']);
+			},
+		}
 	);
 };
 

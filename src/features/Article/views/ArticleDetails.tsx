@@ -11,12 +11,14 @@ import { formatDate } from 'utils/date';
 import { getUserAvatarUrl } from 'utils/user';
 import { BsFillBookmarkFill } from 'react-icons/bs';
 import { useSaveArticle } from '../hooks/useSaveArticle';
+import { useAuth } from 'contexts/AuthProvider';
 
 const ArticleDetails = () => {
 	const { id } = useParams();
 	const article = useArticle(id);
 	const { data: comments } = useComments(id);
 	const { mutate } = useSaveArticle();
+	const { user } = useAuth();
 
 	if (article?.isLoading) {
 		return (
@@ -26,7 +28,7 @@ const ArticleDetails = () => {
 		);
 	}
 
-	if (!article?.data) {
+	if (!article?.data || !user) {
 		return (
 			<PageTemplate>
 				<article>
@@ -40,13 +42,14 @@ const ArticleDetails = () => {
 		id: articleId,
 		title,
 		body,
+		isArticleSaved,
 		created_at,
 		imageUrl,
 		user: { id: userId, fullName, username, avatarUrl },
 	} = article.data;
 
 	const handleSaveArticle = () => {
-		mutate({ article_id: articleId });
+		mutate({ article_id: articleId, user_id: user.id });
 	};
 
 	return (
@@ -81,7 +84,7 @@ const ArticleDetails = () => {
 								variant="primary"
 							>
 								<BsFillBookmarkFill />
-								Zapisz
+								{isArticleSaved ? 'Zapisano' : 'Zapisz'}
 							</Button>
 						</div>
 					</div>
