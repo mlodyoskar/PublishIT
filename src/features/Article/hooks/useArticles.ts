@@ -1,3 +1,4 @@
+import { useAuth } from 'contexts/AuthProvider';
 import { SavedArticles } from 'types/SavedArticles';
 import { useQuery } from 'react-query';
 import { supabase } from 'supabase';
@@ -81,19 +82,17 @@ const getUserArticles = async (userId: string, creatorId: string) => {
 	return articlesWithSaved;
 };
 
-const useArticles = (
-	userId: string | undefined,
-	creatorId?: string | undefined
-) => {
-	if (!userId) {
-		throw new Error('Couldnt get user');
+const useArticles = (creatorId?: string | undefined) => {
+	const { user } = useAuth();
+	if (!user) {
+		throw new Error('Could not get user');
 	}
 	if (creatorId) {
 		return useQuery(['articles', creatorId], () =>
-			getUserArticles(userId, creatorId)
+			getUserArticles(user.id, creatorId)
 		);
 	} else {
-		return useQuery('articles', () => getAllArticles(userId));
+		return useQuery('articles', () => getAllArticles(user.id));
 	}
 };
 

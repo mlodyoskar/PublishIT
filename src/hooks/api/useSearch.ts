@@ -9,7 +9,7 @@ const searchArticles = async (query: string, userId: string) => {
 		const { data: articles, error } = await supabase
 			.from<Article>('articles')
 			.select(
-				'id, title, slug, created_at, imageUrl, user:user_id(id, fullName, username, avatarUrl)'
+				'id, title,body, slug, created_at, imageUrl, user:user_id(id, fullName, username, avatarUrl)'
 			)
 			.ilike('title', `%${query.toLowerCase()}%`);
 

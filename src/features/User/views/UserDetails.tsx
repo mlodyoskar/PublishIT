@@ -18,10 +18,7 @@ const UserDetails = () => {
 	const { mutate } = useFollowUser();
 	const { user } = useAuth();
 	const { data: isFollowingAlready } = useIsFollwingAlready(id);
-	const { data: userArticles, status: articlesStatus } = useArticles(
-		user?.id,
-		id
-	);
+	const { data: userArticles, status: articlesStatus } = useArticles(id);
 
 	if (!user) {
 		return (
