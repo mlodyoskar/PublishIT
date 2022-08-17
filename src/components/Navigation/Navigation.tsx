@@ -4,7 +4,6 @@ import { NavigationDropdown } from './NavigationDropdown/NavigationDropdown';
 import { Button } from 'components/Button/Button';
 import { useState } from 'react';
 import { Hamburger } from './Hamburger/Hamburger';
-import { Input } from 'components/Input/Input';
 import { NavigationSearch } from './NavigationSearch/NavigationSearch';
 
 const Navigation = () => {

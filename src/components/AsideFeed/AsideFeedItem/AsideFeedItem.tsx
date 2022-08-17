@@ -35,7 +35,7 @@ const AsideFeedItem = ({ header, description }: AsideFeedItemProps) => {
 	};
 
 	return (
-		<div className="flex flex-col shadow-md rounded-lg mt-12 p-4 border-2">
+		<div className="flex flex-col shadow-md rounded-lg p-4 border-2">
 			<div className="mb-2">
 				<h3 className="uppercase  ">{header}</h3>
 				{description && <p className="text-xs text-gray-600">{description}</p>}

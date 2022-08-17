@@ -9,7 +9,7 @@ interface Article extends ArticleType {
 	isSaved: boolean;
 }
 
-const addIsSavedFlagToArticles = async (
+export const addIsSavedFlagToArticles = async (
 	articles: Article[],
 	userId: string
 ) => {

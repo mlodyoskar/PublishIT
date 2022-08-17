@@ -51,7 +51,7 @@ const ArticleList = ({ articles }: ArticleListProps) => {
 					const formatedDate = dayjs(created_at).format('DD.MM.YYYY HH:mm');
 					return (
 						<Link to={`/articles/${id}`} key={id}>
-							<article className="border-2 rounded-md p-4 group shadow-md hover:shadow-indigo-400 ease-in-out duration-300 flex flex-col md:flex-row gap-3 group self-stretch md:max-h-48 md:h-48">
+							<article className="border-2 rounded-md p-4 group shadow-md  hover:shadow-indigo-400 ease-in-out duration-300 flex flex-col md:flex-row gap-3 group self-stretch md:max-h-48 md:h-48">
 								{imageUrl && (
 									<div className="md:w-2/5 max-h-32 h-32 md:max-h-full md:h-full overflow-hidden rounded-md">
 										<img

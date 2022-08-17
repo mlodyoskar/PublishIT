@@ -12,8 +12,6 @@ const Home = () => {
 	const scrollFromTop = useScrollPosition();
 	const addArticleButtonVisible = scrollFromTop < 60;
 
-	console.log(articles);
-
 	if (status === 'loading') {
 		return (
 			<PageTemplate>

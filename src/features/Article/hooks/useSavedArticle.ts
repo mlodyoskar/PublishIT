@@ -5,14 +5,14 @@ import { ArticleType } from 'types/ArticleType';
 import { UserType } from 'types/UserType';
 import { getAllUserSavedArticles } from './useArticles';
 
-interface ArticleWithUser extends ArticleType {
+export interface Article extends ArticleType {
 	user: UserType;
 	isSaved: boolean;
 }
 
 interface SavedArticles {
 	user_id: string;
-	article: ArticleWithUser;
+	article: Article;
 }
 
 export const getSavedArticles = async (userId: string) => {
