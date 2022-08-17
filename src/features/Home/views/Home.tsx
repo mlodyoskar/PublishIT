@@ -4,11 +4,15 @@ import { useArticles } from 'features/Article/hooks/useArticles';
 import { LoaderSpinner } from 'components/Spinner/Spinner';
 import { AddArticleButton } from 'features/Home/components/AddArticleButton/AddArticleButton';
 import { useScrollPosition } from 'features/Article/hooks/useScrollPosition';
+import { useAuth } from 'contexts/AuthProvider';
 
 const Home = () => {
-	const { data: articles, status } = useArticles();
+	const { user } = useAuth();
+	const { data: articles, status } = useArticles(user?.id);
 	const scrollFromTop = useScrollPosition();
 	const addArticleButtonVisible = scrollFromTop < 60;
+
+	console.log(articles);
 
 	if (status === 'loading') {
 		return (

@@ -38,7 +38,7 @@ const ArticleListing = () => {
 		body,
 		created_at,
 		imageUrl,
-		user: { id: userId, fullName, username, avatarUrl },
+		user: { id: userId, fullName, username },
 	} = article.data;
 
 	return (

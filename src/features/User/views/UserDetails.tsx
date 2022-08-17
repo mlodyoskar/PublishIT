@@ -15,10 +15,13 @@ import { useIsFollwingAlready } from '../hooks/useIsFollowingAlready';
 const UserDetails = () => {
 	const { id } = useParams();
 	const { data: userDetails, status: userStatus } = useUserDetails(id);
-	const { data: userArticles, status: articlesStatus } = useArticles(id);
 	const { mutate } = useFollowUser();
 	const { user } = useAuth();
 	const { data: isFollowingAlready } = useIsFollwingAlready(id);
+	const { data: userArticles, status: articlesStatus } = useArticles(
+		user?.id,
+		id
+	);
 
 	if (!user) {
 		return (

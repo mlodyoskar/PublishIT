@@ -11,6 +11,7 @@ import { ArticlesRouter } from 'features/Article/views/ArticleRouter';
 import { ToastContainer } from 'react-toastify';
 import { UsersRouter } from 'features/User/views/UsersRouter';
 import { queryClient } from 'utils/queryClient';
+import { Bookmarks } from 'features/Home/views/Bookmarks';
 
 const App = () => {
 	const { user } = useAuth();
@@ -31,6 +32,7 @@ const App = () => {
 								<Route path="/" element={<Home />} />
 								<Route path="/articles/*" element={<ArticlesRouter />} />
 								<Route path="/users/*" element={<UsersRouter />} />
+								<Route path="/bookmarks" element={<Bookmarks />} />
 								<Route path="*" element={<PageNotFound />} />
 							</Route>
 						</Routes>

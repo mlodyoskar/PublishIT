@@ -35,6 +35,7 @@ const useSaveArticle = () => {
 		{
 			onSuccess: () => {
 				queryClient.invalidateQueries(['articles']);
+				queryClient.invalidateQueries('savedArticles');
 			},
 		}
 	);

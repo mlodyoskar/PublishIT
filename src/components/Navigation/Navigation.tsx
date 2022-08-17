@@ -30,7 +30,7 @@ const Navigation = () => {
 						<li className="h-full flex items-center">
 							<Link
 								className="text-indigo-500 hover:text-indigo-800 transition-all flex rounded bg-gray-50 text-xl py-2 px-3 font-semibold h-full"
-								to="/"
+								to="/bookmarks"
 							>
 								<BsFillBookmarkFill size="1.4rem" className="m-auto" />
 							</Link>
