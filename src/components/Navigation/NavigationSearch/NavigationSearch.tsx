@@ -20,7 +20,7 @@ const NavigationSearch = () => {
 			<form onSubmit={handleSearchSubmit} className="h-full relative">
 				<input
 					className="h-full rounded-md border-none text-md"
-					placeholder="Szukaj"
+					placeholder="Search articles"
 					type="text"
 					onChange={handleInputChange}
 					value={serachText}

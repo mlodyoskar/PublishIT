@@ -1,10 +1,19 @@
 import { ArticleList } from 'components/ArticleList/ArticleList';
 import { Header } from 'components/Header/Header';
+import { LoaderSpinner } from 'components/Spinner/Spinner';
 import { useSavedArticles } from 'features/Article/hooks/useSavedArticle';
 import { PageTemplate } from 'templates/PageTemplate';
 
 export const Bookmarks = () => {
-	const { data } = useSavedArticles();
+	const { data, status } = useSavedArticles();
+	if (status === 'loading') {
+		return (
+			<PageTemplate>
+				<LoaderSpinner />
+			</PageTemplate>
+		);
+	}
+
 	if (!data) {
 		return (
 			<PageTemplate>

@@ -10,7 +10,7 @@ const Navigation = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
-		<nav className="w-full bg-indigo-500 h-[80px] flex items-center justify-center drop-shadow-xl mb-4">
+		<nav className="fixed z-10 w-full bg-indigo-500 h-[80px] flex items-center justify-center drop-shadow-xl mb-4">
 			<div className="flex max-w-7xl w-full h-full justify-between px-4">
 				<Link to="/" className=" mb-6 flex items-center  h-full ">
 					<BsFillLightningChargeFill size="3rem" className="text-gray-50 mr-2" />
