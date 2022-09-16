@@ -1,6 +1,6 @@
 ## Project Overview 🎉
 
-Publish IT is a blog app where you can read, write and comment articles about IT.
+PublishIT is a blog app where you can read, write and comment articles about IT.
 It's mainly inspired by [ohmydev.pl](https://www.ohmydev.pl/). As a user you can: create blog post and attach an image cover to it, comment article and report comments. You can also follow other people and change your profile picture and bio.
 
 ## Tech/framework used 🔧
@@ -60,7 +60,7 @@ npm run start
 
 ## Contributing
 
-PublishIT is an open source project, and contributions of any kind are welcome and appreciated. Open issues, bugs, and feature requests are all listed on the [issues](https://github.com/mlodyoskar/Publish-IT/issues) tab and labeled accordingly. Feel free to open bug tickets and make feature requests.
+PublishIT is an open source project, and contributions of any kind are welcome and appreciated. Open issues, bugs, and feature requests are all listed on the [issues](https://github.com/mlodyoskar/PublishIT/issues) tab and labeled accordingly. Feel free to open bug tickets and make feature requests.
 
 View [CONTRIBUTING.md](CONTRIBUTING.md) to learn about the style guide, folder structure, scripts, and how to contribute.
 
