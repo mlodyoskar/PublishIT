@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import dotenv from 'dotenv';
+import { login } from './utils/login';
 
 dotenv.config();
 
@@ -9,28 +10,19 @@ const APP_URL =
 		: 'https://publish-it.opuchalski.pl';
 
 test.beforeEach(async ({ page }) => {
-	await page.goto(APP_URL);
-	await page.locator('[placeholder="mail\\@company\\.com"]').click();
-	await page
-		.locator('[placeholder="mail\\@company\\.com"]')
-		.fill('test3@gmail.com');
-	await page.locator('[placeholder="mail\\@company\\.com"]').press('Tab');
-	await page.locator('[placeholder="min\\. 6 characters"]').fill('123456');
-	await page.locator('text=Sign in').first().click();
-	await expect(page).toHaveURL(APP_URL);
+	login(page, APP_URL);
 });
 
-test('User open post', async ({ page }) => {
-	await page
-		.locator(
-			'text=Mój ulubiony typ: ten o którym nic nie wiemNigdy nie pomyślałbym, że najciekawsz >> div'
-		)
-		.click();
-	await expect(page).toHaveURL(`${APP_URL}/articles/62`);
-	await page.locator('text=Mój ulubiony typ: ten o którym nic nie wiem').click();
-	await page
-		.locator(
-			'text=Nigdy nie pomyślałbym, że najciekawszym typem TS okaże się dla mnie unknown. Nie'
-		)
-		.click();
+test('User open post and checks title', async ({ page }) => {
+	const articleItem = await page.locator('article').first();
+	const headerText = await articleItem.locator('h2').textContent();
+	await articleItem.click();
+
+	await page.locator(`text=${headerText}`);
+});
+
+test('User can save post and see it in saved posts', async ({ page }) => {
+	const articleItem = await page.locator('article').first();
+	const headerText = await articleItem.locator('h2').textContent();
+	const articleSaveButton = await articleItem.locator('button');
 });

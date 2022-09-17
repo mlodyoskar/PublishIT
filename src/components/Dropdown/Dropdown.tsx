@@ -23,7 +23,9 @@ const Dropdown = ({
 }: DropdownProps) => {
 	return (
 		<Menu as="div">
-			<Menu.Button className={menuButtonClassName}>{children}</Menu.Button>
+			<Menu.Button data-testid="user-button" className={menuButtonClassName}>
+				{children}
+			</Menu.Button>
 			<Transition
 				enter="transition ease-out duration-100"
 				enterFrom="transform opacity-0 scale-95"
