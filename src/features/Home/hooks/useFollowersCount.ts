@@ -1,5 +1,4 @@
 import { useAuth } from 'contexts/AuthProvider';
-import { useUser } from 'hooks/api/useUser';
 import { useQuery } from 'react-query';
 import { supabase } from 'supabase';
 

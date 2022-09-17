@@ -2,7 +2,7 @@ import { ArticleList } from 'components/ArticleList/ArticleList';
 import { Header } from 'components/Header/Header';
 import { LoaderSpinner } from 'components/Spinner/Spinner';
 import { useSearch } from 'hooks/api/useSearch';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { PageTemplate } from 'templates/PageTemplate';
 
 export const Search = () => {

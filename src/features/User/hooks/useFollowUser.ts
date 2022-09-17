@@ -1,5 +1,3 @@
-import { showErrorToast } from 'utils/toast';
-import { useAuth } from 'contexts/AuthProvider';
 import { useMutation } from 'react-query';
 import { supabase } from 'supabase';
 import { queryClient } from 'utils/queryClient';
