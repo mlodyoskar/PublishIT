@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [ main, master ]
 env:
-  PROD="true"
+  PROD: "true"
 jobs:
   test:
     timeout-minutes: 60
