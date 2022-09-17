@@ -13,6 +13,8 @@ It's mainly inspired by [ohmydev.pl](https://www.ohmydev.pl/). As a user you can
 | [React Router](https://reacttraining.com/react-router/) | Declarative routing for React                    |
 | [Supabase](https://supabase.com/)                       | Supabase is an open source Firebase alternative. |
 | [TailwindCSS](https://tailwindcss.com/)                 | CSS utility framework                            |
+| [Playwright](https://playwright.dev/)                   | end-to-end testing for modern web apps                            |
+| [React Testing Library](https://testing-library.com/)       | Simple and complete testing utilities                           |
 | [Day.js](https://day.js.org/)                           | Js library, helps with formatting dates          |
 | [React Hook Form](https://react-hook-form.com/)         | Forms with easy-to-use validation.               |
 | [Eslint](https://eslint.org/)                           | Javascript Linter                                |
@@ -74,7 +76,7 @@ Thanks goes to these wonderful people:
 
 <table>
   <tr>
-    <td align="center"><a href="https://avatars.githubusercontent.com/u/45982530?v=4" width="50px;" alt=""/><br /><sub><b>Oskar Puchalski</b></sub></a><br /><a title="Code">💻</a> <a  title="Ideas, Planning, & Feedback">🤔</a> <a title="Bug reports">🐛</a></td>
+    <td align="center"><img width="60px" src="https://avatars.githubusercontent.com/u/45982530?v=4" /><a href="https://avatars.githubusercontent.com/u/45982530?v=4" width="50px;" alt=""/><br /><sub><b>Oskar Puchalski</b></sub></a><br /><a title="Code">💻</a> <a  title="Ideas, Planning, & Feedback">🤔</a> <a title="Bug reports">🐛</a></td>
   </tr>
   
 </table>
