@@ -1,0 +1,21 @@
+name: CI Unit tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14.x'
+      - name: Install dependecies 
+        run: npm ci
+        - name: Run unit tests 
+      - run: npm test
