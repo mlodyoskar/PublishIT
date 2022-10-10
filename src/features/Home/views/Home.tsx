@@ -29,7 +29,7 @@ const Home = () => {
 	return (
 		<PageTemplate>
 			<div className="md:m-0">
-				<h1 className="text-3xl mb-4">All articles 🗞️</h1>
+				<h1 className="mb-4 text-3xl">All articles 🗞️</h1>
 				<ArticleList articles={articles} />
 			</div>
 			<AddArticleButton visible={addArticleButtonVisible} />

@@ -8,7 +8,7 @@ type PageTemplateProps = {
 const PageTemplate = ({ children }: PageTemplateProps) => {
 	return (
 		<MainTemplate>
-			<section className="w-full mt-24 px-4">{children}</section>
+			<section className="mt-24 w-full px-4">{children}</section>
 			<AsideFeed />
 		</MainTemplate>
 	);

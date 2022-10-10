@@ -73,7 +73,7 @@ const ReportModal = ({
 				everyone.
 			</p>
 			<form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
-				<div className="flex flex-col gap-6 mt-4">
+				<div className="mt-4 flex flex-col gap-6">
 					<RadioInput
 						label="Hate speech"
 						{...register('category')}

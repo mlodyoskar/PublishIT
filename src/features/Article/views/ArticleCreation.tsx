@@ -69,14 +69,14 @@ const ArticleCreation = () => {
 			<Header>Add new article 🗞️</Header>
 			<form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
 				{image && image[0] ? (
-					<div className="max-h-80 h-80 flex items-center p-2 shadow-sm relative rounded-lg border-2">
+					<div className="relative flex h-80 max-h-80 items-center rounded-lg border-2 p-2 shadow-sm">
 						<img
-							className="rounded-md object-cover h-full w-full bg-center"
+							className="h-full w-full rounded-md bg-center object-cover"
 							src={URL.createObjectURL(image[0])}
 						/>
 						<button
 							onClick={deleteThumbnail}
-							className="bg-white absolute bottom-4 right-4 p-1 rounded-md flex justify-center items-center"
+							className="absolute bottom-4 right-4 flex items-center justify-center rounded-md bg-white p-1"
 						>
 							<p className="sr-only">Delete photo</p>
 							<BsFillTrashFill size="2rem" className=" text-indigo-500" />

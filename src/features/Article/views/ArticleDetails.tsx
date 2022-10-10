@@ -32,7 +32,7 @@ const ArticleDetails = () => {
 		return (
 			<PageTemplate>
 				<article>
-					<h1 className="text-3xl mb-6">Nie znaleziono postu</h1>
+					<h1 className="mb-6 text-3xl">Nie znaleziono postu</h1>
 				</article>
 			</PageTemplate>
 		);
@@ -55,11 +55,11 @@ const ArticleDetails = () => {
 	return (
 		<PageTemplate>
 			<div className="lg:mt-12">
-				<article className="border-2 border-indigo-300 rounded-md p-3 lg:p-6">
-					<h1 className="text-3xl mb-6">{title}</h1>
+				<article className="rounded-md border-2 border-indigo-300 p-3 lg:p-6">
+					<h1 className="mb-6 text-3xl">{title}</h1>
 					{imageUrl && (
 						<img
-							className="w-full rounded-md max-h-96 object-cover"
+							className="max-h-96 w-full rounded-md object-cover"
 							src={getArticleImageUrl(imageUrl)}
 						/>
 					)}
@@ -67,12 +67,12 @@ const ArticleDetails = () => {
 						<div className="flex items-center gap-2">
 							<img
 								alt="article creator avatar"
-								className="w-10 h-10 rounded-xl object-cover"
+								className="h-10 w-10 rounded-xl object-cover"
 								src={`${getUserAvatarUrl(avatarUrl)}`}
 							/>
 							<Link
 								to={`/users/${userId}`}
-								className="text-xl hover:text-indigo-700 ease-in-out duration-300"
+								className="text-xl duration-300 ease-in-out hover:text-indigo-700"
 							>
 								{fullName || username}
 							</Link>
@@ -88,20 +88,20 @@ const ArticleDetails = () => {
 							</Button>
 						</div>
 					</div>
-					<p className="text-justify my-4">{body}</p>
-					<div className="flex justify-end mt-6">
-						<p className="text-gray-600 text-sm">{formatDate(created_at)}</p>
+					<p className="my-4 text-justify">{body}</p>
+					<div className="mt-6 flex justify-end">
+						<p className="text-sm text-gray-600">{formatDate(created_at)}</p>
 					</div>
 				</article>
 				<div>
 					<CommentForm />
 				</div>
 				<div>
-					<p className="text-xl my-2 uppercase text-indigo-700">
+					<p className="my-2 text-xl uppercase text-indigo-700">
 						Komentarze <span className="text-lg">({comments?.length})</span>
 					</p>
 					{comments && comments?.length > 0 && (
-						<section className="border-2 border-indigo-300 rounded-md mb-4">
+						<section className="mb-4 rounded-md border-2 border-indigo-300">
 							{comments.map((comment) => {
 								return <Comment key={comment.id} commentData={comment} />;
 							})}

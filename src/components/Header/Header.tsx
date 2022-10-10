@@ -3,7 +3,7 @@ type HeaderProps = {
 };
 
 const Header = ({ children }: HeaderProps) => {
-	return <h1 className="text-3xl mb-4">{children}</h1>;
+	return <h1 className="mb-4 text-3xl">{children}</h1>;
 };
 
 export { Header };

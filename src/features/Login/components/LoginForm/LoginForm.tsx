@@ -40,14 +40,14 @@ const LoginForm = ({ handleSetIsLoginClick }: LoginFormProps) => {
 
 	return (
 		<>
-			<div className="flex flex-col justify-start w-full mb-6">
-				<h1 className="text-3xl font-semibold self-start mt-6">Login</h1>
-				<p className="text-gray-400 self-start mb-6">
+			<div className="mb-6 flex w-full flex-col justify-start">
+				<h1 className="mt-6 self-start text-3xl font-semibold">Login</h1>
+				<p className="mb-6 self-start text-gray-400">
 					Get access to all articles and interact!
 				</p>
 			</div>
 			<form className="w-full" onSubmit={handleSubmit(onSubmit)}>
-				<div className="flex flex-col mb-6">
+				<div className="mb-6 flex flex-col">
 					<Input
 						type="text"
 						placeholder="mail@company.com"
@@ -56,7 +56,7 @@ const LoginForm = ({ handleSetIsLoginClick }: LoginFormProps) => {
 						{...register('email')}
 					/>
 				</div>
-				<div className="flex flex-col mb-6">
+				<div className="mb-6 flex flex-col">
 					<Input
 						label="Password"
 						placeholder="min. 6 characters"
@@ -65,32 +65,32 @@ const LoginForm = ({ handleSetIsLoginClick }: LoginFormProps) => {
 						{...register('password')}
 					/>
 				</div>
-				<div className="w-full flex items-center justify-between mb-6">
+				<div className="mb-6 flex w-full items-center justify-between">
 					<div className="flex items-center">
 						<input
 							type="checkbox"
-							className="rounded-sm mr-2 border-gray-300 text-indigo-500 focus:border-indigo-500 focus:ring-indigo-500"
+							className="mr-2 rounded-sm border-gray-300 text-indigo-500 focus:border-indigo-500 focus:ring-indigo-500"
 						/>
 						<span>Remember me</span>
 					</div>
 					<a className="text-indigo-700">Forgot password</a>
 				</div>
-				<button className="w-full bg-indigo-500 p-2 rounded-md text-white mb-3 hover:bg-indigo-700">
+				<button className="mb-3 w-full rounded-md bg-indigo-500 p-2 text-white hover:bg-indigo-700">
 					Sign in
 				</button>
 				<button
 					type="button"
 					onClick={signInWithTwitter}
-					className="w-full border border-gray-300 flex items-center justify-center text-gray-900 p-2 rounded-md mb-4 hover:bg-gray-50"
+					className="mb-4 flex w-full items-center justify-center rounded-md border border-gray-300 p-2 text-gray-900 hover:bg-gray-50"
 				>
-					<BsTwitter size="1.4rem" className="text-[#1DA1F2] mr-4" /> Sign in with
+					<BsTwitter size="1.4rem" className="mr-4 text-[#1DA1F2]" /> Sign in with
 					Twitter
 				</button>
-				<p className="text-sm text-gray-400 text-center">
+				<p className="text-center text-sm text-gray-400">
 					{"You don't have an account? "}
 					<button
 						type="button"
-						className="text-indigo-500 font-semibold hover:text-indigo-700"
+						className="font-semibold text-indigo-500 hover:text-indigo-700"
 						onClick={handleSetIsLoginClick}
 					>
 						Sign up

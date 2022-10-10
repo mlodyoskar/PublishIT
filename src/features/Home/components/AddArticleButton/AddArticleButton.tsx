@@ -3,13 +3,13 @@ import { IoMdAddCircle } from 'react-icons/io';
 
 const AddArticleButton = ({ visible }: { visible: boolean }) => (
 	<div
-		className={`bg-white rounded-full fixed bottom-6 right-5 md:hidden transition-opacity duration-300 ${
-			visible ? 'opacity-100' : 'opacity-0  pointer-events-none'
+		className={`fixed bottom-6 right-5 rounded-full bg-white transition-opacity duration-300 md:hidden ${
+			visible ? 'opacity-100' : 'pointer-events-none  opacity-0'
 		}`}
 	>
 		<Link to="/articles/new">
 			<IoMdAddCircle
-				className="hover:text-indigo-700 text-indigo-500 transition-colors "
+				className="text-indigo-500 transition-colors hover:text-indigo-700 "
 				size="4.5rem"
 			/>
 		</Link>

@@ -4,7 +4,7 @@ type GridTemplateProps = {
 
 const GridTemplate = ({ children }: GridTemplateProps) => {
 	return (
-		<section className="flex lg:grid lg:grid-cols-[3fr_1fr] gap-4 max-w-7xl m-auto">
+		<section className="m-auto flex max-w-7xl gap-4 lg:grid lg:grid-cols-[3fr_1fr]">
 			{children}
 		</section>
 	);

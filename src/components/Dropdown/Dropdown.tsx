@@ -46,8 +46,8 @@ const Dropdown = ({
 											to={to}
 											className={
 												active
-													? 'w-full px-1 py-1 bg-indigo-500 text-gray-50 rounded-md inline-block text-center font-semibold'
-													: 'w-full px-1 py-1 inline-block text-center'
+													? 'inline-block w-full rounded-md bg-indigo-500 px-1 py-1 text-center font-semibold text-gray-50'
+													: 'inline-block w-full px-1 py-1 text-center'
 											}
 										>
 											{text}
@@ -57,8 +57,8 @@ const Dropdown = ({
 											onClick={handleClick}
 											className={
 												active
-													? 'w-full px-1 py-1 bg-indigo-500 text-gray-50 rounded-md inline-block text-center font-semibold'
-													: 'w-full px-1 py-1 inline-block text-center'
+													? 'inline-block w-full rounded-md bg-indigo-500 px-1 py-1 text-center font-semibold text-gray-50'
+													: 'inline-block w-full px-1 py-1 text-center'
 											}
 										>
 											{text}

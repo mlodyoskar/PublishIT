@@ -17,9 +17,9 @@ const NavigationSearch = () => {
 
 	return (
 		<div className="h-full">
-			<form onSubmit={handleSearchSubmit} className="h-full relative">
+			<form onSubmit={handleSearchSubmit} className="relative h-full">
 				<input
-					className="h-full rounded-md border-none text-md"
+					className="text-md h-full rounded-md border-none"
 					placeholder="Search articles"
 					type="text"
 					onChange={handleInputChange}

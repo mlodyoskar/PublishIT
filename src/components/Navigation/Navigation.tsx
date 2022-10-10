@@ -10,10 +10,10 @@ const Navigation = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
-		<nav className="fixed z-10 w-full bg-indigo-500 h-[80px] flex items-center justify-center drop-shadow-xl mb-4">
-			<div className="flex max-w-7xl w-full h-full justify-between px-4">
-				<Link to="/" className=" mb-6 flex items-center  h-full ">
-					<BsFillLightningChargeFill size="3rem" className="text-gray-50 mr-2" />
+		<nav className="fixed z-10 mb-4 flex h-[80px] w-full items-center justify-center bg-indigo-500 drop-shadow-xl">
+			<div className="flex h-full w-full max-w-7xl justify-between px-4">
+				<Link to="/" className=" mb-6 flex h-full  items-center ">
+					<BsFillLightningChargeFill size="3rem" className="mr-2 text-gray-50" />
 					<p className="text-3xl text-gray-50">PublishIT</p>
 				</Link>
 				<div className="flex items-center">
@@ -22,21 +22,21 @@ const Navigation = () => {
 						handleClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
 					/>
 
-					<ul className="hidden md:flex h-3/5 items-center w-full gap-4">
-						<li className="h-full flex items-center">
+					<ul className="hidden h-3/5 w-full items-center gap-4 md:flex">
+						<li className="flex h-full items-center">
 							<NavigationSearch />
 						</li>
-						<li className="h-full flex items-center">
+						<li className="flex h-full items-center">
 							<Link
-								className="text-indigo-500 hover:text-indigo-800 transition-all flex rounded bg-gray-50 text-xl py-2 px-3 font-semibold h-full"
+								className="flex h-full rounded bg-gray-50 py-2 px-3 text-xl font-semibold text-indigo-500 transition-all hover:text-indigo-800"
 								to="/bookmarks"
 							>
 								<BsFillBookmarkFill size="1.4rem" className="m-auto" />
 							</Link>
 						</li>
-						<li className="h-full flex items-center">
+						<li className="flex h-full items-center">
 							<Button path="articles/new" variant="secondary">
-								<p className="font-semibold flex justify-center text-xl">
+								<p className="flex justify-center text-xl font-semibold">
 									Add new article
 								</p>
 							</Button>

@@ -23,12 +23,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 					{labelVisable && label}
 					<input
 						{...props}
-						className={`shadow-sm appearance-none border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700  mt-1 focus:border-indigo-500 focus:ring-indigo-500 ${
+						className={`mt-1 w-full appearance-none rounded-lg border-gray-300 py-2 px-3 text-gray-700  shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${
 							errorMessage && inputErrorStyles
 						}`}
 						ref={ref}
 					/>
-					{errorMessage && <div className="text-red-600 mt-1">{errorMessage}</div>}
+					{errorMessage && <div className="mt-1 text-red-600">{errorMessage}</div>}
 				</label>
 			</>
 		);

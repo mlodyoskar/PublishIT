@@ -37,7 +37,7 @@ const ArticleList = ({ articles }: ArticleListProps) => {
 	}
 
 	return (
-		<section ref={autoAnimateRef} className="flex flex-col gap-4 my-4">
+		<section ref={autoAnimateRef} className="my-4 flex flex-col gap-4">
 			{articles.map(
 				({
 					id,
@@ -51,11 +51,11 @@ const ArticleList = ({ articles }: ArticleListProps) => {
 					const formatedDate = dayjs(created_at).format('DD.MM.YYYY HH:mm');
 					return (
 						<Link to={`/articles/${id}`} key={id}>
-							<article className="article-item border-2 rounded-md p-4 group shadow-md hover:shadow-indigo-400 ease-in-out duration-300 flex flex-col md:flex-row gap-3 group self-stretch md:max-h-48 md:h-48">
+							<article className="article-item group group flex flex-col gap-3 self-stretch rounded-md border-2 p-4 shadow-md duration-300 ease-in-out hover:shadow-indigo-400 md:h-48 md:max-h-48 md:flex-row">
 								{imageUrl && (
-									<div className="md:w-2/5 max-h-32 h-32 md:max-h-full md:h-full overflow-hidden rounded-md">
+									<div className="h-32 max-h-32 overflow-hidden rounded-md md:h-full md:max-h-full md:w-2/5">
 										<img
-											className=" object-cover h-full w-full group-hover:scale-110 duration-300 bg-center"
+											className=" h-full w-full bg-center object-cover duration-300 group-hover:scale-110"
 											src={getArticleImageUrl(imageUrl)}
 										/>
 									</div>
@@ -63,24 +63,24 @@ const ArticleList = ({ articles }: ArticleListProps) => {
 								<div
 									className={`${
 										imageUrl ? 'md:w-3/5' : 'md:w-full'
-									} h-full flex flex-col`}
+									} flex h-full flex-col`}
 								>
-									<div className="flex justify-between items-start">
-										<h2 className="text-2xl mb-2 font-medium group-hover:text-indigo-500 w-4/5">
+									<div className="flex items-start justify-between">
+										<h2 className="mb-2 w-4/5 text-2xl font-medium group-hover:text-indigo-500">
 											{title}
 										</h2>
 										<button onClick={(e) => handleSaveArticle(e, id, user.id)}>
 											<BsFillBookmarkFill
 												className={`${
 													isSaved ? 'text-indigo-600' : 'text-gray-600'
-												} hover:text-indigo-400 transition-all hover:scale-105 
+												} transition-all hover:scale-105 hover:text-indigo-400 
 												`}
 												size="2rem"
 											/>
 										</button>
 									</div>
-									<p className="line-clamp-3 mb-2">{body}</p>
-									<p className="text-right justify-self-end mt-auto">
+									<p className="mb-2 line-clamp-3">{body}</p>
+									<p className="mt-auto justify-self-end text-right">
 										<span className="font-semibold">{fullName || username}</span>{' '}
 										<span className="text-gray-600">{formatedDate}</span>
 									</p>

@@ -35,7 +35,7 @@ const AsideFeedItem = ({ header, description }: AsideFeedItemProps) => {
 	};
 
 	return (
-		<div className="flex flex-col shadow-md rounded-lg p-4 border-2">
+		<div className="flex flex-col rounded-lg border-2 p-4 shadow-md">
 			<div className="mb-2">
 				<h3 className="uppercase  ">{header}</h3>
 				{description && <p className="text-xs text-gray-600">{description}</p>}
@@ -44,15 +44,15 @@ const AsideFeedItem = ({ header, description }: AsideFeedItemProps) => {
 			<div ref={animationParent} className="flex flex-col gap-3 py-2">
 				{data.map(({ id, username, fullname, followers, avatarurl }) => (
 					<div className="flex" key={username}>
-						<Link className="flex items-center gap-2 group" to={`/users/${id}`}>
-							<div className="rounded-xl w-8 h-8">
+						<Link className="group flex items-center gap-2" to={`/users/${id}`}>
+							<div className="h-8 w-8 rounded-xl">
 								<img
-									className="rounded-md w-8 h-8 object-cover"
+									className="h-8 w-8 rounded-md object-cover"
 									src={getUserAvatarUrl(avatarurl)}
 								/>
 							</div>
 							<div>
-								<p className="group-hover:text-indigo-700 whitespace-nowrap overflow-hidden overflow-ellipsis">
+								<p className="overflow-hidden overflow-ellipsis whitespace-nowrap group-hover:text-indigo-700">
 									{fullname || username}
 								</p>
 								<p className="text-xs text-gray-800">Obserwujących: {followers}</p>
@@ -60,7 +60,7 @@ const AsideFeedItem = ({ header, description }: AsideFeedItemProps) => {
 						</Link>
 						<Button
 							onClick={() => handleFollowButtonClick(id)}
-							className="rounded-md ml-auto bg-indigo-500 flex justify-center items-center w-8 h-8"
+							className="ml-auto flex h-8 w-8 items-center justify-center rounded-md bg-indigo-500"
 						>
 							<AiOutlineUserAdd />
 						</Button>

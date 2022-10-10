@@ -47,18 +47,18 @@ const Comment = ({
 	return (
 		<div
 			key={id}
-			className="my-2 p-2 flex gap-2 relative border-b-2 border-gray-100 last:border-none"
+			className="relative my-2 flex gap-2 border-b-2 border-gray-100 p-2 last:border-none"
 		>
 			<Link to={`/users/${userId}`} className="w-1/12">
 				<img
-					className="hover:scale-105 transition-transform w-12 h-12 m-auto rounded-xl object-cover"
+					className="m-auto h-12 w-12 rounded-xl object-cover transition-transform hover:scale-105"
 					src={`${getUserAvatarUrl(avatarUrl)}`}
 				/>
 			</Link>
-			<div className="w-10/12 relative">
-				<p className="text-sm text-gray-800 mb-2">
+			<div className="relative w-10/12">
+				<p className="mb-2 text-sm text-gray-800">
 					<Link
-						className="hover:underline hover:text-indigo-500"
+						className="hover:text-indigo-500 hover:underline"
 						to={`/users/${userId}`}
 					>
 						{fullName || username}
@@ -66,7 +66,7 @@ const Comment = ({
 					| <span>{date}</span>
 				</p>
 
-				<p className="text-justify mb-2">{body}</p>
+				<p className="mb-2 text-justify">{body}</p>
 			</div>
 			<Dropdown dropdownSide="left" dropdownItems={dropdownItems}>
 				<BsThreeDots

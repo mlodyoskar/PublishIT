@@ -6,7 +6,7 @@ type LoaderSpinnerProps = {
 
 const LoaderSpinner = ({ size = 150 }: LoaderSpinnerProps) => {
 	return (
-		<div className="m-auto h-full flex justify-center items-center">
+		<div className="m-auto flex h-full items-center justify-center">
 			<ClipLoader color="#6366f1" size={size} />;
 		</div>
 	);

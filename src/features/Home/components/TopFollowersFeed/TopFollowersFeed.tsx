@@ -11,23 +11,23 @@ type TopFollowersFeedProps = {
 const TopFollowersFeed = ({ data }: TopFollowersFeedProps) => {
 	return data.map(({ username, fullname, avatarurl, followers }) => (
 		<Link
-			className="flex items-center gap-2 group"
+			className="group flex items-center gap-2"
 			to={`users/${username}`}
 			key={username}
 		>
-			<div className="rounded-xl w-8 h-8">
+			<div className="h-8 w-8 rounded-xl">
 				<img
-					className="rounded-md w-8 h-8 object-cover"
+					className="h-8 w-8 rounded-md object-cover"
 					src={getUserAvatarUrl(avatarurl)}
 				/>
 			</div>
 			<div>
-				<p className="group-hover:text-indigo-700 whitespace-nowrap overflow-hidden overflow-ellipsis">
+				<p className="overflow-hidden overflow-ellipsis whitespace-nowrap group-hover:text-indigo-700">
 					{fullname || username}
 				</p>
 				<p className="text-xs text-gray-800">Obserwujących: {followers}</p>
 			</div>
-			<Button className="rounded-md ml-auto bg-indigo-500 flex justify-center items-center w-8 h-8">
+			<Button className="ml-auto flex h-8 w-8 items-center justify-center rounded-md bg-indigo-500">
 				<AiOutlineUserAdd />
 			</Button>
 		</Link>

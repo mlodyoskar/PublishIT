@@ -19,7 +19,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 					{label}
 					<textarea
 						{...props}
-						className={`shadow-sm appearance-none border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700  mt-1 focus:border-indigo-500 focus:ring-indigo-500 ${
+						className={`mt-1 w-full appearance-none rounded-lg border-gray-300 py-2 px-3 text-gray-700  shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${
 							errorMessage && textareaErrorStyles
 						}`}
 						ref={ref}

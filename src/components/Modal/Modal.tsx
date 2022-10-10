@@ -20,17 +20,17 @@ const Modal = ({ isOpen, handler, modalHeading, children }: ModalProps) => {
 		ReactDOM.createPortal(
 			isOpen && (
 				<>
-					<div className="fixed w-full h-full bg-black z-0 opacity-40 top-0"></div>
-					<div className="flex items-center justify-center fixed w-full h-full top-0">
+					<div className="fixed top-0 z-0 h-full w-full bg-black opacity-40"></div>
+					<div className="fixed top-0 flex h-full w-full items-center justify-center">
 						<div
 							ref={modalRef}
-							className="flex flex-col max-h-1/2 w-1/2 z-10 bg-white rounded-lg"
+							className="max-h-1/2 z-10 flex w-1/2 flex-col rounded-lg bg-white"
 						>
-							<div className="flex items-center max-h-16 w-full justify-between p-4">
+							<div className="flex max-h-16 w-full items-center justify-between p-4">
 								<p className="text-2xl text-black ">{modalHeading}</p>
 								<div onClick={handler} className="h-full cursor-pointer">
 									<AiFillCloseCircle
-										className="text-indigo-600 hover:text-indigo-700 transition-colors"
+										className="text-indigo-600 transition-colors hover:text-indigo-700"
 										size="2rem"
 									/>
 								</div>

@@ -11,11 +11,11 @@ type HamburgerProps = {
 const Hamburger = ({ handleClick, isOpen }: HamburgerProps) => {
 	return (
 		<button
-			className="md:hidden text-indigo-500 w-12 h-12 relative focus:outline-none bg-white rounded"
+			className="relative h-12 w-12 rounded bg-white text-indigo-500 focus:outline-none md:hidden"
 			onClick={handleClick}
 		>
 			<span className="sr-only">Open main menu</span>
-			<div className="flex items-center justify-center w-5 absolute left-1/2 top-1/2   transform  -translate-x-1/2 -translate-y-1/2">
+			<div className="absolute left-1/2 top-1/2 flex w-5 -translate-x-1/2 -translate-y-1/2   transform  items-center justify-center">
 				<span
 					aria-hidden="true"
 					className={cls(hamburgerSpanStyles, {
