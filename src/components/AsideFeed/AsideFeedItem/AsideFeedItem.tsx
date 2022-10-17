@@ -49,6 +49,7 @@ const AsideFeedItem = ({ header, description }: AsideFeedItemProps) => {
 								<img
 									className="h-8 w-8 rounded-md object-cover"
 									src={getUserAvatarUrl(avatarurl)}
+									alt={`${username}'s avatar`}
 								/>
 							</div>
 							<div>

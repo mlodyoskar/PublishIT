@@ -28,12 +28,12 @@ const Modal = ({ isOpen, handler, modalHeading, children }: ModalProps) => {
 						>
 							<div className="flex max-h-16 w-full items-center justify-between p-4">
 								<p className="text-2xl text-black ">{modalHeading}</p>
-								<div onClick={handler} className="h-full cursor-pointer">
+								<button onClick={handler} className="h-full cursor-pointer">
 									<AiFillCloseCircle
 										className="text-indigo-600 transition-colors hover:text-indigo-700"
 										size="2rem"
 									/>
-								</div>
+								</button>
 							</div>
 							<div className="p-4">{children}</div>
 						</div>

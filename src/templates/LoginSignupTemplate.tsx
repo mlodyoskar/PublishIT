@@ -21,7 +21,11 @@ const LoginSignupTemplate = ({ children }: LoginSignUpProps) => {
 			</div>
 			<div className="hidden w-2/4 items-center justify-center bg-indigo-500 md:flex">
 				<div className=" relative flex h-4/5 w-4/5 flex-col items-center justify-around">
-					<img src={Logo} className="w-2/4" />
+					<img
+						alt="Illustrated woman pointing at some text"
+						src={Logo}
+						className="w-2/4"
+					/>
 					<div>
 						<h1 className="mb-2 text-center text-4xl text-gray-50">
 							Read, review and create articles about things that interests you!

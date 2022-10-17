@@ -36,6 +36,7 @@ const NavigationDropdown = () => {
 			<img
 				className="flex h-12 w-12 rounded-full object-cover"
 				src={getUserAvatarUrl(user?.avatarUrl || 'placeholder')}
+				alt={`${user?.fullName}s avatar`}
 			/>
 		</Dropdown>
 	);

@@ -73,6 +73,7 @@ const ArticleCreation = () => {
 						<img
 							className="h-full w-full rounded-md bg-center object-cover"
 							src={URL.createObjectURL(image[0])}
+							alt=""
 						/>
 						<button
 							onClick={deleteThumbnail}

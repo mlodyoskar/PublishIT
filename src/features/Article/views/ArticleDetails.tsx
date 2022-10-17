@@ -61,6 +61,7 @@ const ArticleDetails = () => {
 						<img
 							className="max-h-96 w-full rounded-md object-cover"
 							src={getArticleImageUrl(imageUrl)}
+							alt=""
 						/>
 					)}
 					<div className="my-4 flex items-center justify-between">

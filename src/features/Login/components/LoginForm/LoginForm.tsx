@@ -73,7 +73,9 @@ const LoginForm = ({ handleSetIsLoginClick }: LoginFormProps) => {
 						/>
 						<span>Remember me</span>
 					</div>
-					<a className="text-indigo-700">Forgot password</a>
+					<button type="button" className="text-indigo-700">
+						Forgot password
+					</button>
 				</div>
 				<button className="mb-3 w-full rounded-md bg-indigo-500 p-2 text-white hover:bg-indigo-700">
 					Sign in

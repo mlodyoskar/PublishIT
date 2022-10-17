@@ -53,6 +53,7 @@ const Comment = ({
 				<img
 					className="m-auto h-12 w-12 rounded-xl object-cover transition-transform hover:scale-105"
 					src={`${getUserAvatarUrl(avatarUrl)}`}
+					alt={`${fullName}s avatar`}
 				/>
 			</Link>
 			<div className="relative w-10/12">

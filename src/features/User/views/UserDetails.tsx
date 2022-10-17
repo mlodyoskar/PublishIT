@@ -61,6 +61,7 @@ const UserDetails = () => {
 					<img
 						className="h-24 w-24 rounded-md object-cover"
 						src={getUserAvatarUrl(userDetails.avatarUrl)}
+						alt={`${userDetails.fullName}s avatar`}
 					/>
 				</div>
 				<div className="w-4/6">

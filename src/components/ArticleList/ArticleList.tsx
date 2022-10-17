@@ -57,6 +57,7 @@ const ArticleList = ({ articles }: ArticleListProps) => {
 										<img
 											className=" h-full w-full bg-center object-cover duration-300 group-hover:scale-110"
 											src={getArticleImageUrl(imageUrl)}
+											alt=""
 										/>
 									</div>
 								)}
