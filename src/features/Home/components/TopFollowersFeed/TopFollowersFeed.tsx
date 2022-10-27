@@ -17,6 +17,7 @@ const TopFollowersFeed = ({ data }: TopFollowersFeedProps) => {
 		>
 			<div className="h-8 w-8 rounded-xl">
 				<img
+					alt=""
 					className="h-8 w-8 rounded-md object-cover"
 					src={getUserAvatarUrl(avatarurl)}
 				/>

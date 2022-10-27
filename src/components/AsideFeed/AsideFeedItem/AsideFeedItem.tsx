@@ -1,6 +1,5 @@
 import { Button } from 'components/Button/Button';
 import { LoaderSpinner } from 'components/Spinner/Spinner';
-import { useAuth } from 'contexts/AuthProvider';
 import { useFollowersCount } from 'features/Home/hooks/useFollowersCount';
 import { useFollowUser } from 'features/User/hooks/useFollowUser';
 import { AiOutlineUserAdd } from 'react-icons/ai';

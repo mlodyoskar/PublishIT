@@ -1,7 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from 'components/Button/Button';
 import { Textarea } from 'components/Textarea/Textarea';
-import { useAuth } from 'contexts/AuthProvider';
 import {
 	InsertCommentType,
 	useCreateComment,

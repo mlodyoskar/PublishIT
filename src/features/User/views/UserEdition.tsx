@@ -5,7 +5,6 @@ import { Header } from 'components/Header/Header';
 import { Input } from 'components/Input/Input';
 import { LoaderSpinner } from 'components/Spinner/Spinner';
 import { Textarea } from 'components/Textarea/Textarea';
-import { useAuth } from 'contexts/AuthProvider';
 import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { BsFillTrashFill } from 'react-icons/bs';

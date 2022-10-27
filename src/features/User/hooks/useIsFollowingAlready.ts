@@ -1,6 +1,5 @@
 import { useLoggedInUser } from 'features/User/hooks/useLoggedInUser';
 import { getIfIsFollowingAlready } from './useFollowUser';
-import { useAuth } from 'contexts/AuthProvider';
 import { useQuery } from 'react-query';
 
 const useIsFollwingAlready = (followerId: string | undefined) => {

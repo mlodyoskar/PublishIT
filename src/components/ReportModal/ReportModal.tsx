@@ -3,7 +3,6 @@ import { Button } from 'components/Button/Button';
 import { Modal } from 'components/Modal/Modal';
 import { RadioInput } from 'components/RadioInput/RadioInput';
 import { Textarea } from 'components/Textarea/Textarea';
-import { useAuth } from 'contexts/AuthProvider';
 import {
 	ReportCategoryType,
 	InsertReportType,

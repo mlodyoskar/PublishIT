@@ -1,5 +1,4 @@
 import { useLoggedInUser } from 'features/User/hooks/useLoggedInUser';
-import { useAuth } from 'contexts/AuthProvider';
 import { SavedArticles } from 'types/SavedArticles';
 import { useQuery } from 'react-query';
 import { supabase } from 'supabase';
