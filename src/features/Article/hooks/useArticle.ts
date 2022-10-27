@@ -1,4 +1,4 @@
-import { useAuth } from 'contexts/AuthProvider';
+import { useLoggedInUser } from 'features/User/hooks/useLoggedInUser';
 import { SavedArticles } from './../../../types/SavedArticles';
 import { useQuery } from 'react-query';
 import { supabase } from 'supabase';
@@ -43,8 +43,8 @@ const getArticle = async (id: string) => {
 };
 
 const useArticle = (id: string | undefined) => {
-	const { user } = useAuth();
-	if (!id || !user) return;
+	const user = useLoggedInUser();
+	if (!id) return;
 	return useQuery(['articles', id], async () => {
 		const isArticleSaved = await getIfArticleIsSaved(id, user.id);
 		const article = await getArticle(id);

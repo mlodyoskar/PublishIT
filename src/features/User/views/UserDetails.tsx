@@ -1,7 +1,6 @@
 import { ArticleList } from 'components/ArticleList/ArticleList';
 import { Button } from 'components/Button/Button';
 import { LoaderSpinner } from 'components/Spinner/Spinner';
-import { useAuth } from 'contexts/AuthProvider';
 import { useArticles } from 'features/Article/hooks/useArticles';
 import { useUserDetails } from 'features/User/hooks/useUserDeatils';
 import { AiOutlineUserAdd } from 'react-icons/ai';
@@ -11,22 +10,15 @@ import { PageTemplate } from 'templates/PageTemplate';
 import { getUserAvatarUrl } from 'utils/user';
 import { useFollowUser } from '../hooks/useFollowUser';
 import { useIsFollwingAlready } from '../hooks/useIsFollowingAlready';
+import { useLoggedInUser } from '../hooks/useLoggedInUser';
 
 const UserDetails = () => {
 	const { id } = useParams();
 	const { data: userDetails, status: userStatus } = useUserDetails(id);
 	const { mutate } = useFollowUser();
-	const { user } = useAuth();
+	const user = useLoggedInUser();
 	const { data: isFollowingAlready } = useIsFollwingAlready(id);
 	const { data: userArticles, status: articlesStatus } = useArticles(id);
-
-	if (!user) {
-		return (
-			<PageTemplate>
-				<div>{"User wasn't found"}</div>
-			</PageTemplate>
-		);
-	}
 
 	if (userStatus === 'loading' || articlesStatus === 'loading') {
 		return (

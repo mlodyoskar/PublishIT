@@ -9,6 +9,7 @@ import {
 	InsertReportType,
 	ReportType,
 } from 'features/Article/hooks/useCreateReport';
+import { useLoggedInUser } from 'features/User/hooks/useLoggedInUser';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import * as yup from 'yup';
@@ -40,7 +41,7 @@ const ReportModal = ({
 }: ReportModalProps) => {
 	const { id: article_id } = useParams();
 
-	const { user } = useAuth();
+	const user = useLoggedInUser();
 
 	const {
 		register,
@@ -48,8 +49,8 @@ const ReportModal = ({
 		formState: { errors },
 	} = useForm<FormFields>({ resolver: yupResolver(commentReportFormSchema) });
 
-	if (!user || !article_id) {
-		throw Error('User or comment not found');
+	if (!article_id) {
+		throw new Error('Comment not found');
 	}
 
 	const onSubmit: SubmitHandler<FormFields> = async (data) => {

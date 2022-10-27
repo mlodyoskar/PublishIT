@@ -1,5 +1,3 @@
-import { Header } from 'components/Header/Header';
-import { useAuth } from 'contexts/AuthProvider';
 import dayjs from 'dayjs';
 import { useSaveArticle } from 'features/Article/hooks/useSaveArticle';
 import { BsFillBookmarkFill } from 'react-icons/bs';
@@ -8,6 +6,7 @@ import { ArticleType } from 'types/ArticleType';
 import { UserType } from 'types/UserType';
 import { getArticleImageUrl } from 'utils/article';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
+import { useLoggedInUser } from 'features/User/hooks/useLoggedInUser';
 
 interface Article extends ArticleType {
 	user: UserType;
@@ -20,7 +19,7 @@ type ArticleListProps = {
 
 const ArticleList = ({ articles }: ArticleListProps) => {
 	const { mutate } = useSaveArticle();
-	const { user } = useAuth();
+	const user = useLoggedInUser();
 	const [autoAnimateRef] = useAutoAnimate<HTMLElement>();
 
 	const handleSaveArticle = (
@@ -31,10 +30,6 @@ const ArticleList = ({ articles }: ArticleListProps) => {
 		e.preventDefault();
 		mutate({ article_id: articleId, user_id: userId });
 	};
-
-	if (!user) {
-		return <Header>User was not found</Header>;
-	}
 
 	return (
 		<section ref={autoAnimateRef} className="my-4 flex flex-col gap-4">

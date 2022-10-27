@@ -19,6 +19,7 @@ const LoginForm = ({ handleSetIsLoginClick }: LoginFormProps) => {
 		email: yup.string().required().email().label('Email'),
 		password: yup.string().required().label('Password'),
 	});
+
 	type FormFields = yup.InferType<typeof loginFormSchema>;
 
 	const {

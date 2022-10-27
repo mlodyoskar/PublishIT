@@ -13,6 +13,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { PageTemplate } from 'templates/PageTemplate';
 import { PageNotFound } from 'views/404';
 import * as yup from 'yup';
+import { useLoggedInUser } from '../hooks/useLoggedInUser';
 import { useUpdateUser } from '../hooks/useUpdateUser';
 import { useUserDetails } from '../hooks/useUserDeatils';
 
@@ -25,7 +26,7 @@ const editProfileFormSchema = yup.object({
 type FormFields = yup.InferType<typeof editProfileFormSchema>;
 
 const UserEdition = () => {
-	const { user } = useAuth();
+	const user = useLoggedInUser();
 	const { id: userId } = useParams();
 	const { data: userData, status: userDetailsStatus } = useUserDetails(userId);
 	const { mutate } = useUpdateUser();

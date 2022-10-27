@@ -6,6 +6,7 @@ import {
 	InsertCommentType,
 	useCreateComment,
 } from 'features/Article/hooks/useCreateComment';
+import { useLoggedInUser } from 'features/User/hooks/useLoggedInUser';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import * as yup from 'yup';
@@ -18,10 +19,10 @@ type FormFields = yup.InferType<typeof commentFormSchema>;
 const CommentForm = () => {
 	const { mutate: addComment } = useCreateComment();
 	const { id: articleId } = useParams();
-	const { user } = useAuth();
+	const user = useLoggedInUser();
 
-	if (!articleId || !user) {
-		return <div>User or article id not found</div>;
+	if (!articleId) {
+		return <div>Article id not found</div>;
 	}
 
 	const { register, handleSubmit, resetField } = useForm<FormFields>({

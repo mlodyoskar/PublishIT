@@ -1,3 +1,4 @@
+import { useLoggedInUser } from 'features/User/hooks/useLoggedInUser';
 import { useAuth } from 'contexts/AuthProvider';
 import { useQuery } from 'react-query';
 import { supabase } from 'supabase';
@@ -53,10 +54,8 @@ const getTopFollowersCount = async (userId: string) => {
 };
 
 const useFollowersCount = () => {
-	const { user } = useAuth();
-	if (!user) {
-		throw new Error('Cannot find logged user');
-	}
+	const user = useLoggedInUser();
+
 	return useQuery('followers', () => getTopFollowersCount(user.id));
 };
 

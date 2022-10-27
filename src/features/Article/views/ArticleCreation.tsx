@@ -2,7 +2,6 @@ import { Button } from 'components/Button/Button';
 import { Header } from 'components/Header/Header';
 import { Input } from 'components/Input/Input';
 import { Textarea } from 'components/Textarea/Textarea';
-import { useAuth } from 'contexts/AuthProvider';
 import {
 	InsertArticleType,
 	useCreateArticle,
@@ -15,6 +14,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FileInput } from 'components/FileInput/FileInput';
 import { BsFillTrashFill } from 'react-icons/bs';
+import { useLoggedInUser } from 'features/User/hooks/useLoggedInUser';
 
 const ArticleCreation = () => {
 	const articleFormSchema = yup.object({
@@ -25,13 +25,9 @@ const ArticleCreation = () => {
 
 	type FormFields = yup.InferType<typeof articleFormSchema>;
 
-	const { user } = useAuth();
+	const user = useLoggedInUser();
 	const { status, mutate } = useCreateArticle();
 	const navigate = useNavigate();
-
-	if (!user) {
-		return <h1>Nie znaleziono uzytkowika</h1>;
-	}
 
 	const {
 		register,

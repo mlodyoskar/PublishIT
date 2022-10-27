@@ -11,14 +11,14 @@ import { formatDate } from 'utils/date';
 import { getUserAvatarUrl } from 'utils/user';
 import { BsFillBookmarkFill } from 'react-icons/bs';
 import { useSaveArticle } from '../hooks/useSaveArticle';
-import { useAuth } from 'contexts/AuthProvider';
+import { useLoggedInUser } from 'features/User/hooks/useLoggedInUser';
 
 const ArticleDetails = () => {
 	const { id } = useParams();
 	const article = useArticle(id);
 	const { data: comments } = useComments(id);
 	const { mutate } = useSaveArticle();
-	const { user } = useAuth();
+	const user = useLoggedInUser();
 
 	if (article?.isLoading) {
 		return (
@@ -28,7 +28,7 @@ const ArticleDetails = () => {
 		);
 	}
 
-	if (!article?.data || !user) {
+	if (!article?.data) {
 		return (
 			<PageTemplate>
 				<article>

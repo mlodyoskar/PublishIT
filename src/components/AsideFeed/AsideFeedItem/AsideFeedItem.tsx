@@ -7,6 +7,7 @@ import { AiOutlineUserAdd } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { getUserAvatarUrl } from 'utils/user';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
+import { useLoggedInUser } from 'features/User/hooks/useLoggedInUser';
 
 type AsideFeedItemProps = {
 	header: string;
@@ -16,12 +17,9 @@ type AsideFeedItemProps = {
 const AsideFeedItem = ({ header, description }: AsideFeedItemProps) => {
 	const { data, status } = useFollowersCount();
 	const { mutate } = useFollowUser();
-	const { user } = useAuth();
+	const user = useLoggedInUser();
 	const [animationParent] = useAutoAnimate<HTMLDivElement>();
 
-	if (!user) {
-		return <div>Couldnt get top followed users</div>;
-	}
 	if (status === 'loading') {
 		return <LoaderSpinner />;
 	}

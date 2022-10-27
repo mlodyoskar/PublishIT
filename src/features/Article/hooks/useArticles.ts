@@ -1,3 +1,4 @@
+import { useLoggedInUser } from 'features/User/hooks/useLoggedInUser';
 import { useAuth } from 'contexts/AuthProvider';
 import { SavedArticles } from 'types/SavedArticles';
 import { useQuery } from 'react-query';
@@ -83,10 +84,8 @@ const getUserArticles = async (userId: string, creatorId: string) => {
 };
 
 const useArticles = (creatorId?: string | undefined) => {
-	const { user } = useAuth();
-	if (!user) {
-		throw new Error('Could not get user');
-	}
+	const user = useLoggedInUser();
+
 	if (creatorId) {
 		return useQuery(['articles', creatorId], () =>
 			getUserArticles(user.id, creatorId)

@@ -1,3 +1,4 @@
+import { useLoggedInUser } from 'features/User/hooks/useLoggedInUser';
 import { useAuth } from 'contexts/AuthProvider';
 import { useQuery } from 'react-query';
 import { supabase } from 'supabase';
@@ -49,10 +50,8 @@ export const getSavedArticles = async (userId: string) => {
 };
 
 const useSavedArticles = () => {
-	const { user } = useAuth();
-	if (!user) {
-		throw new Error('User was not found');
-	}
+	const user = useLoggedInUser();
+
 	return useQuery('savedArticles', async () => getSavedArticles(user.id));
 };
 
