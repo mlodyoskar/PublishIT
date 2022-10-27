@@ -4,7 +4,7 @@ import { login } from './utils/login';
 const APP_URL =
 	process.env.REACT_APP_PROD === 'false'
 		? ('http://localhost:3000' as const)
-		: ('https://publish-it.opuchalski.pl' as const);
+		: ('https://publish-it.vercel.app' as const);
 
 test.beforeEach(async ({ page }) => {
 	login(page, APP_URL);

@@ -7,7 +7,7 @@ dotenv.config();
 const APP_URL =
 	process.env.PROD === 'false'
 		? 'http://localhost:3000'
-		: 'https://publish-it.opuchalski.pl';
+		: 'https://publish-it.vercel.app';
 
 test.beforeEach(async ({ page }) => {
 	login(page, APP_URL);

@@ -13,8 +13,8 @@ It's mainly inspired by [ohmydev.pl](https://www.ohmydev.pl/). As a user you can
 | [React Router](https://reacttraining.com/react-router/) | Declarative routing for React                    |
 | [Supabase](https://supabase.com/)                       | Supabase is an open source Firebase alternative. |
 | [TailwindCSS](https://tailwindcss.com/)                 | CSS utility framework                            |
-| [Playwright](https://playwright.dev/)                   | end-to-end testing for modern web apps                            |
-| [React Testing Library](https://testing-library.com/)       | Simple and complete testing utilities                           |
+| [Playwright](https://playwright.dev/)                   | end-to-end testing for modern web apps           |
+| [React Testing Library](https://testing-library.com/)   | Simple and complete testing utilities            |
 | [Day.js](https://day.js.org/)                           | Js library, helps with formatting dates          |
 | [React Hook Form](https://react-hook-form.com/)         | Forms with easy-to-use validation.               |
 | [Eslint](https://eslint.org/)                           | Javascript Linter                                |
@@ -58,7 +58,7 @@ npm run start
 
 ## Live 📍
 
-<a href="https://publish-it.opuchalski.pl/">https://publish-it.opuchalski.pl/</a>
+<a href="https://publish-it.vercel.app/">https://publish-it.vercel.app/</a>
 
 ## Contributing
 
