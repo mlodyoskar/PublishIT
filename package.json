@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
-		"@formkit/auto-animate": "^1.0.0-beta.3",
+		"@formkit/auto-animate": "^1.0.0-beta.6",
 		"@headlessui/react": "^1.7.10",
 		"@hookform/resolvers": "^2.9.10",
 		"@supabase/supabase-js": "^1.35.6",
